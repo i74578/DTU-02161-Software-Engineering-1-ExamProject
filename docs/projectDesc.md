@@ -244,7 +244,7 @@ dele af beskrivelsen.
 - Rapporterne skal skrives på dansk eller engelsk og afleveres som PDF fil på DTU Learn.
   Rapporterne skal hedderapportxx1.pdfograpportxx2.pdfhvorxxer jeres grup-
   pe nummer skrevet med 2 cifre, dvs. 01, 02, 03,... , 10, 11,.... Være opmærksom på
-  at det skal værerapportxx1.pdfog ikkeRapportxx1.pdfellerreportxx1.pdf
+  at det skal være rapportxx1.pdf og ikke Rapportxx1.pdf eller reportxx1.pdf
   osv. Navne er meget vigtig fordi det hjælper mig at se med det samme om jeg har alle
   rapporter og Eclipse/IntelliJ projekter.
 
