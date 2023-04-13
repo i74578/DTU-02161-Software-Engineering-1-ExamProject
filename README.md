@@ -11,7 +11,7 @@
 ## Skal fixes
 - [x] Forsiden er præget af manglende informationer. Eksempelvis er dato ikke angivet, herunder er hverken overskrift "Rapport 1" eller gruppenummer angivet, hvilket er et krav. 
 - [x] Use case: Det udformede use case diagram er tekstpræget, hvilket afviger fra et korrekt use case diagram. Et eksempel herfor er sætningen "Se tidsforbrug per aktivitet for et projekt", hvilket er utrolig langt. Bemærkning: Pas på med dette!! 
-- [ ] I forlængelse af ovenstående kommentar, bliver der heller ikke skrevet noget om registrering af sygdom, ferie mv. for medarbejderens vedkommende jf. use case diagrammet. 
+- [x] I forlængelse af ovenstående kommentar, bliver der heller ikke skrevet noget om registrering af sygdom, ferie mv. for medarbejderens vedkommende jf. use case diagrammet. 
 - [ ] Der opstår ligeledes dobbeltkonfekt, da mange af informationerne angivet i glossary bliver gentaget under projektgruppens use case diagram. Bemærkning: Medtag kun glossary fremfor at opsumere alle punkter på use case diagrammet efterfølgende, da det ellers virker for gentagende. 
 - [ ] NB: Desuden kunne i godt have medtaget et afsnit om funktionelle- og ikke funktionelle krav. Opgaven virker pt. for abstrakt, og jeres fokus er ikke så tydeligt under afsnittet om kravsspecifikationer. 
 - [ ] Glossary: Derudover er projektgruppens glossary også præget af manglende informationer. Eksempelvis besidder en projektleder langt flere funktionaliteter end det der er beskrevet i glossary, såsom registrering af timer, ferie og bemanding af aktiviteter mv.. 
