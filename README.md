@@ -14,7 +14,6 @@
 - [x] I forlængelse af ovenstående kommentar, bliver der heller ikke skrevet noget om registrering af sygdom, ferie mv. for medarbejderens vedkommende jf. use case diagrammet. 
 - [x] Der opstår ligeledes dobbeltkonfekt, da mange af informationerne angivet i glossary bliver gentaget under projektgruppens use case diagram. Bemærkning: Medtag kun glossary fremfor at opsumere alle punkter på use case diagrammet efterfølgende, da det ellers virker for gentagende. 
 - [x] NB: Desuden kunne i godt have medtaget et afsnit om funktionelle- og ikke funktionelle krav. Opgaven virker pt. for abstrakt, og jeres fokus er ikke så tydeligt under afsnittet om kravsspecifikationer. 
-- [ ] Glossary: Derudover er projektgruppens glossary også præget af manglende informationer. Eksempelvis besidder en projektleder langt flere funktionaliteter end det der er beskrevet i glossary, såsom registrering af timer, ferie og bemanding af aktiviteter mv.. 
 - [ ] Korriger opgaven for ovenstående fejl, også kører det bare!!
 - [ ] De operationer, der er beskrevet i use case diagrammet, har de samme navne i de detaljerede use cases. Vi bemærkede dog, at nogle af operationerne mangler at blive beskrevet i de detaljerede use cases. Disse omfatter 'Fjern medarbejdere fra aktivitet', 'Se tidsforbrug per aktivitet for et projekt' og 'Lav rapport, der viser forventet restarbejde'. Vi går ud fra, at I kun har lavet otte detaljerede use cases baseret på antallet af gruppemedlemmer, og derfor er det vigtigt at fjerne nogle af operationerne fra use case diagrammet, så det hele hænger sammen. 
 - [ ] Vi bemærkede endvidere, at nogle af de metoder, I har beskrevet i jeres sekvensdiagrammer, ikke eksisterer i jeres klassediagram. For eksempel i det første sekvensdiagram ser man, at en employee har metoden 'CreateProject(n,s,f,k)', men denne metode mangler i klassediagrammet. 
@@ -27,6 +26,7 @@
 - [ ] Man kan se at i assigner en projektmanager, ved at sætte en specifik employee til rollen, men selve klassen, samt metoder ift projektmanagerens funktionaliteter synes vi mangler. I forhold til sekvensdiagrammerne, ønskes der at give ros, da disse ser overskuelige ud, samt giver de en henholdsvis god forståelse for hvordan de behandles gennem systemmet. Dog skal nogle af metoderne lige dobbelttjekkes med klassediagrammet.
 
 
-## Er i tvivl om
+## Er i tvivl om #SpørgHjælpeLære
 - [ ] Desuden er formen på diagrammet ikke ovalt, og der mangler ligeledes detaljer omkring projektlederen. Der bliver eksempelvis ikke skrevet noget om "uafsluttede aktiviteter", hvilket har en væsentlig betydning for selve opgaven. En projektleder skal kunne observere uafsluttede aktiviteter og bemande disse med tilgængelige medarbejdere ved opstået sygdom af en tidligere medarbejder. 
 
+- [ ] Glossary: Derudover er projektgruppens glossary også præget af manglende informationer. Eksempelvis besidder en projektleder langt flere funktionaliteter end det der er beskrevet i glossary, såsom registrering af timer, ferie og bemanding af aktiviteter mv.. 
