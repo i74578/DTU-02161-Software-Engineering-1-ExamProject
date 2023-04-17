@@ -173,48 +173,23 @@ fra programdesign i rapport 1.
 
 # 5 Projekt Beskrivelsen: Timeregistrering og projekt-styring
 
-Softwarehuset A/S bruger i dag et ældre system til timeregistrering og projektstyring. Sy-
-stemet er på flere måder tungt at arbejde med. Specielt klager mange medarbejdere over
-besværet med at registrere hvor mange timer man har arbejdet på forskellige aktiviteter.
-Projektlederne klager over at det er svært at bemande et projekt fordi man ikke kan se hvem
-der har tid hvornår.
-Softwarehuset A/S har omkring 50 udviklingsmedarbejdere og omkring 30 igangværende
-projekter. Mange projekter varer blot et par måneder, men nogle varer flereår. Hvert projekt
-har en projektleder (valgt blandt udviklingsmedarbejderne). En af projektlederes opgaver
-er at opdele projektet i aktiviteter, f.eks. kravspecifikation, projektledelse, analyse, design,
-programmering, test med mere.
-Et projekt har typisk 30 aktiviteter, men nogle har næsten 100. Et projekt oprettes, når
-der skal arbejdes på en opgave. Det kan være en mulig kunde, som ønsker en udvikling, eller
-det kan være et ”internt”projekt, der går ud på at lave noget for Softwarehuset A/S selv.
-På oprettelsestidspunktet er information om aktiviteter og starttidspunkt ikke fuldstændige,
-men dog kendt i et vist omfang. Projektlederen er ikke nødvendigvis udpeget fra starten.
-Projektlederen eller medarbejdere (hvis projektlederen er ikke endnu udpeget) skal grad-
-vis opdele projektet i aktiviteter. Aktiviteterne skal kunne planlægges længe inden arbejdet
-på dem begynder, men planerne skal kunne ændres hyppigt. For hver aktivitet skal projekt-
-lederen kunne anføre forventet antal arbejdstimer til løsning af opgaven (budgetteret tid).
-Endvidere skal der kunne anføres start- og sluttid på aktiviteten. Der ønskes en opløsning
-på ugenumre niveau. For eksempel, aktivitet “kravspecifikation” er budgetteret til 100 timer
-fordelt over 3 uger, dvs. arbejde starter i uge 10 og slutter i uge 12. Projektlederne skal
-kunne bruge systemet til at bemande projekter i god tid. Der kan være behov for, at mere
-end en medarbejder deltager i at udføre en bestemt aktivitet.
-Systemet skal tillade, at en medarbejder kan registrere den forbrugte tid på aktiviteten,
-selvom han er ikke direkte tilordnet den af projektlederen. For eksempel for at hjælpe en
-anden medarbejder.
-Softwarehuset A/S ønsker et system der kan hjælpe projektlederne i forbindelse med
-bemanding af projekter. Det skal således give overblik over, hvilke medarbejdere, der burde
-være ledige på det tidspunkt, hvor aktiviteten skal udføres.
-En medarbejder arbejder typisk på mindre end 10 aktiviteter ad gangen og varigheden
-af den enkelte aktivitet er typisk 2-3 uger. Systemet skal tillade enkelte medarbejdere at
-arbejde på 20 aktiviteter i løbet af en uge. Der skal være faste aktiviteter for registrering af
-ting som ferie, sygdom, kurser med videre, som ikke kan pålignes det enkelte projekt.
-Medarbejderne skal dagligt registrere hvor meget tid de har brugt på de forskellige aktiviteter (1/2 times nøjagtighed er tilfredsstillende). Det skal være enkelt at foretage denne
-registrering, så medarbejderen ikke føler det er en byrde. Medarbejderen skal enkelt kunne se,
-om han/hun har registreret alle timer man har arbejdet i dag. Det skal være muligt at rette
-i allerede registrerede data ligesom det skal være muligt at registrere fremtidige aktiviteter, f.eks. ferie.
-Projektlederen skal kunne bruge systemet til opfølgning. Det betyder, at projektlederen
-let skal kunne se, hvordan timeforbruget udvikler sig per aktivitet og for hele projektet. Der
-skal kunne laves rapporter til brug ved Softwarehuset A/s’ ugentlige projektmøder. Ved disse
-møder skal projektlederen endvidere se det forventede restarbejde på projektet.
+Softwarehuset A/S bruger i dag et ældre system til timeregistrering og projektstyring. Systemet er på flere måder tungt at arbejde med. Specielt klager mange medarbejdere over besværet med at registrere hvor mange timer man har arbejdet på forskellige aktiviteter. Projektlederne klager over at det er svært at bemande et projekt fordi man ikke kan se hvem der har tid hvornår.
+
+Softwarehuset A/S har omkring 50 udviklingsmedarbejdere og omkring 30 igangværende projekter. Mange projekter varer blot et par måneder, men nogle varer flereår. Hvert projekt har en projektleder (valgt blandt udviklingsmedarbejderne). En af projektlederes opgaver er at opdele projektet i aktiviteter, f.eks. kravspecifikation, projektledelse, analyse, design, programmering, test med mere.
+
+Et projekt har typisk 30 aktiviteter, men nogle har næsten 100. Et projekt oprettes, når der skal arbejdes på en opgave. Det kan være en mulig kunde, som ønsker en udvikling, eller det kan være et ”internt”projekt, der går ud på at lave noget for Softwarehuset A/S selv. På oprettelsestidspunktet er information om aktiviteter og starttidspunkt ikke fuldstændige, men dog kendt i et vist omfang. Projektlederen er ikke nødvendigvis udpeget fra starten.
+
+Projektlederen eller medarbejdere (hvis projektlederen er ikke endnu udpeget) skal gradvis opdele projektet i aktiviteter. Aktiviteterne skal kunne planlægges længe inden arbejdet på dem begynder, men planerne skal kunne ændres hyppigt. For hver aktivitet skal projektlederen kunne anføre forventet antal arbejdstimer til løsning af opgaven (budgetteret tid). Endvidere skal der kunne anføres start- og sluttid på aktiviteten. Der ønskes en opløsning på ugenumre niveau. For eksempel, aktivitet “kravspecifikation” er budgetteret til 100 timer fordelt over 3 uger, dvs. arbejde starter i uge 10 og slutter i uge 12. Projektlederne skal kunne bruge systemet til at bemande projekter i god tid. Der kan være behov for, at mere end en medarbejder deltager i at udføre en bestemt aktivitet.
+
+Systemet skal tillade, at en medarbejder kan registrere den forbrugte tid på aktiviteten, selvom han er ikke direkte tilordnet den af projektlederen. For eksempel for at hjælpe en anden medarbejder.
+
+Softwarehuset A/S ønsker et system der kan hjælpe projektlederne i forbindelse med bemanding af projekter. Det skal således give overblik over, hvilke medarbejdere, der burde være ledige på det tidspunkt, hvor aktiviteten skal udføres.
+
+En medarbejder arbejder typisk på mindre end 10 aktiviteter ad gangen og varigheden af den enkelte aktivitet er typisk 2-3 uger. Systemet skal tillade enkelte medarbejdere at arbejde på 20 aktiviteter i løbet af en uge. Der skal være faste aktiviteter for registrering af ting som ferie, sygdom, kurser med videre, som ikke kan pålignes det enkelte projekt.
+
+Medarbejderne skal dagligt registrere hvor meget tid de har brugt på de forskellige aktiviteter (1/2 times nøjagtighed er tilfredsstillende). Det skal være enkelt at foretage denne registrering, så medarbejderen ikke føler det er en byrde. Medarbejderen skal enkelt kunne se, om han/hun har registreret alle timer man har arbejdet i dag. Det skal være muligt at rette i allerede registrerede data ligesom det skal være muligt at registrere fremtidige aktiviteter, f.eks. ferie.
+
+Projektlederen skal kunne bruge systemet til opfølgning. Det betyder, at projektlederen let skal kunne se, hvordan timeforbruget udvikler sig per aktivitet og for hele projektet. Der skal kunne laves rapporter til brug ved Softwarehuset A/s’ ugentlige projektmøder. Ved disse møder skal projektlederen endvidere se det forventede restarbejde på projektet.
 
 ## 5.1 Lidt data
 
