@@ -21,7 +21,6 @@
 - [ ] Vi bemærkede endvidere, at nogle af de metoder, I har beskrevet i jeres sekvensdiagrammer, ikke eksisterer i jeres klassediagram. For eksempel i det første sekvensdiagram ser man, at en employee har metoden 'CreateProject(n,s,f,k)', men denne metode mangler i klassediagrammet. 
 - [ ] Generelt beskriver jeres sekvensdiagrammer jeres detaljerede use cases godt og stemmer derfor overens med dem, men der er behov for at få klassediagrammet til at hænge mere sammen med sekvensdiagrammerne. Desuden er der behov for at inkludere flere return messages for at gøre systemet mere omfattende.
 - [ ] Mange af begreberne knyttet til use case diagrammet fremgår af glossary, herunder afsnittet under use case diagrammet, hvor alle punkter opsummeres (gentagelse). Dog kunne i godt have tilføjet flere begreber, såsom tilgængelighed. I skriver nemlig, at projektlederen skal kunne se, hvornår en medarbejder er tilgængelig. Men hvad dækker dette begreb helt nøjagtigt over? Hvornår er en medarbejder tilgængelig? 
-- [ ] Umiddelbart, mangler der nogle ting på klassediagrammet, såsom hvad en ProjectManager skal kunne, altså forskel mellem employee og selve manager. 
 
 
 ## Er i tvivl om #SpørgHjælpeLære
@@ -38,3 +37,5 @@
 - [ ] Derudover ville det være godt at inkludere return messages i sekvensdiagrammerne, så de repræsenterer jeres system bedre. Dette gør sig gældende for 1.,3.,5.,6.,7.,8. og 9. sekvensdiagrammer. Eksempelvis i det første sekvensdiagram, kunne det have været tydeligere med en return message, som fortæller medarbejderen, at projektet er blevet oprettet. I det tredje sekvensdiagram viser I, at en employee har metoden 'assignProjectManager(p,e)', men ifølge jeres klassediagram, en employee har ingen metoder. 'assignProjectManager(p,e)' eksisterer under klassen Project, hvilket ikke giver mening, da det er klassen employee, der skal have denne metode og ikke klassen Project. 
 
 - [ ] Man kan se at i assigner en projektmanager, ved at sætte en specifik employee til rollen, men selve klassen, samt metoder ift projektmanagerens funktionaliteter synes vi mangler
+
+- [ ] Umiddelbart, mangler der nogle ting på klassediagrammet, såsom hvad en ProjectManager skal kunne, altså forskel mellem employee og selve manager. 
