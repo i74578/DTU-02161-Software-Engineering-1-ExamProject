@@ -14,13 +14,13 @@
 - [x] I forlængelse af ovenstående kommentar, bliver der heller ikke skrevet noget om registrering af sygdom, ferie mv. for medarbejderens vedkommende jf. use case diagrammet. 
 - [x] Der opstår ligeledes dobbeltkonfekt, da mange af informationerne angivet i glossary bliver gentaget under projektgruppens use case diagram. Bemærkning: Medtag kun glossary fremfor at opsumere alle punkter på use case diagrammet efterfølgende, da det ellers virker for gentagende. 
 - [x] NB: Desuden kunne i godt have medtaget et afsnit om funktionelle- og ikke funktionelle krav. Opgaven virker pt. for abstrakt, og jeres fokus er ikke så tydeligt under afsnittet om kravsspecifikationer. 
+- [ ] Mange af begreberne knyttet til use case diagrammet fremgår af glossary, herunder afsnittet under use case diagrammet, hvor alle punkter opsummeres (gentagelse). Dog kunne i godt have tilføjet flere begreber, såsom tilgængelighed. I skriver nemlig, at projektlederen skal kunne se, hvornår en medarbejder er tilgængelig. Men hvad dækker dette begreb helt nøjagtigt over? Hvornår er en medarbejder tilgængelig? 
 
 -----------------------------
 
 - [ ] De operationer, der er beskrevet i use case diagrammet, har de samme navne i de detaljerede use cases. Vi bemærkede dog, at nogle af operationerne mangler at blive beskrevet i de detaljerede use cases. Disse omfatter 'Fjern medarbejdere fra aktivitet', 'Se tidsforbrug per aktivitet for et projekt' og 'Lav rapport, der viser forventet restarbejde'. 
 - [ ] Vi bemærkede endvidere, at nogle af de metoder, I har beskrevet i jeres sekvensdiagrammer, ikke eksisterer i jeres klassediagram. For eksempel i det første sekvensdiagram ser man, at en employee har metoden 'CreateProject(n,s,f,k)', men denne metode mangler i klassediagrammet. 
 - [ ] Generelt beskriver jeres sekvensdiagrammer jeres detaljerede use cases godt og stemmer derfor overens med dem, men der er behov for at få klassediagrammet til at hænge mere sammen med sekvensdiagrammerne. Desuden er der behov for at inkludere flere return messages for at gøre systemet mere omfattende.
-- [ ] Mange af begreberne knyttet til use case diagrammet fremgår af glossary, herunder afsnittet under use case diagrammet, hvor alle punkter opsummeres (gentagelse). Dog kunne i godt have tilføjet flere begreber, såsom tilgængelighed. I skriver nemlig, at projektlederen skal kunne se, hvornår en medarbejder er tilgængelig. Men hvad dækker dette begreb helt nøjagtigt over? Hvornår er en medarbejder tilgængelig? 
 
 
 ## Er i tvivl om #SpørgHjælpeLære
