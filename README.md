@@ -31,4 +31,6 @@
 ## Er i tvivl om #SpørgHjælpeLære
 - [ ] Use case: Desuden er formen på diagrammet ikke ovalt, og der mangler ligeledes detaljer omkring projektlederen. Der bliver eksempelvis ikke skrevet noget om "uafsluttede aktiviteter", hvilket har en væsentlig betydning for selve opgaven. En projektleder skal kunne observere uafsluttede aktiviteter og bemande disse med tilgængelige medarbejdere ved opstået sygdom af en tidligere medarbejder. 
 
-- [ ] Glossary: Derudover er projektgruppens glossary også præget af manglende informationer. Eksempelvis besidder en projektleder langt flere funktionaliteter end det der er beskrevet i glossary, såsom registrering af timer, ferie og bemanding af aktiviteter mv.. 
+- [ ] Glossary: Derudover er projektgruppens glossary også præget af manglende informationer. Eksempelvis besidder en projektleder langt flere funktionaliteter end det der er beskrevet i glossary, såsom registrering af timer, ferie og bemanding af aktiviteter mv..
+
+- [ ] Umiddelbart, mangler der nogle ting på klassediagrammet, såsom hvad en ProjectManager skal kunne, altså forskel mellem employee og selve manager.
