@@ -27,4 +27,4 @@ If you don't need JavaFX, you can remove the javafx entries from the pom.xml fil
 
 # Misc
 - Be sure to remove unnecessary tests, packages, classes, etc. from the example project in your final project. 
-- Remember to create a `README.txt` (plain text) or a `README.md` (using Markdown) file that explains how to build and run the tests and the application and any necessary information to use the information, e.g., a short user manual and a description of any preset logins with password, if required.
+- Remember to create a `README.txt` (plain text) or a `README.md` (using Markdown) file that explains how to build and run the tests and the domain and any necessary information to use the information, e.g., a short user manual and a description of any preset logins with password, if required.
