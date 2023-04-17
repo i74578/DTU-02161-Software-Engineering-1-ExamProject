@@ -25,18 +25,8 @@
 ## Er i tvivl om #SpørgHjælpeLære
 - [ ] Use case: Desuden er formen på diagrammet ikke ovalt, og der mangler ligeledes detaljer omkring projektlederen. Der bliver eksempelvis ikke skrevet noget om "uafsluttede aktiviteter", hvilket har en væsentlig betydning for selve opgaven. En projektleder skal kunne observere uafsluttede aktiviteter og bemande disse med tilgængelige medarbejdere ved opstået sygdom af en tidligere medarbejder. 
 
-- [ ] Glossary: Derudover er projektgruppens glossary også præget af manglende informationer. Eksempelvis besidder en projektleder langt flere funktionaliteter end det der er beskrevet i glossary, såsom registrering af timer, ferie og bemanding af aktiviteter mv..
-
 - [ ] Umiddelbart, mangler der nogle ting på klassediagrammet, såsom hvad en ProjectManager skal kunne, altså forskel mellem employee og selve manager.
 
-- [ ] NB: Vi vil desuden godt påpege, at det virker lidt underligt, at kun en medarbejder kan oprette et projekt, og at projektlederen kun kan tilføje opgaver. Måske kunne man overveje at give projektlederen ansvaret for at også kunne oprette et projekt, da det giver mere mening i forhold til projektlederens rolle og ansvar jf. opgavebeskrivelsen.
-
-- [ ] Vi går ud fra, at I kun har lavet otte detaljerede use cases baseret på antallet af gruppemedlemmer, og derfor er det vigtigt at fjerne nogle af operationerne fra use case diagrammet, så det hele hænger sammen. 
-
 - [ ] Derudover ville det være godt at inkludere return messages i sekvensdiagrammerne, så de repræsenterer jeres system bedre. Dette gør sig gældende for 1.,3.,5.,6.,7.,8. og 9. sekvensdiagrammer. Eksempelvis i det første sekvensdiagram, kunne det have været tydeligere med en return message, som fortæller medarbejderen, at projektet er blevet oprettet. I det tredje sekvensdiagram viser I, at en employee har metoden 'assignProjectManager(p,e)', men ifølge jeres klassediagram, en employee har ingen metoder. 'assignProjectManager(p,e)' eksisterer under klassen Project, hvilket ikke giver mening, da det er klassen employee, der skal have denne metode og ikke klassen Project. 
-
-- [ ] Man kan se at i assigner en projektmanager, ved at sætte en specifik employee til rollen, men selve klassen, samt metoder ift projektmanagerens funktionaliteter synes vi mangler
-
-- [ ] Umiddelbart, mangler der nogle ting på klassediagrammet, såsom hvad en ProjectManager skal kunne, altså forskel mellem employee og selve manager. 
 
 - [ ] De operationer, der er beskrevet i use case diagrammet, har de samme navne i de detaljerede use cases. Vi bemærkede dog, at nogle af operationerne mangler at blive beskrevet i de detaljerede use cases. Disse omfatter 'Fjern medarbejdere fra aktivitet', 'Se tidsforbrug per aktivitet for et projekt' og 'Lav rapport, der viser forventet restarbejde'. 
