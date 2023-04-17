@@ -33,3 +33,5 @@
 - [ ] Glossary: Derudover er projektgruppens glossary også præget af manglende informationer. Eksempelvis besidder en projektleder langt flere funktionaliteter end det der er beskrevet i glossary, såsom registrering af timer, ferie og bemanding af aktiviteter mv..
 
 - [ ] Umiddelbart, mangler der nogle ting på klassediagrammet, såsom hvad en ProjectManager skal kunne, altså forskel mellem employee og selve manager.
+
+- [ ] NB: Vi vil desuden godt påpege, at det virker lidt underligt, at kun en medarbejder kan oprette et projekt, og at projektlederen kun kan tilføje opgaver. Måske kunne man overveje at give projektlederen ansvaret for at også kunne oprette et projekt, da det giver mere mening i forhold til projektlederens rolle og ansvar jf. opgavebeskrivelsen.
