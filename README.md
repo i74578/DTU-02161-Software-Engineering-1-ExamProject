@@ -18,9 +18,8 @@
 
 -----------------------------
 
-- [ ] De operationer, der er beskrevet i use case diagrammet, har de samme navne i de detaljerede use cases. Vi bemærkede dog, at nogle af operationerne mangler at blive beskrevet i de detaljerede use cases. Disse omfatter 'Fjern medarbejdere fra aktivitet', 'Se tidsforbrug per aktivitet for et projekt' og 'Lav rapport, der viser forventet restarbejde'. 
 - [ ] Vi bemærkede endvidere, at nogle af de metoder, I har beskrevet i jeres sekvensdiagrammer, ikke eksisterer i jeres klassediagram. For eksempel i det første sekvensdiagram ser man, at en employee har metoden 'CreateProject(n,s,f,k)', men denne metode mangler i klassediagrammet. 
-- [ ] Generelt beskriver jeres sekvensdiagrammer jeres detaljerede use cases godt og stemmer derfor overens med dem, men der er behov for at få klassediagrammet til at hænge mere sammen med sekvensdiagrammerne. Desuden er der behov for at inkludere flere return messages for at gøre systemet mere omfattende.
+- [ ] Der er behov for at få klassediagrammet til at hænge mere sammen med sekvensdiagrammerne. Desuden er der behov for at inkludere flere return messages for at gøre systemet mere omfattende.
 
 
 ## Er i tvivl om #SpørgHjælpeLære
@@ -39,3 +38,5 @@
 - [ ] Man kan se at i assigner en projektmanager, ved at sætte en specifik employee til rollen, men selve klassen, samt metoder ift projektmanagerens funktionaliteter synes vi mangler
 
 - [ ] Umiddelbart, mangler der nogle ting på klassediagrammet, såsom hvad en ProjectManager skal kunne, altså forskel mellem employee og selve manager. 
+
+- [ ] De operationer, der er beskrevet i use case diagrammet, har de samme navne i de detaljerede use cases. Vi bemærkede dog, at nogle af operationerne mangler at blive beskrevet i de detaljerede use cases. Disse omfatter 'Fjern medarbejdere fra aktivitet', 'Se tidsforbrug per aktivitet for et projekt' og 'Lav rapport, der viser forventet restarbejde'. 
