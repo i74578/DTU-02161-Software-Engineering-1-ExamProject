@@ -8,7 +8,10 @@ import java.util.ArrayList;
 public class timeCatApp {
     ArrayList<Project> projects = new ArrayList<>();
     ArrayList<Employee> emmployees = new ArrayList<>();
-
+    ArrayList<Employee> userRepo = new ArrayList<>();
+    userRepo.
+    userRepo.(new Employee("asd","asd"));
+    Employee loggedInUser;
 
 
 
