@@ -2,6 +2,7 @@ package timeCat.domain;
 
 import java.util.Calendar;
 
+//@author  Benjamin Fríðberg - s224347
 public class Project {
     String name;
     int projectNumber;
