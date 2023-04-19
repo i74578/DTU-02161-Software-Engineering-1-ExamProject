@@ -1,4 +1,4 @@
-package example.cucumber;
+package cucumber;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
