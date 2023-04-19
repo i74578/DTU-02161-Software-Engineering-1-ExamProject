@@ -1,3 +1,5 @@
+//@author  Emil Sundberg - s224337
+
 Feature: Edit an already time record.
 	Description: The ability to edit your own submitted time records.
 	Actors: Employee
@@ -13,5 +15,3 @@ Scenario: failure to edit time record
 	And there is not any time records
 	Then the Employee is unable to edit any time record
 	And the error message "There is not any time records avaliable" is given
-
-Scenario:
