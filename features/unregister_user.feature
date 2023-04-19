@@ -10,15 +10,15 @@ Background: Employee is Logged In
 Scenario: Add a project manager
 	Given a project exist
 	And a employee exist
-	Then a employee will be assigned project manager
+	Then the employee will be assigned project manager
 
 Scenario: No employee exist
 	Given a project exist
 	And a employee do not exist
-	Then a employee will no be assigned project manager
+	Then the error message "Employee do not exist" is given
 
 Scenario: No project exist
 	Given a project don not exist
 	And a employee do exist
-	Then a employee will no be assigned project manager
+	Then And the error message "Project do not exist" is given
 
