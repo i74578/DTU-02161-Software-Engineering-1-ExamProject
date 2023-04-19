@@ -1,6 +1,12 @@
-Feature: Unregister user 
-	Description: The administrator unregisters a user from the library
-	Actors: Administrator
+//Author: Christian Colberg - s224343
+
+
+Feature: Register hours spent
+	Description: The employee registers time spent on activity
+	Actors: Employee
+
+
+
 
 Scenario: Unregister a user
 	Given a user is registered with the library
