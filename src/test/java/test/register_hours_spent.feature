@@ -1,3 +1,5 @@
+//Author: Christian Colberg - s224343
+
 Feature: Register hours spent
 	Description: The employee registers time spent on activity
 	Actors: Employee

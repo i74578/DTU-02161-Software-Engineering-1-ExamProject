@@ -1,9 +1,18 @@
+//Author: Christian Colberg - s224343
+
 Feature: Pay fine
 	Description: The user pays his fines
 	Actors: User
 
 Scenario: View registered time
-	Given employee has time
+	Given employee is assigned activity/activities
+	Given employee has registered hours on activity
+	When employee views hours spent on activity
+	Then hours spent is displayed
+
+Scenario: View registered time, with no time spent
+	Given employee is assigned activity/activities
+	Given employee has not registerd
 
 
 Scenario: Pay fine for overdue books
