@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/features/LibraryExample" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/java/libraryexample" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/java/libraryexample/library" />
+      <excludeFolder url="file://$MODULE_DIR$/src/test/java/libraryExample" />
+    </content>
+  </component>
+</module>
