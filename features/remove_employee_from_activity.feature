@@ -3,8 +3,6 @@ Feature: remove employee from activity
 	Description: add employee to activity
 	Actors: project manager
 
-
-
 Background: Employee is Logged In
 	When Employee submits valid username and password
 	Then Employee should be logged in
@@ -25,5 +23,5 @@ Scenario: Failure to remove employee to activity, unknown activity
 	Given that project manager is Logged In
 	And a valid activity exists
 	When a project manager tries to remove an employee with unkown initials to activity "xx"
-	Then the error message "Unkown employee listed" is given
+	Then the error message "Unkown employee failed to be removed from activity" is given
 
