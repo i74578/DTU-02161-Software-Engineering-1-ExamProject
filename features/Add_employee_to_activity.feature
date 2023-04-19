@@ -4,8 +4,8 @@ Feature: Assign employee to activity
 	Actors: Project manager
 
 Background: project manager is logged in
-	When Employee submits valid username and password
-	Then Employee should be logged in
+	When project manager submits valid username and password
+	Then project manager should be logged in
 
 Scenario: Add employee to activity
  	Given that project manager is Logged In
