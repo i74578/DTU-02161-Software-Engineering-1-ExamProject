@@ -3,17 +3,17 @@ Feature: Assign employee to activity
 	Description: Assign an employee to an activity
 	Actors: Project manager
 
-Background: project manager is logged in
-	When project manager submits valid username and password
-	Then project manager should be logged in
+Background: Employee is logged in
+	When Employee submits valid username and password
+	Then Employee should be logged in
 
 Scenario: Add employee to activity
- 	Given that project manager is Logged In
+ 	Given Employee is Logged In
  	And a valid project exicts
- 	When a project manager assigns en employee with initials "xx" to activity-name "xx
+ 	When a project manager assigns en employee with initials "xx" to activity "xx"
 	Then everything is okay
  	
-Scenario: Failure to add employee to activity, unkown activity
+Scenario: Failure to add employee to activity, unknown activity
 	Given that project manager is Logged In
  	And a valid project exicts
 	When a project manager tries to assign an employee with initials "xx" to a unkown activity
