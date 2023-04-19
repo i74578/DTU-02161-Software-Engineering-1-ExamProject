@@ -5,7 +5,7 @@
 - [Trello kanban](https://trello.com/b/w3Dal5rF)
 - [Miro board](https://miro.com/app/board/uXjVPg4gMsk=/)
 - [Rapport](https://www.overleaf.com/project/6405fd846e665ed26e9029e9)
-
+----------------------------
 # Feedback
 
 ## Skal fixes
@@ -30,3 +30,5 @@
 - [ ] Derudover ville det være godt at inkludere return messages i sekvensdiagrammerne, så de repræsenterer jeres system bedre. Dette gør sig gældende for 1.,3.,5.,6.,7.,8. og 9. sekvensdiagrammer. Eksempelvis i det første sekvensdiagram, kunne det have været tydeligere med en return message, som fortæller medarbejderen, at projektet er blevet oprettet. I det tredje sekvensdiagram viser I, at en employee har metoden 'assignProjectManager(p,e)', men ifølge jeres klassediagram, en employee har ingen metoder. 'assignProjectManager(p,e)' eksisterer under klassen Project, hvilket ikke giver mening, da det er klassen employee, der skal have denne metode og ikke klassen Project. 
 
 - [ ] De operationer, der er beskrevet i use case diagrammet, har de samme navne i de detaljerede use cases. Vi bemærkede dog, at nogle af operationerne mangler at blive beskrevet i de detaljerede use cases. Disse omfatter 'Fjern medarbejdere fra aktivitet', 'Se tidsforbrug per aktivitet for et projekt' og 'Lav rapport, der viser forventet restarbejde'. 
+
+--------------------------------
