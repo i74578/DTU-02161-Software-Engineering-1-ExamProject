@@ -1,4 +1,5 @@
-Feature: Add Book
+//@author  Benjamin Fríðberg - s224347
+Feature: Create Project
 	Description: A project is created
 	Actors: Employee
 
