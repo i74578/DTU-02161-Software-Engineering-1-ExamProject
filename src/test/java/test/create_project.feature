@@ -9,7 +9,7 @@ Background: Employee is Logged In
 
 Scenario: Create a project successfully
  	Given Employee is Logged In
- 	When the project is created
+ 	When the a employee creates a project
  	Then a project with the name "test", author "Kent Beck", and signature "Beck99" is contained in the library
  	
 Scenario: Add a book when the adminstrator is not logged in
