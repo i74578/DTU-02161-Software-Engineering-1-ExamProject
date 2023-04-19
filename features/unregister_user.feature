@@ -1,9 +1,7 @@
-
 //@auther Lukas Halberg - s216229
 Feature: Add project manager
 	Description: Assign a project manager
 	Actors: project manager
-
 
 Scenario: Add a project manager
 	Given a employee is registered
