@@ -19,7 +19,7 @@ Scenario: Failure to add employee to activity, unknown activity
 	When a project manager tries to assign an employee with initials "xx" to a unkown activity
 	Then the error message "Unkown Acitivity listed" is given
 
-Scenario: Failure to add employee to activity, unkown employee
+Scenario: Failure to add employee to activity, unknown employee
 	Given that project manager is Logged In
 	And a valid activity exicts
 	When a project manager tries to assign an employee with unkown initials to activity "xx"
