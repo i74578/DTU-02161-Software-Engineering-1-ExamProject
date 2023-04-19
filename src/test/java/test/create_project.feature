@@ -3,8 +3,12 @@ Feature: Create Project
 	Description: A project is created
 	Actors: Employee
 
+Background: Employee is Logged In
+	When Employee submits valid username and password
+	Then Employee should be logged in
+
 Scenario: Create a project successfully
- 	Given that the employee is logged in
+ 	Given Employee is Logged In
  	When the project is created
  	Then a project with the name "test", author "Kent Beck", and signature "Beck99" is contained in the library
  	
