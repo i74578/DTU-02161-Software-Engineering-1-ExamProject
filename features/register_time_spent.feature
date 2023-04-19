@@ -11,9 +11,17 @@ Background: Employee is Logged In
 
 Scenario: Employee registers hours spent on assigned activity
 	Given employee is logged in
+	Given the activity exists
 	Given an employee is assigned activity
 	When the employee registers hours spent on activity
 	Then the hours are registered
+
+Scenario: Employee registers hours spent on assigned activity that doesn't exist
+	Given employee is logged in
+	Given the activity doesn't exist
+	Given an employee is assigned activity
+	When the employee registers hours spent on activity
+	Then the hours are not registered
 
 Scenario: Employee registers hours spent on unassigned activity
 	Given Employee is logged in
