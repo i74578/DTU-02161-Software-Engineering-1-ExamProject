@@ -26,8 +26,12 @@ public class controller {
         while(!stop){
             view.showMainMenu(options);
             int chosenOption = getIntFromUser();
-            options.get(chosenOption-1).optionCallMethod.run();
-
+            if (chosenOption > 0 && chosenOption <= options.size()) {
+                options.get(chosenOption - 1).optionCallMethod.run();
+            }
+            else{
+                view.printError("Invalid option");
+            }
         }
     }
 
