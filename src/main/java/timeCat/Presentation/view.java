@@ -35,6 +35,7 @@ public class view {
     }
 
     public void showProjects(ArrayList<Project> projects){
+        printTableHeader("Projects");
         printTable(projects,false);
     }
 
@@ -51,8 +52,22 @@ public class view {
         System.out.println(welcomeScreen);
     }
 
+    public void printTableHeader(String headerText){
+        print(HorizontalLine + centerStringInTableRecord(headerText));
+    }
+
+    public String centerStringInTableRecord(String stringToCenter){
+        int spacesNeedToFillWidth = cliWidth-stringToCenter.length() - 2;
+        String leftSpacePadding = " ".repeat(spacesNeedToFillWidth / 2);
+        String rightSpacePadding = " ".repeat((spacesNeedToFillWidth / 2)+(stringToCenter.length() % 2));
+        return "#"+leftSpacePadding+stringToCenter+rightSpacePadding+"#";
+    }
+
     public void printTable(ArrayList<? extends Tabelify> objectToPrint, boolean printIndex){
         String table = HorizontalLine;
+        if(objectToPrint.size() == 0){
+            table += centerStringInTableRecord("Empty")+"\n";
+        }
         for (int i = 0;i<objectToPrint.size();i++){
             String[] recordProperties = objectToPrint.get(i).getMainProperties();
             String recordText = " ";
