@@ -5,4 +5,8 @@ public class ErrorMessage {
     public void setErrorMessage(String message){
         this.errorMessage = message;
     }
+
+    public String getErrorMessage() {
+        return this.errorMessage;
+    }
 }

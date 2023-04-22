@@ -1,5 +1,7 @@
 package cucumber;
 
+import io.cucumber.java.en.Given;
+import timeCat.app.InvalidProjectNameException;
 import timeCat.app.ProjectNotFoundException;
 import timeCat.app.TimeCatApp;
 
@@ -7,12 +9,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import timeCat.domain.CostumerProject;
-import timeCat.domain.Employee;
 import timeCat.domain.InternalProject;
 import timeCat.domain.Project;
-
 import java.util.ArrayList;
 import java.util.Calendar;
+
 
 import static org.junit.Assert.*;
 
@@ -31,20 +32,42 @@ public class ProjectSteps {
 
     @When("a employee creates a costumer project with the name {string}")
     public void aEmployeeCreatesACostumerProjectWithTheName(String projectName) {
-        timeCatApp.createCostumerProject(projectName);
+        try {
+            timeCatApp.createCostumerProject(projectName);
+        } catch (InvalidProjectNameException e ) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
     }
 
     @When("a employee creates a internal project with the name {string}")
     public void aEmployeeCreatesAInternalProjectWithTheName(String projectName) {
-        timeCatApp.createInternalProject(projectName);
+        try {
+            timeCatApp.createInternalProject(projectName);
+        } catch (InvalidProjectNameException e ) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
     }
 
-    @When("a employee remove a project with the name {string}")
-    public void aEmployeeRemoveAProjectWithTheName(String projectName) throws ProjectNotFoundException {
-        timeCatApp.removeProject(project.getID());
+    @When("a employee removes a project with the name {string}")
+    public void aEmployeeRemoveAProjectWithTheName(String projectName) {
+        try {
+            Project projectToRemove = timeCatApp.getProjectByName(projectName);
+            timeCatApp.removeProject(projectToRemove.getID());
+        } catch (ProjectNotFoundException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
     }
 
-    @Then("a project with the name {string} is in the project repository")
+    @Given("a project with the name {string} is in the project repository")
+    public void theProjectWithTheNameIsInTheProjectRepository(String projectName) {
+        try {
+            timeCatApp.createCostumerProject(projectName);
+        } catch (InvalidProjectNameException e ) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @Then("the project with the name {string} is in the project repository")
     public void aProjectWithTheNameIsInTheProjectRepository(String projectName) {
         ArrayList<Project> projects = timeCatApp.getProjects();
         boolean projectExists = false;
@@ -57,7 +80,7 @@ public class ProjectSteps {
         assertTrue(projectExists);
     }
 
-    @Then("a project with the name {string} is not in the project repository")
+    @Then("the project with the name {string} is not in the project repository")
     public void aProjectWithTheNameIsNotInTheProjectRepository(String projectName) {
         ArrayList<Project> projects = timeCatApp.getProjects();
         boolean projectExists = false;
@@ -96,6 +119,7 @@ public class ProjectSteps {
     }
 
     @Then("I get the error message {string}")
-        public void iGetTheErrorMessage(String errorMessage) {
+    public void iGetTheErrorMessage(String errorMessage) throws Exception {
+        assertEquals(errorMessage, this.errorMessage.getErrorMessage());
     }
 }

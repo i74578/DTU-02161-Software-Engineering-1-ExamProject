@@ -1,5 +1,7 @@
 package timeCat.domain;
 
+import timeCat.app.InvalidProjectNameException;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -12,7 +14,11 @@ public class Project {
     Calendar finishTimestamp;
     ArrayList<Activity> activities;
 
-    public Project(String name, String projectID){
+    //@author  Benjamin Fríðberg - s224347
+    public Project(String name, String projectID) throws InvalidProjectNameException {
+        if (name.length() == 0){
+            throw new InvalidProjectNameException("Invalid project name");
+        }
         this.name = name;
         this.projectID = projectID;
         this.activities = new ArrayList<Activity>();
