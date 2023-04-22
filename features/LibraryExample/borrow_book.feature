@@ -14,7 +14,7 @@ Scenario: User borrows book more than 10 books
 	And a book with signature "Beck99" is in the library
 	When the user borrows the book
 	Then the book is not borrowed by the user
-	And the error message "Can't borrow more than 10 books/CDs" is given
+	And I get the error message "Can't borrow more than 10 books/CDs"	
 	
 Scenario: User cannot borrow books if he has overdue books
 	Given a book with signature "Beck99" is in the library
@@ -24,7 +24,7 @@ Scenario: User cannot borrow books if he has overdue books
 	And 29 days have passed
 	And the user borrows the book with signature "Rose11"
 	Then the book with signature "Rose11" is not borrowed by the user
-	And the error message "Can't borrow book/CD if user has overdue books/CDs" is given
+	And I get the error message "Can't borrow book/CD if user has overdue books/CDs"
 
 Scenario: User cannot borrow books if he has outstanding fines
 	Given a book with signature "Beck99" is in the library
@@ -37,5 +37,5 @@ Scenario: User cannot borrow books if he has outstanding fines
 	Then the user has to pay a fine of 100 DKK
 	When the user borrows the book with signature "Rose11"
 	Then the book with signature "Rose11" is not borrowed by the user
-	And the error message "Can't borrow book/CD if user has outstanding fines" is given
+	And I get the error message "Can't borrow book/CD if user has outstanding fines"
 	

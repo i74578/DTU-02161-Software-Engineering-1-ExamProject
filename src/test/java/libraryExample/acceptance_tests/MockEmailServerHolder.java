@@ -1,4 +1,4 @@
-package dtu.library.acceptance_tests.helper;
+package dtu.library.acceptance_tests;
 
 import static org.mockito.Mockito.mock;
 

@@ -14,10 +14,10 @@ Scenario: Register a user when not the administrator
 	And there is a user with CPR "020563-4886", name "Helena M. Bertelsen", e-mail "HelenaMBertelsen@rhyta.com " 
 	And the user has address street "Slåenhaven 50", post code 4560, and city "Vig" 
 	When the administrator registers the user 
-	Then the error message "Administrator login required" is given
+	Then I get the error message "Administrator login required"
 	
 Scenario: Register a user that is already registered
 	Given a user is registered with the library
 	And that the administrator is logged in
 	When the administrator registers the user again
-	Then the error message "User is already registered" is given
+	Then I get the error message "User is already registered"

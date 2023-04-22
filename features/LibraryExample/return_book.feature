@@ -3,14 +3,12 @@ Feature: Return Book
 	Actors: User
 
 Scenario: A user returns a borrowed book
-	Given a user is registered with the library
-	And that the user has borrowed a book
+	Given that the user has borrowed a book
 	When the user returns the book
 	Then the book is not borrowed by the user
 
 Scenario: A user returns a book he hasn't borrowed
-	Given a user is registered with the library
-	And that the user has not borrowed the book
+	Given that the user has not borrowed the book
 	When the user returns the book
 	Then the book is not borrowed by the user
-	And the error message "book/CD is not borrowed by the user" is given
+	And I get the error message "book/CD is not borrowed by the user"		

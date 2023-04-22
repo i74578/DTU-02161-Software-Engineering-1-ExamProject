@@ -1,18 +1,18 @@
-package dtu.library.acceptance_tests.helper;
+package dtu.library.acceptance_tests;
 
 import dtu.library.app.LibraryApp;
 import dtu.library.domain.Address;
-import dtu.library.dto.UserInfo;
+import dtu.library.domain.User;
 
 public class UserHelper {
-	private UserInfo user;
+	private User user;
 	private LibraryApp libraryApp;
 	
 	public UserHelper(LibraryApp libraryApp) {
 		this.libraryApp = libraryApp;
 	}
 	
-	public UserInfo getUser() {
+	public User getUser() {
 		if (user == null) {
 			user = exampleUser();
 		}
@@ -21,12 +21,12 @@ public class UserHelper {
 	
 	public void setUser(String cpr, String name, String email, String street, int postcode, String city) {
 		Address a = new Address(street,postcode,city);
-		user = new UserInfo(cpr,name,email);
+		user = new User(cpr,name,email);
 		user.setAddress(a);
 	}
 	
-	public UserInfo registerExampleUser() throws Exception {
-		UserInfo usr = getUser();
+	public User registerExampleUser() throws Exception {
+		User usr = getUser();
 		boolean loggedIn = libraryApp.adminLoggedIn();
 		if (!loggedIn) {
 			libraryApp.adminLogin("adminadmin");
@@ -38,8 +38,8 @@ public class UserHelper {
 		return usr;
 	}
 	
-	private UserInfo exampleUser() {
-		UserInfo user = new UserInfo("231171-3879","Freddie E. Messina","FreddieEMessina@armyspy.com");
+	private User exampleUser() {
+		User user = new User("231171-3879","Freddie E. Messina","FreddieEMessina@armyspy.com");
 		Address address = new Address("Øksendrupvej 68",1321,"København K");
 		user.setAddress(address);
 		return user;

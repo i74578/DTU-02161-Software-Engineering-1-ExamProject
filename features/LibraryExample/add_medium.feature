@@ -4,21 +4,20 @@ Feature: Add Medium
 
 Scenario: Add a book successfully
  	Given that the administrator is logged in
- 	And there is a book with title "Extreme Programming", author "Kent Beck", and signature "Beck99"
- 	And the book is not in the library
- 	When the book is added to the library
- 	Then the book with title "Extreme Programming", author "Kent Beck", and signature "Beck99" is contained in the library
+ 	And I have a book with title "Extreme Programming", author "Kent Beck", and signature "Beck99"
+ 	When I add the book
+ 	Then the book with title "Extreme Programming", author "Kent Beck", and signature "Beck99" is added to the library
  	
 Scenario: Add a book when the adminstrator is not logged in
 	Given that the administrator is not logged in
- 	And there is a book with title "Extreme Programming", author "Kent Beck", and signature "Beck99"
-	When the book is added to the library
-	Then the error message "Administrator login required" is given
+ 	And I have a book with title "Extreme Programming", author "Kent Beck", and signature "Beck99"
+	When I add the book
+	Then I get the error message "Administrator login required"
 	
 Scenario: Add a CD successfully
  	Given that the administrator is logged in
- 	And there is a Cd with title "The Life of Brian", author "Monty Python", and signature "Mon79"
- 	When the Cd is added to the library
- 	Then the Cd with title "The Life of Brian", author "Monty Python", and signature "Mon79" is contained in the library
+ 	And I have a CD with title "The Life of Brian", author "Monty Python", and signature "Mon79"
+ 	When I add the Cd
+ 	Then the Cd with title "The Life of Brian", author "Monty Python", and signature "Mon79" is added to the library
  	
 	

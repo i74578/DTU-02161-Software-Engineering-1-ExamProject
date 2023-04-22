@@ -13,4 +13,4 @@ Scenario: The administrator is not logged in
 	And there is a user with one overdue book
 	And the administrator logs out
 	When the administrator sends a reminder e-mail
-	Then the error message "Administrator login required" is given
+	Then I get the error message "Administrator login required"

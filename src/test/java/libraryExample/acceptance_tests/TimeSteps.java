@@ -1,6 +1,5 @@
-package dtu.library.acceptance_tests.steps;
+package dtu.library.acceptance_tests;
 
-import dtu.library.acceptance_tests.helper.MockDateHolder;
 import io.cucumber.java.en.Given;
 
 public class TimeSteps {
@@ -11,7 +10,7 @@ public class TimeSteps {
 		this.dateHolder = dateHolder;
 	}
 	
-	@Given("{int} days have passed")
+	@Given("^(\\d+) days have passed$")
 	public void daysHavePassed(int days) throws Exception {
 	    dateHolder.advanceDateByDays(days);
 	}

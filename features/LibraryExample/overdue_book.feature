@@ -6,25 +6,24 @@ Feature: Overdue book
 		domain experts
 		
 Scenario: Overdue book after 29 days
-	Given a user is registered with the library
-	And the user has borrowed a book
+	Given the user has borrowed a book
 	Then the user has to pay no fine
 	Given 29 days have passed
+	And the fine for one overdue book is 100 DKK
 	Then the user has overdue books
 	And the user has to pay a fine of 100 DKK
 
 Scenario: Not overdue book if books was borrowed less than or equal 28 days
-	Given a user is registered with the library
-	And the user has borrowed a book
+	Given the user has borrowed a book
 	And 28 days have passed
 	Then the user has no overdue books
 	And the user has to pay no fine
 	
 Scenario: Overdue CD after only 8 days
-	Given a user is registered with the library
-	And the user has borrowed a CD
+	Given the user has borrowed a CD
 	Then the user has to pay no fine
 	Given 8 days have passed
+	And the fine for one overdue CD is 200 DKK
 	Then the user has overdue CDs
 	And the user has to pay a fine of 200 DKK
 

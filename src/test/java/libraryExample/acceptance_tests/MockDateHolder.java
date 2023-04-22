@@ -1,8 +1,9 @@
-package dtu.library.acceptance_tests.helper;
+package dtu.library.acceptance_tests;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 

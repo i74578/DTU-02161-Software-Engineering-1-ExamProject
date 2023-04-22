@@ -1,10 +1,7 @@
-package dtu.library.acceptance_tests.steps;
+package dtu.library.acceptance_tests;
 
 import static org.mockito.Mockito.verify;
 
-import dtu.library.acceptance_tests.helper.ErrorMessageHolder;
-import dtu.library.acceptance_tests.helper.MockEmailServerHolder;
-import dtu.library.acceptance_tests.helper.UserHelper;
 import dtu.library.app.LibraryApp;
 import dtu.library.app.OperationNotAllowedException;
 import io.cucumber.java.en.Then;
@@ -24,7 +21,7 @@ public class EMailSteps {
 		this.errorMessageHolder = errorMessageHolder;
 	}
 	
-	@When("the administrator sends a reminder e-mail")
+	@When("^the administrator sends a reminder e-mail$")
 	public void theAdministratorSendsAReminderEMail() throws Exception {
 		try {
 			libraryApp.sendReminder();
@@ -33,7 +30,7 @@ public class EMailSteps {
 		}
 	}
 	
-	@Then("then the user receives an email with subject {string} and text {string}")
+	@Then("^then the user receives an email with subject \"([^\"]*)\" and text \"([^\"]*)\"$")
 	public void thenTheUserReceivesAnEmailWithSubjectAndText(String subject, String text) throws Exception {
 	    verify(emailServerHolder.getMockEmailServer()).sendEmail(helper.getUser().getEmail(), subject, text);
 	}
