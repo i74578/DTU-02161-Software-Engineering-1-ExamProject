@@ -1,4 +1,4 @@
-/*
+package dtu.library.app;
 
 import java.util.stream.Stream;
 
@@ -12,6 +12,4 @@ public interface MediumRepository {
 	void updateMedium(Medium m);
 	void clearMediumDatabase();
 
-	Medium getMedium(String signature);
-
-}*/
+}

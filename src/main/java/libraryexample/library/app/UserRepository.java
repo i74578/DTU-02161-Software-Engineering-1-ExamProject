@@ -1,5 +1,7 @@
-/*
+package dtu.library.app;
+
 import java.util.stream.Stream;
+
 import dtu.library.domain.User;
 
 public interface UserRepository {
@@ -15,7 +17,4 @@ public interface UserRepository {
 
 	void clearUserDatabase();
 
-	User getUser(String cpr);
-
 }
-*/

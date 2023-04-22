@@ -1,23 +1,31 @@
-/*
+package dtu.library.domain;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
 import dtu.library.app.EmailServer;
 import dtu.library.app.OverdueException;
 import dtu.library.app.TooManyMediaException;
 
+@Entity
 public class User {
 
 	private static final int MAX_NUMBER_OF_BOOKS = 10;
-
+	@Id
 	private String cpr;
 	private String name;
 	private String email;
-
+	@Embedded
 	private Address address;
-
+	@OneToMany
 	private List<Medium> borrowedMedia = new ArrayList<>();
 	private double fine = 0d;
 	private boolean hasFine = false;
@@ -26,6 +34,12 @@ public class User {
 		this.cpr = cpr;
 		this.name = name;
 		this.email = email;
+	}
+
+	public User() {}; // Needed by Java Persistence Layer
+	
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public String getName() {
@@ -51,6 +65,10 @@ public class User {
 		return cpr;
 	}
 	
+	public Address getAddress() {
+		return address;
+	}
+
 	public void borrowMedium(Medium medium, Calendar borrowDate) throws Exception {
 		canBorrow(borrowDate);
 		medium.setDueDateFromBorrowDate(borrowDate);
@@ -109,5 +127,5 @@ public class User {
 			fine = fine - money; hasFine = true;
 		}
 	}
+
 }
- */

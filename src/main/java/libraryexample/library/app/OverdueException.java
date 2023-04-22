@@ -1,11 +1,9 @@
-/*
-public class OverdueException extends Exception {
+package dtu.library.app;
 
-	private static final long serialVersionUID = 1L;
+public class OverdueException extends Exception {
 
 	public OverdueException(String string) {
 		super(string);
 	}
 
 }
-*/

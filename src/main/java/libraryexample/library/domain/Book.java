@@ -1,7 +1,10 @@
-/*
-import dtu.library.dto.BookInfo;
-import dtu.library.dto.MediumInfo;
+package dtu.library.domain;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("B")
 public class Book extends Medium {
 
 	private static final int FINE = 100;
@@ -11,6 +14,8 @@ public class Book extends Medium {
 		super(title, author, signature);
 	}
 	
+	public Book() { super(); }  // Needed by Java Persistence Layer
+
 	@Override
 	protected int getMaxBorrowDays() {
 		return MAX_NUMBER_OF_DAYS;
@@ -22,15 +27,8 @@ public class Book extends Medium {
 	}
 
 	@Override
-	public String getTypeName() {
+	protected String getTypeName() {
 		return "Book";
 	}
 
-	@Override
-	public MediumInfo asMediumInfo() {
-		return new BookInfo(this.getTitle(),this.getAuthor(),this.getSignature());
-	}
-
 }
-*/
-

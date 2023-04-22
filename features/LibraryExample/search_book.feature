@@ -14,30 +14,30 @@ Background: The library has a set of books
 	
 Scenario: Searching for a substring of the signature 
 	Given that the administrator is not logged in 
-	When the user searches for the text "99" 
-	Then the book with signature "Beck99" is found
+	When I search for the text "99" 
+	Then I find the book with signature "Beck99" 
 	
 Scenario: Searching for a substring of the title 
 	Given that the administrator is not logged in 
-	When the user searches for the text "Extreme" 
-	Then the book with signature "Beck99" is found
+	When I search for the text "Extreme" 
+	Then I find the book with signature "Beck99" 
 	
 Scenario: Searching for a substring of the author 
 	Given that the administrator is not logged in 
-	When the user searches for the text "Seb" 
-	Then the book with signature "Rose11" is found
+	When I search for the text "Seb" 
+	Then I find the book with signature "Rose11" 
 	
 Scenario: Searching also works when the administrator is logged in 
 	Given that the administrator is logged in 
-	When the user searches for the text "Seb" 
-	Then the book with signature "Rose11" is found
+	When I search for the text "Seb" 
+	Then I find the book with signature "Rose11" 
 	
 Scenario: No books match the criteria 
-	When the user searches for the text "Ian" 
-	Then no book is found
+	When I search for the text "Ian" 
+	Then I don't find any book 
 	
 Scenario: Find more than one book 
-	When the user searches for the text "Beck" 
-	Then the books with signatures "Beck99" and "Beck02" are found
+	When I search for the text "Beck" 
+	Then I find a book with signatures "Beck99" and "Beck02" 
 	
 	

@@ -1,7 +1,12 @@
-/*
-import dtu.library.dto.CdInfo;
-import dtu.library.dto.MediumInfo;
+package dtu.library.domain;
 
+import java.util.Calendar;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("C")
 public class Cd extends Medium {
 
 	private static final int FINE = 200;
@@ -11,6 +16,8 @@ public class Cd extends Medium {
 		super(title, author, signature);
 	}
 	
+	public Cd() { super(); }  // Needed by Java Persistence Layer
+
 	@Override
 	protected int getMaxBorrowDays() {
 		return MAX_NUMBER_OF_DAYS;
@@ -22,13 +29,9 @@ public class Cd extends Medium {
 	}
 
 	@Override
-	public String getTypeName() {
+	protected String getTypeName() {
 		return "CD";
 	}
-	
-	@Override
-	public MediumInfo asMediumInfo() {
-		return new CdInfo(this.getTitle(),this.getAuthor(),this.getSignature());
-	}
+
+
 }
- */

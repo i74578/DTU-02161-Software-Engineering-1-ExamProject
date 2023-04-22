@@ -1,5 +1,8 @@
-/*
+package dtu.library.domain;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Address {
 
 	private String street;
@@ -12,6 +15,8 @@ public class Address {
 		this.city = city;
 	}
 	
+	public Address() {};
+
 	public String getStreet() {
 		return street;
 	}
@@ -25,4 +30,3 @@ public class Address {
 	}
 
 }
-*/
