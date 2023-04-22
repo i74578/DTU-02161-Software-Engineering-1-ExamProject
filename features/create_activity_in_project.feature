@@ -1,4 +1,4 @@
-//@auther Lukas Halberg - s216229
+#auther Lukas Halberg - s216229
 Feature: create how much time is going to be spend on project
 	Description: create time in project
 	Actors: project manager

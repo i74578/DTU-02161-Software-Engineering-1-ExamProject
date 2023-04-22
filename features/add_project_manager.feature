@@ -1,4 +1,4 @@
-//@auther Lukas Halberg - s216229
+#auther Lukas Halberg - s216229
 Feature: Add project manager
 	Description: Assign a project manager
 	Actors: project manager

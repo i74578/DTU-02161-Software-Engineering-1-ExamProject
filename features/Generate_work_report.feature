@@ -1,4 +1,4 @@
-//@auther Emil Sundberg - s224337
+#auther Emil Sundberg - s224337
 Feature: Generate report of remaining work
 	Description: generate a report of the remaning work on a specified project.
 	Actors: Employee

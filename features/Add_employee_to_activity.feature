@@ -1,4 +1,4 @@
-//@author  Emil Sundberg - s224337
+#author  Emil Sundberg - s224337
 Feature: Assign employee to activity
 	Description: Assign an employee to an activity
 	Actors: Project manager

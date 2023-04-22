@@ -1,4 +1,4 @@
-//@auther Lukas Halberg - s216229
+#auther Lukas Halberg - s216229
 Feature: check if employee is available
 	Description: check if employee is available
 	Actors: project manager

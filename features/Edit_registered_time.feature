@@ -1,4 +1,4 @@
-//@author  Emil Sundberg - s224337
+#author  Emil Sundberg - s224337
 
 Feature: Edit an already time record.
 	Description: The ability to edit your own submitted time records.
