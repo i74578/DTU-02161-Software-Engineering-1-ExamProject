@@ -1,21 +1,36 @@
 package timeCat.domain;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 //@author  Benjamin Fríðberg - s224347
 public class Project {
     String name;
-    int projectID;
+    String projectID;
+    Employee pm;
     Calendar startTimestamp;
     Calendar finishTimestamp;
-    boolean customerProject;
+    ArrayList<Activity> activities;
 
-    public int getID(){
+    public Project(String name, String projectID){
+        this.name = name;
+        this.projectID = projectID;
+        this.activities = new ArrayList<Activity>();
+    }
+
+    public String getID(){
         return projectID;
     }
 
-    public Project(String name, int projectNumber,boolean customerProject){
-            
+    public String getName(){
+        return name;
     }
 
+    public Employee getPM(){
+        return pm;
+    }
+
+    public ArrayList<Activity> getActivities(){
+        return activities;
+    }
 }
