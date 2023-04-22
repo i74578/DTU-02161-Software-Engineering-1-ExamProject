@@ -6,6 +6,8 @@ import timeCat.Domain.Tabelify;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class view {
     String HorizontalLine = "#".repeat(100) + "\n";
@@ -28,43 +30,12 @@ public class view {
     }
 
     public void showMainMenu(ArrayList<commandOption> options){
-        String mainMenu = HorizontalLine;
-        for (int i = 0;i<options.size();i++){
-            commandOption option = options.get(i);
-            String optionText = " " + (i+1) + ". " + option.getOptionName() + " - " + option.getOptionDescription() + " ";
-            mainMenu += "#" + optionText + " ".repeat(cliWidth-2-optionText.length())+ "#\n";
-        }
-
-
-        mainMenu += HorizontalLine;
-        mainMenu += "\n Choose option:";
-        System.out.print(mainMenu);
+        printTable(options,true);
+        System.out.print("\n Choose option:");
     }
 
     public void showProjects(ArrayList<Project> projects){
-        printTable((ArrayList<Tabelify>) projects,false);
-        String projectsScreen = HorizontalLine;
-        for (Project project : projects){
-            String projectText =
-            projectsScreen += project.getID() + " - " + project.getName();
-        }
-    }
-
-    public void printTable(ArrayList<Tabelify> objectToPrint, boolean printIndex){
-        String table = HorizontalLine;
-        for (int i = 0;i<objectToPrint.size();i++){
-            String[] recordProperties = objectToPrint.get(i).getMainProperties();
-            String recordText = " ";
-            if(printIndex){
-                recordText += (i+1) + ". ";
-            }
-            for (String property : recordProperties){
-                recordText +=  property + " ";
-            }
-            table += "#" + recordText + " ".repeat(cliWidth-2-recordText.length())+ "#\n";
-        }
-        table += HorizontalLine;
-        print(table);
+        printTable(projects,false);
     }
 
     public void showWelcomeScreen(){
@@ -80,7 +51,20 @@ public class view {
         System.out.println(welcomeScreen);
     }
 
-
+    public void printTable(ArrayList<? extends Tabelify> objectToPrint, boolean printIndex){
+        String table = HorizontalLine;
+        for (int i = 0;i<objectToPrint.size();i++){
+            String[] recordProperties = objectToPrint.get(i).getMainProperties();
+            String recordText = " ";
+            if(printIndex){
+                recordText += (i+1) + ". ";
+            }
+            recordText += String.join(" - ",recordProperties);
+            table += "#" + recordText + " ".repeat(cliWidth-2-recordText.length())+ "#\n";
+        }
+        table += HorizontalLine;
+        print(table);
+    }
 
 
 
