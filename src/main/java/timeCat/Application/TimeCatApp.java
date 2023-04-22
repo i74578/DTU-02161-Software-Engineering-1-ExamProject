@@ -1,9 +1,9 @@
-package timeCat.app;
+package timeCat.Application;
 
-import timeCat.domain.CostumerProject;
-import timeCat.domain.Employee;
-import timeCat.domain.InternalProject;
-import timeCat.domain.Project;
+import timeCat.Domain.CostumerProject;
+import timeCat.Domain.Employee;
+import timeCat.Domain.InternalProject;
+import timeCat.Domain.Project;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Optional;

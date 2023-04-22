@@ -1,16 +1,16 @@
 package cucumber;
 
 import io.cucumber.java.en.Given;
-import timeCat.app.InvalidProjectNameException;
-import timeCat.app.ProjectNotFoundException;
-import timeCat.app.TimeCatApp;
+import timeCat.Application.InvalidProjectNameException;
+import timeCat.Application.ProjectNotFoundException;
+import timeCat.Application.TimeCatApp;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import timeCat.domain.CostumerProject;
-import timeCat.domain.InternalProject;
-import timeCat.domain.Project;
+import timeCat.Domain.CostumerProject;
+import timeCat.Domain.InternalProject;
+import timeCat.Domain.Project;
 import java.util.ArrayList;
 import java.util.Calendar;
 

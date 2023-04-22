@@ -1,4 +1,4 @@
-package timeCat.domain;
+package timeCat.Domain;
 
 //@author  Benjamin Fríðberg - s224347
 public class Activity {

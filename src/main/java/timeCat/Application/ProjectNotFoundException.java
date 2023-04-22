@@ -1,4 +1,4 @@
-package timeCat.app;
+package timeCat.Application;
 
 //@author  Benjamin Fríðberg - s224347
 public class ProjectNotFoundException extends Exception{

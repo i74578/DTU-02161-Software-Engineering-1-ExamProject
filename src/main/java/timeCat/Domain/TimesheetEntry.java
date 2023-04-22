@@ -1,4 +1,4 @@
-package timeCat.domain;
+package timeCat.Domain;
 
 import java.util.Calendar;
 

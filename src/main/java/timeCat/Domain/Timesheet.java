@@ -1,9 +1,8 @@
-package timeCat.domain;
+package timeCat.Domain;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.concurrent.CancellationException;
 import java.util.stream.Collectors;
 
 //@author  Benjamin Fríðberg - s224347

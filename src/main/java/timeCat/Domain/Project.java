@@ -1,12 +1,12 @@
-package timeCat.domain;
+package timeCat.Domain;
 
-import timeCat.app.InvalidProjectNameException;
+import timeCat.Application.InvalidProjectNameException;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
 //@author  Benjamin Fríðberg - s224347
-public class Project {
+public class Project implements Tabelify {
     String name;
     String projectID;
     Employee pm;
@@ -39,4 +39,9 @@ public class Project {
     public ArrayList<Activity> getActivities(){
         return activities;
     }
+
+    public String[] getMainProperties(){
+        return new String[] {projectID, name};
+    }
+
 }

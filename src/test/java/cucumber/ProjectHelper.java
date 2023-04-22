@@ -1,5 +1,5 @@
 package cucumber;
-import timeCat.app.TimeCatApp;
+import timeCat.Application.TimeCatApp;
 
 public class ProjectHelper {
     TimeCatApp timeCatApp;

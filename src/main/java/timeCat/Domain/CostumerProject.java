@@ -1,6 +1,6 @@
-package timeCat.domain;
+package timeCat.Domain;
 
-import timeCat.app.InvalidProjectNameException;
+import timeCat.Application.InvalidProjectNameException;
 
 public class CostumerProject extends Project{
     public CostumerProject(String name, String projectNumber) throws InvalidProjectNameException {
