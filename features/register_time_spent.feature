@@ -1,4 +1,4 @@
-//Author: Christian Colberg - s224343
+#Author: Christian Colberg - s224343
 
 
 Feature: Register hours spent

@@ -1,4 +1,4 @@
-//@auther Lukas Halberg - s216229
+#auther Lukas Halberg - s216229
 Feature: remove employee from activity
 	Description: add employee to activity
 	Actors: project manager
