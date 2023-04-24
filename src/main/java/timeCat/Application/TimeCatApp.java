@@ -77,6 +77,11 @@ public class TimeCatApp {
         activityCount++;
     }
 
+    public void removeActivity(int activityID, String projectID) throws ProjectNotFoundException, ActivityNotFoundException {
+        Project project = getProjectByID(projectID);
+        project.removeActivity(activityID);
+    }
+
     //@author  Benjamin Fríðberg - s224347
     public void addEmployee(String initials) throws DuplicateException {
         if(!userExists(initials)){

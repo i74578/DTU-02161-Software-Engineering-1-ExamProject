@@ -11,6 +11,7 @@ import timeCat.Domain.CostumerProject;
 import timeCat.Domain.InternalProject;
 import timeCat.Domain.Project;
 
+import java.rmi.server.ExportException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -81,7 +82,14 @@ public class ActivitySteps {
     //#author: Christian Colberg - s224343
     @When("a employee removes an activity with the name {string} in the project {string}")
     public void aEmployeeRemovesAnActivityWithTheNameInTheProject(String activityName, String projectName) {
-        
+        try {
+            Project project = timeCatApp.getProjectByName(projectName);
+            Activity activity = project.getActivityByName(activityName);
+            timeCatApp.removeActivity(activity.getActivityID(), project.getName());
+        }
+        catch(Exception e){
+            errorMessage.setErrorMessage(e.getMessage());
+        }
     }
 
     //#author: Christian Colberg - s224343
@@ -115,8 +123,15 @@ public class ActivitySteps {
     //#author: Christian Colberg - s224343
     @And("an activity with the name {string} is in the project {string}")
     public void anActivityWithTheNameIsInTheProject(String activityName, String projectName) throws ProjectNotFoundException, ActivityNotFoundException {
-        Activity newActivity = timeCatApp.getProjectByName(projectName).getActivityByName(activityName);
-        activity = newActivity;
-        assertNotNull(newActivity);
+        String projectID = timeCatApp.getProjectByName(projectName).getID();
+        try {
+            timeCatApp.createActivity(activityName, projectID);
+        }catch(Exception e){
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @And("an activity with the name {string} is not in the project {string}")
+    public void anActivityWithTheNameIsNotInTheProject(String activityName, String projectName) {
     }
 }

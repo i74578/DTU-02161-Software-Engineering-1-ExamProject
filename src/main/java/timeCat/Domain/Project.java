@@ -51,6 +51,13 @@ public class Project implements Tabelify {
         throw new DuplicateException("Duplicate activity");
     }
 
+    public void removeActivity(int activityID) throws ActivityNotFoundException {
+        Activity projectToRemove = getActivityByID(activityID);
+        activities.remove(projectToRemove);
+    }
+
+
+
     public boolean activityExists(Activity activityName){
         Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();
         return !FoundActivity.isEmpty();
@@ -58,7 +65,13 @@ public class Project implements Tabelify {
 
 
 
-
+    private Activity getActivityByID(int activityID) throws ActivityNotFoundException {
+        Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getActivityID() == activityID).findFirst();
+        if (!FoundActivity.isEmpty()){
+            return FoundActivity.get();
+        }
+        throw new ActivityNotFoundException("The activity is not found");
+    }
 
     public Activity getActivityByName (String activityName) throws ActivityNotFoundException {
         Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();
@@ -77,5 +90,6 @@ public class Project implements Tabelify {
     public String[] getMainProperties(){
         return new String[] {projectID, name};
     }
+
 
 }
