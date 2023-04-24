@@ -29,10 +29,13 @@ public class ActivitySteps {
 
     @When("a employee creates an activity with the name {string} in the project {string}")
     public void aEmployeeCreatesAnActivityWithTheNameInTheProject(String activityName, String projectName) throws ProjectNotFoundException, InvalidActivityNameException {
-        try{
-        Activity newActivity = new Activity(activityName);
-        timeCatApp.getProjectByName(projectName).addActivity(newActivity);}
-        catch{I
+        try {
+            String projectID = timeCatApp.getProjectByName(projectName).getID();
+            timeCatApp.createActivity(activityName, projectID);
+        }
+        catch(ProjectNotFoundException | InvalidActivityNameException e){
+            errorMessage.setErrorMessage(e.getMessage());
+        }
     }
 
     @Then("the activity with the name {string} is in the project {string}")
@@ -44,7 +47,7 @@ public class ActivitySteps {
 
     @And("the activity has no registered hours")
     public void theActivityHasNoRegisteredHours() {
-    assertEquals(activity.getTimesheet().getEntryCount(),0);
+        assertEquals(activity.getTimesheet().getEntryCount(),0);
     }
 
     @And("the activity has no assigned employees")
