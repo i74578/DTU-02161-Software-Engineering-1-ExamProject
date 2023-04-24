@@ -85,7 +85,7 @@ public class ActivitySteps {
         try {
             Project project = timeCatApp.getProjectByName(projectName);
             Activity activity = project.getActivityByName(activityName);
-            timeCatApp.removeActivity(activity.getActivityID(), project.getName());
+            timeCatApp.removeActivity(activity.getActivityID(), project.getID());
         }
         catch(Exception e){
             errorMessage.setErrorMessage(e.getMessage());

@@ -5,10 +5,10 @@ Feature: Remove Activity
 
 
 Scenario: Employee removes an activity successfully
-	Given a project with the name "Project A" is in the project repository
-	And an activity with the name "Activity A" is in the project "Project A"
-	When a employee removes an activity with the name "Activity A" in the project "Project A"
-	Then the activity with the name "Activity A" is removed from the project "Project A"
+	Given a project with the name "Project Aa" is in the project repository
+	And an activity with the name "Activity Aa" is in the project "Project Aa"
+	When a employee removes an activity with the name "Activity Aa" in the project "Project Aa"
+	Then the activity with the name "Activity Aa" is removed from the project "Project Aa"
 
 Scenario: Employee removes an activity from non-existent project
 	Given the project with the name "Project B" is not in the project repository
