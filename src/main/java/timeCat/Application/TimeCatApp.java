@@ -40,9 +40,13 @@ public class TimeCatApp {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public void createCostumerProject(String projectName) throws InvalidProjectNameException {
-        Project costumerProject = new CostumerProject(projectName,getNextProjectID());
-        projectsRepo.add(costumerProject);
+    public void createCostumerProject(String projectName) throws InvalidProjectNameException, DuplicateException {
+        if(!projectExists(projectName)) {
+            Project costumerProject = new CostumerProject(projectName, getNextProjectID());
+            projectsRepo.add(costumerProject);
+            return;
+        }
+        throw new DuplicateException("Project with the same name already exists");
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -62,5 +66,32 @@ public class TimeCatApp {
         Project project = getProjectByID(projectID);
         Activity activityToAdd = new Activity(activityName);
         project.addActivity(activityToAdd);
+    }
+
+    public void addEmployee(String initials) throws DuplicateException {
+        if(!userExists(initials)){
+            Employee employee = new Employee(initials);
+            employeeRepo.add(employee);
+            return;
+        }
+        throw new DuplicateException("The user already exists");
+    }
+
+    public boolean projectExists(String projectName){
+        Optional<Project> FoundProject = projectsRepo.stream().filter(p -> p.getName().equals(projectName)).findFirst();
+        return !FoundProject.isEmpty();
+    }
+
+    public boolean userExists(String initials){
+        Optional<Employee> FoundEmployee = employeeRepo.stream().filter(p -> p.getInitials().equals(initials)).findFirst();
+        return !FoundEmployee.isEmpty();
+    }
+
+    public Employee getUser(String initials) throws UserNotFoundException {
+        Optional<Employee> FoundEmployee = employeeRepo.stream().filter(p -> p.getInitials().equals(initials)).findFirst();
+        if (!FoundEmployee.isEmpty()){
+            return FoundEmployee.get();
+        }
+        throw new UserNotFoundException("The user is not found");
     }
 }
