@@ -56,9 +56,6 @@ public class TimeCatApp {
     //@author  Benjamin Fríðberg - s224347
     public static String getNextProjectID(){
         int currentYear = Calendar.getInstance().get(Calendar.YEAR) % 100;
-        return currentYear+String.format("%06d",projectsRepo.size()+1);
+        return currentYear+String.format("%04d",projectsRepo.size()+1);
     }
-
-
-
 }
