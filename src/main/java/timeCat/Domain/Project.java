@@ -1,6 +1,7 @@
 package timeCat.Domain;
 
 import timeCat.Application.ActivityNotFoundException;
+import timeCat.Application.DuplicateException;
 import timeCat.Application.InvalidProjectNameException;
 import timeCat.Application.ProjectNotFoundException;
 
@@ -43,9 +44,21 @@ public class Project implements Tabelify {
         return activities;
     }
 
-    public void addActivity(Activity activityToAdd){
-        activities.add(activityToAdd);
+    public void addActivity(Activity activityToAdd) throws DuplicateException {
+        if(!activityExists(activityToAdd)){
+            activities.add(activityToAdd);
+        }
+        throw new DuplicateException("Duplicate activity");
     }
+
+    public boolean activityExists(Activity activityName){
+        Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();
+        return !FoundActivity.isEmpty();
+    }
+
+
+
+
 
     public Activity getActivityByName (String activityName) throws ActivityNotFoundException {
         Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();

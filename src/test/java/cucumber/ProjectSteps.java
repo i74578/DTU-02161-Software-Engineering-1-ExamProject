@@ -89,7 +89,7 @@ public class ProjectSteps {
 
     //@author  Benjamin Fríðberg - s224347
     @Then("the project with the name {string} is not in the project repository")
-    public void aProjectWithTheNameIsNotInTheProjectRepository(String projectName) {
+    public void theProjectWithTheNameIsNotInTheProjectRepository(String projectName) {
         ArrayList<Project> projects = timeCatApp.getProjects();
         boolean projectExists = false;
         for (Project project : projects){
