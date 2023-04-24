@@ -11,11 +11,12 @@ public class Activity {
     int hourEstimate;
     int startWeek;
     int weekDuration;
+    int activityID;
     ArrayList<Employee> assignedEmployees;
     Timesheet timesheet;
 
 
-    public Activity(String activityName) throws InvalidActivityNameException {
+    public Activity(String activityName,int activityID) throws InvalidActivityNameException {
         this.name = activityName;
         assignedEmployees = new ArrayList<Employee>();
         timesheet = new Timesheet();
@@ -25,6 +26,9 @@ public class Activity {
 
     public String getName(){
         return name;
+    }
+
+    public int getActivityID(){return activityID;
     }
 
     public int getStartWeek(){

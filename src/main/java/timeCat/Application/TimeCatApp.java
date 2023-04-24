@@ -10,7 +10,7 @@ import java.util.Optional;
 public class TimeCatApp {
     private static ArrayList<Project> projectsRepo = new ArrayList<>();
     private static ArrayList<Employee> employeeRepo = new ArrayList<>();
-
+    private static int activityCount = 0;
 
     public ArrayList<Project> getProjects(){
         return projectsRepo;
@@ -63,10 +63,18 @@ public class TimeCatApp {
     }
 
     //author: Christian Colberg - s224343
+    public static int getNextActivityID(){
+        return activityCount+1;
+    }
+
+
+
+    //author: Christian Colberg - s224343
     public void createActivity(String activityName, String projectID) throws InvalidActivityNameException, ProjectNotFoundException {
         Project project = getProjectByID(projectID);
-        Activity activityToAdd = new Activity(activityName);
+        Activity activityToAdd = new Activity(activityName,getNextActivityID());
         project.addActivity(activityToAdd);
+        activityCount++;
     }
 
     //@author  Benjamin Fríðberg - s224347
