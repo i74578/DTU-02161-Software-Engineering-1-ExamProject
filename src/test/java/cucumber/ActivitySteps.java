@@ -70,4 +70,5 @@ public class ActivitySteps {
     public void theWeekDurationIsNotAssigned() {
         assertEquals(activity.getWeekDuration(),0);
     }
+
 }
