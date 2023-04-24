@@ -8,9 +8,9 @@ import java.util.Optional;
 
 //@author  Benjamin Fríðberg - s224347
 public class TimeCatApp {
-    private static ArrayList<Project> projectsRepo = new ArrayList<>();
-    private static ArrayList<Employee> employeeRepo = new ArrayList<>();
-    private static int activityCount = 0;
+    private ArrayList<Project> projectsRepo = new ArrayList<>();
+    private ArrayList<Employee> employeeRepo = new ArrayList<>();
+    private int activityCount = 0;
 
     public ArrayList<Project> getProjects(){
         return projectsRepo;
@@ -57,13 +57,13 @@ public class TimeCatApp {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public static String getNextProjectID(){
+    public String getNextProjectID(){
         int currentYear = Calendar.getInstance().get(Calendar.YEAR) % 100;
         return currentYear+String.format("%04d",projectsRepo.size()+1);
     }
 
     //author: Christian Colberg - s224343
-    public static int getNextActivityID(){
+    public int getNextActivityID(){
         return activityCount+1;
     }
 
@@ -71,6 +71,7 @@ public class TimeCatApp {
 
     //author: Christian Colberg - s224343
     public void createActivity(String activityName, String projectID) throws InvalidActivityNameException, ProjectNotFoundException, DuplicateException {
+        int test = getNextActivityID();
         Project project = getProjectByID(projectID);
         Activity activityToAdd = new Activity(activityName,getNextActivityID());
         project.addActivity(activityToAdd);

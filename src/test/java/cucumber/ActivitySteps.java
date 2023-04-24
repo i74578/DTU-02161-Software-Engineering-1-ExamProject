@@ -83,6 +83,7 @@ public class ActivitySteps {
     @When("a employee removes an activity with the name {string} in the project {string}")
     public void aEmployeeRemovesAnActivityWithTheNameInTheProject(String activityName, String projectName) {
         try {
+
             Project project = timeCatApp.getProjectByName(projectName);
             Activity activity = project.getActivityByName(activityName);
             timeCatApp.removeActivity(activity.getActivityID(), project.getID());
@@ -93,9 +94,15 @@ public class ActivitySteps {
     }
 
     //#author: Christian Colberg - s224343
-    @Then("the activity with the name {string} is removed from the project {string}")
-    public void theActivityWithTheNameIsRemovedFromTheProject(String activityName, String projectName) throws ProjectNotFoundException, ActivityNotFoundException {
-        Activity newActivity = timeCatApp.getProjectByName(projectName).getActivityByName(activityName);
+    @Then("the activity with the name {string} is not in the project {string}")
+    public void the_activity_with_the_name_is_not_in_the_project(String activityName, String projectName) {
+        Activity newActivity = null;
+        try {
+            Project project = timeCatApp.getProjectByName(projectName);
+            newActivity = project.getActivityByName(activityName);
+        }catch(Exception e){
+            errorMessage.setErrorMessage(e.getMessage());
+        }
         activity = newActivity;
         assertNull(newActivity);
     }

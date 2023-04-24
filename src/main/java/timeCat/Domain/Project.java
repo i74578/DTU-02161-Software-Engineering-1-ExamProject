@@ -44,27 +44,29 @@ public class Project implements Tabelify {
         return activities;
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public void addActivity(Activity activityToAdd) throws DuplicateException {
         if(!activityExists(activityToAdd)){
             activities.add(activityToAdd);
+            return;
         }
         throw new DuplicateException("Duplicate activity");
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public void removeActivity(int activityID) throws ActivityNotFoundException {
         Activity projectToRemove = getActivityByID(activityID);
         activities.remove(projectToRemove);
     }
 
 
-
-    public boolean activityExists(Activity activityName){
-        Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();
+    //@author  Benjamin Fríðberg - s224347
+    public boolean activityExists(Activity activity){
+        Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activity.getName())).findFirst();
         return !FoundActivity.isEmpty();
     }
 
-
-
+    //@author  Lukas Halberg - s216229
     private Activity getActivityByID(int activityID) throws ActivityNotFoundException {
         Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getActivityID() == activityID).findFirst();
         if (!FoundActivity.isEmpty()){
@@ -73,7 +75,8 @@ public class Project implements Tabelify {
         throw new ActivityNotFoundException("The activity is not found");
     }
 
-    public Activity getActivityByName (String activityName) throws ActivityNotFoundException {
+    //@author  Lukas Halberg - s216229
+    public Activity getActivityByName(String activityName) throws ActivityNotFoundException {
         Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();
         if (!FoundActivity.isEmpty()){
             return FoundActivity.get();
@@ -81,6 +84,7 @@ public class Project implements Tabelify {
         throw new ActivityNotFoundException("The activity is not found");
     }
 
+    //@author Lukas Halberg - s216229
     public boolean activityExists(String activityName){
         Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();
         return !FoundActivity.isEmpty();
