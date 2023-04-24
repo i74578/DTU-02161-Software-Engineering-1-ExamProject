@@ -37,4 +37,8 @@ public class Activity {
     public int getWeekDuration() {
         return weekDuration;
     }
+
+    public Timesheet getTimesheet(){
+        return timesheet;
+    }
 }
