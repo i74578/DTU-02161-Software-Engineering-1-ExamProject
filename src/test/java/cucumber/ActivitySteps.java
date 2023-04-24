@@ -34,7 +34,7 @@ public class ActivitySteps {
         try {
             String projectID = timeCatApp.getProjectByName(projectName).getID();
             timeCatApp.createActivity(activityName, projectID);
-        } catch (ProjectNotFoundException | InvalidActivityNameException e) {
+        } catch (Exception e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
@@ -111,5 +111,9 @@ public class ActivitySteps {
             activityFound = false;
         }
         assertFalse(activityFound);
+    }
+
+    @Given("a project with the name {string} is not in the project repository")
+    public void aProjectWithTheNameIsNotInTheProjectRepository(String projectName) {
     }
 }

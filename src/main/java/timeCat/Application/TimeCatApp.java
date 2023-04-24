@@ -70,7 +70,7 @@ public class TimeCatApp {
 
 
     //author: Christian Colberg - s224343
-    public void createActivity(String activityName, String projectID) throws InvalidActivityNameException, ProjectNotFoundException {
+    public void createActivity(String activityName, String projectID) throws InvalidActivityNameException, ProjectNotFoundException, DuplicateException {
         Project project = getProjectByID(projectID);
         Activity activityToAdd = new Activity(activityName,getNextActivityID());
         project.addActivity(activityToAdd);
