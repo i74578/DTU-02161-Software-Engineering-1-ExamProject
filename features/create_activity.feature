@@ -16,6 +16,7 @@ Feature: Create Activity
 		And the weekDuration is not assigned
 
 	Scenario: Employee creates an activity under non-existent project
+		Given a project with the name "Cool project" is not in the project repository
 		When a employee creates an activity with the name "Create the GUI" in the project "Cool project"
 		Then I get the error message "Invalid project name"
 

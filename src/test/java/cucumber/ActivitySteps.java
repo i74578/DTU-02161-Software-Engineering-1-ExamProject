@@ -104,8 +104,17 @@ public class ActivitySteps {
 
     //#author: Christian Colberg - s224343
     @And("an activity with the name {string} isn't in the project {string}")
-    public void anActivityWithTheNameIsnTInTheProject(String activityName, String projectName) throws ProjectNotFoundException, ActivityNotFoundException {
-        Activity newActivity = timeCatApp.getProjectByName(projectName).getActivityByName(activityName);
-
+    public void anActivityWithTheNameIsnTInTheProject(String activityName, String projectName) {
+        boolean activityFound = false;
+        try{
+            Activity newActivity = timeCatApp.getProjectByName(projectName).getActivityByName(activityName);
+            if(newActivity != null){
+                activityFound = true;
+            }
+        }
+        catch(Exception e){
+            activityFound = false;
+        }
+        assertFalse(activityFound);
     }
 }
