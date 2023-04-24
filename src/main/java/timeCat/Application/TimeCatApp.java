@@ -1,9 +1,7 @@
 package timeCat.Application;
 
-import timeCat.Domain.CostumerProject;
-import timeCat.Domain.Employee;
-import timeCat.Domain.InternalProject;
-import timeCat.Domain.Project;
+import timeCat.Domain.*;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Optional;
@@ -57,5 +55,11 @@ public class TimeCatApp {
     public static String getNextProjectID(){
         int currentYear = Calendar.getInstance().get(Calendar.YEAR) % 100;
         return currentYear+String.format("%04d",projectsRepo.size()+1);
+    }
+
+    //author: Christian Colberg - s224343
+    public void createActivity(String activityName, String projectID) throws InvalidActivityNameException {
+        Activity newActivity = new Activity(activityName);
+        projectsRepo.add(costumerProject);
     }
 }
