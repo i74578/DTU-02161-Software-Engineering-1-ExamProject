@@ -12,5 +12,3 @@ Scenario: Employee removes a project which does not exist
 	Given the project with the name "Non existing project" is not in the project repository
 	When a employee removes a project with the name "Non existing project"
 	Then I get the error message "The project is not found"
-
-	

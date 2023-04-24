@@ -88,7 +88,7 @@ public class controller {
 
     //@author  Benjamin Fríðberg - s224347
     public void initializeOptions(){
-        options.add(new commandOption("Create project","This options creates a new project in the project repository", this::createProject));
+        options.add(new commandOption("Create project","This options creates a new project in the project repository",() -> createProject()));
         options.add(new commandOption("Remove project","This options removes a project from the project repository",() -> removeProject()));
         options.add(new commandOption("List projects","This options lists all the projects in the project repository",() -> listProjects()));
     }

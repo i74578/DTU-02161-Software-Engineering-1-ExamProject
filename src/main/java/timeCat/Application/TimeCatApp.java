@@ -63,4 +63,26 @@ public class TimeCatApp {
         Activity activityToAdd = new Activity(activityName);
         project.addActivity(activityToAdd);
     }
+
+    public void addEmployee(String initials) throws DuplicateException {
+        if(!userExists(initials)){
+            Employee employee = new Employee(initials);
+            employeeRepo.add(employee);
+            return;
+        }
+        throw new DuplicateException("The user already exists");
+    }
+
+    public boolean userExists(String initials){
+        Optional<Employee> FoundEmployee = employeeRepo.stream().filter(p -> p.getInitials().equals(initials)).findFirst();
+        return !FoundEmployee.isEmpty();
+    }
+
+    public Employee getUser(String initials) throws UserNotFoundException {
+        Optional<Employee> FoundEmployee = employeeRepo.stream().filter(p -> p.getInitials().equals(initials)).findFirst();
+        if (!FoundEmployee.isEmpty()){
+            return FoundEmployee.get();
+        }
+        throw new UserNotFoundException("The user is not found");
+    }
 }
