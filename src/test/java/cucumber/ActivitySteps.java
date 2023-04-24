@@ -32,8 +32,7 @@ public class ActivitySteps {
         try {
             String projectID = timeCatApp.getProjectByName(projectName).getID();
             timeCatApp.createActivity(activityName, projectID);
-        }
-        catch(ProjectNotFoundException | InvalidActivityNameException e){
+        } catch (ProjectNotFoundException | InvalidActivityNameException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
@@ -47,7 +46,7 @@ public class ActivitySteps {
 
     @And("the activity has no registered hours")
     public void theActivityHasNoRegisteredHours() {
-    assertEquals(activity.getTimesheet().getEntryCount(),0);
+        assertEquals(activity.getTimesheet().getEntryCount(), 0);
     }
 
     @And("the activity has no assigned employees")
@@ -58,17 +57,43 @@ public class ActivitySteps {
 
     @And("the startWeek is not assigned")
     public void theStartWeekIsNotAssigned() {
-        assertEquals(activity.getStartWeek(),0);
+        assertEquals(activity.getStartWeek(), 0);
     }
 
     @And("the hourEstimate is not assigned")
     public void theHourEstimateIsNotAssigned() {
-        assertEquals(activity.getHourEstimate(),0);
+        assertEquals(activity.getHourEstimate(), 0);
     }
 
     @And("the weekDuration is not assigned")
     public void theWeekDurationIsNotAssigned() {
-        assertEquals(activity.getWeekDuration(),0);
+        assertEquals(activity.getWeekDuration(), 0);
     }
 
+
+    {
+
+
+    }
+
+    @And("an activity with the name {string} is in the project {string}")
+    public void anActivityWithTheNameIsInTheProject(String activityName, String projectName) {
+
+    }
+
+    @When("a employee removes an activity with the name {string} in the project {string}")
+    public void aEmployeeRemovesAnActivityWithTheNameInTheProject(String activityName, String projectName) {
+
+    }
+
+    @Then("the activity with the name {string} is removed")
+    public void theActivityWithTheNameIsRemoved(String activityName) {
+
+    }
+
+
+    @And("an activity with the name {string} isn't in the project {string}")
+    public void anActivityWithTheNameIsnTInTheProject(String activityName, String projectName) {
+
+    }
 }
