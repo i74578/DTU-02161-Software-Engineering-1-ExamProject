@@ -78,23 +78,18 @@ public class ActivitySteps {
         assertEquals(activity.getWeekDuration(), 0);
     }
 
-
-    //#author: Christian Colberg - s224343
-    @And("an activity with the name {string} is in the project {string}")
-    public void anActivityWithTheNameIsInTheProject(String activityName, String projectName) {
-
-    }
-
     //#author: Christian Colberg - s224343
     @When("a employee removes an activity with the name {string} in the project {string}")
     public void aEmployeeRemovesAnActivityWithTheNameInTheProject(String activityName, String projectName) {
-
+        
     }
 
     //#author: Christian Colberg - s224343
-    @Then("the activity with the name {string} is removed")
-    public void theActivityWithTheNameIsRemoved(String activityName) {
-
+    @Then("the activity with the name {string} is removed from the project {string}")
+    public void theActivityWithTheNameIsRemovedFromTheProject(String activityName, String projectName) throws ProjectNotFoundException, ActivityNotFoundException {
+        Activity newActivity = timeCatApp.getProjectByName(projectName).getActivityByName(activityName);
+        activity = newActivity;
+        assertNull(newActivity);
     }
 
     //#author: Christian Colberg - s224343
@@ -112,8 +107,16 @@ public class ActivitySteps {
         }
         assertFalse(activityFound);
     }
-
+    //#author: Christian Colberg - s224343
     @Given("a project with the name {string} is not in the project repository")
     public void aProjectWithTheNameIsNotInTheProjectRepository(String projectName) {
+    }
+
+    //#author: Christian Colberg - s224343
+    @And("an activity with the name {string} is in the project {string}")
+    public void anActivityWithTheNameIsInTheProject(String activityName, String projectName) throws ProjectNotFoundException, ActivityNotFoundException {
+        Activity newActivity = timeCatApp.getProjectByName(projectName).getActivityByName(activityName);
+        activity = newActivity;
+        assertNotNull(newActivity);
     }
 }
