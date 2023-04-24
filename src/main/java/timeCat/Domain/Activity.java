@@ -9,20 +9,32 @@ public class Activity {
     int startWeek;
     int weekDuration;
     ArrayList<Employee> assignedEmployees;
-public String getName(){
-    return name;
-}
-public int getStartWeek(){
-    return startWeek;
-}
-public ArrayList<Employee> getAssignedEmployees(){
-    return assignedEmployees;
-    }
-public int getHourEstimate(){
-    return hourEstimate;
-}
+    Timesheet timesheet;
 
-public int getWeekDuration() {
-    return weekDuration;
+    public Activity(String activityName){
+        this.name = activityName;
+        assignedEmployees = new ArrayList<Employee>();
+        timesheet = new Timesheet();
+
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public int getStartWeek(){
+        return startWeek;
+    }
+
+    public ArrayList<Employee> getAssignedEmployees(){
+        return assignedEmployees;
+    }
+
+    public int getHourEstimate(){
+        return hourEstimate;
+    }
+
+    public int getWeekDuration() {
+        return weekDuration;
     }
 }
