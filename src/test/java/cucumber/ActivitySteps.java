@@ -47,7 +47,7 @@ public class ActivitySteps {
 
     @And("the activity has no registered hours")
     public void theActivityHasNoRegisteredHours() {
-        assertEquals(activity.getTimesheet().getEntryCount(),0);
+    assertEquals(activity.getTimesheet().getEntryCount(),0);
     }
 
     @And("the activity has no assigned employees")
@@ -70,4 +70,5 @@ public class ActivitySteps {
     public void theWeekDurationIsNotAssigned() {
         assertEquals(activity.getWeekDuration(),0);
     }
+
 }
