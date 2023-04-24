@@ -24,7 +24,12 @@ public class ActivitySteps {
     private ErrorMessage errorMessage;
 
     Activity activity;
-    
+
+    public ActivitySteps(TimeCatApp timeCatApp, ErrorMessage errorMessage) {
+        this.timeCatApp = timeCatApp;
+        this.errorMessage = errorMessage;
+    }
+
     @When("a employee creates an activity with the name {string} in the project {string}")
     public void aEmployeeCreatesAnActivityWithTheNameInTheProject(String activityName, String projectName) throws ProjectNotFoundException {
         Activity newActivity = new Activity(activityName);

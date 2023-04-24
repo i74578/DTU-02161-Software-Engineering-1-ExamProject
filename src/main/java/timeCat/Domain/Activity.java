@@ -41,6 +41,4 @@ public class Activity {
     public Timesheet getTimesheet(){
         return timesheet;
     }
-
-    
 }
