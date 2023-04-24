@@ -1,6 +1,5 @@
 package timeCat.Presentation;
 
-import io.cucumber.messages.types.TableCell;
 import timeCat.Domain.Project;
 import timeCat.Domain.Tabelify;
 
