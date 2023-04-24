@@ -1,5 +1,8 @@
 package timeCat.Domain;
 
+import timeCat.Application.InvalidActivityNameException;
+import timeCat.Application.InvalidProjectNameException;
+
 import java.util.ArrayList;
 
 //@author  Benjamin Fríðberg - s224347
@@ -11,11 +14,12 @@ public class Activity {
     ArrayList<Employee> assignedEmployees;
     Timesheet timesheet;
 
-    public Activity(String activityName){
+    public Activity(String activityName) throws InvalidActivityNameException {
         this.name = activityName;
         assignedEmployees = new ArrayList<Employee>();
         timesheet = new Timesheet();
-
+        if (name.length() == 0){
+            throw new InvalidActivityNameException("Invalid activity name");}
     }
 
     public String getName(){
