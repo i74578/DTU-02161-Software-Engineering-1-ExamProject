@@ -117,4 +117,9 @@ public class ActivitySteps {
         }
         assertFalse(activityFound);
     }
+
+    @Given("a project with the name {string} is not in the project repository")
+    public void aProjectWithTheNameIsNotInTheProjectRepository(String projectName) {
+
+    }
 }
