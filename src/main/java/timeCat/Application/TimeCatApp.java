@@ -42,7 +42,7 @@ public class TimeCatApp {
 
     //@author  Benjamin Fríðberg - s224347
     public void createCostumerProject(String projectName) throws InvalidProjectNameException, DuplicateException {
-        if(!projectExists(projectName)) {
+        if(!hasProject(projectName)) {
             Project costumerProject = new CostumerProject(projectName, getNextProjectID());
             projectsRepo.add(costumerProject);
             return;
@@ -85,7 +85,7 @@ public class TimeCatApp {
 
     //@author  Benjamin Fríðberg - s224347
     public void addEmployee(String initials) throws DuplicateException {
-        if(!userExists(initials)){
+        if(!hasEmployee(initials)){
             Employee employee = new Employee(initials);
             employeeRepo.add(employee);
             return;
@@ -94,13 +94,13 @@ public class TimeCatApp {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public boolean projectExists(String projectName){
+    public boolean hasProject(String projectName){
         Optional<Project> FoundProject = projectsRepo.stream().filter(p -> p.getName().equals(projectName)).findFirst();
         return !FoundProject.isEmpty();
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public boolean userExists(String initials){
+    public boolean hasEmployee(String initials){
         Optional<Employee> FoundEmployee = employeeRepo.stream().filter(p -> p.getInitials().equals(initials)).findFirst();
         return !FoundEmployee.isEmpty();
     }

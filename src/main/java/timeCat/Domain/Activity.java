@@ -1,35 +1,32 @@
 package timeCat.Domain;
 
 import timeCat.Application.InvalidActivityNameException;
-import timeCat.Application.InvalidProjectNameException;
 
 import java.util.ArrayList;
 
 //@author  Benjamin Fríðberg - s224347
 public class Activity {
-    String name;
-    int hourEstimate;
-    int startWeek;
-    int weekDuration;
-    int activityID;
-    ArrayList<Employee> assignedEmployees;
-    Timesheet timesheet;
-
+    private String name;
+    private int hourEstimate;
+    private int startWeek;
+    private int weekDuration;
+    private int activityID;
+    private ArrayList<Employee> assignedEmployees;
+    private Timesheet timesheet;
 
     public Activity(String activityName,int activityID) throws InvalidActivityNameException {
+        if (activityName.length() == 0){throw new InvalidActivityNameException("Invalid activity name");}
         this.name = activityName;
-        assignedEmployees = new ArrayList<Employee>();
-        timesheet = new Timesheet();
-        if (name.length() == 0){
-            throw new InvalidActivityNameException("Invalid activity name");}
+        this.assignedEmployees = new ArrayList<>();
+        this.timesheet = new Timesheet();
+        this.activityID = activityID;
     }
 
     public String getName(){
         return name;
     }
 
-    public int getActivityID(){return activityID;
-    }
+    public int getActivityID(){return activityID;}
 
     public int getStartWeek(){
         return startWeek;

@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 //@author  Benjamin Fríðberg - s224347
 public class Timesheet {
-    ArrayList<TimesheetEntry> entries;
+    private ArrayList<TimesheetEntry> entries;
 
     //@author  Benjamin Fríðberg - s224347
     public Timesheet(){

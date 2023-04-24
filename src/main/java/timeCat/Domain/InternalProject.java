@@ -10,6 +10,6 @@ public class InternalProject extends Project{
 
     //@author  Benjamin Fríðberg - s224347
     public String[] getMainProperties(){
-        return new String[] {projectID, name, "Internal Project"};
+        return new String[] {super.getID(), super.getName(), "Internal Project"};
     }
 }

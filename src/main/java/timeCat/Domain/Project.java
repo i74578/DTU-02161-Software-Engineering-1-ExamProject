@@ -3,7 +3,6 @@ package timeCat.Domain;
 import timeCat.Application.ActivityNotFoundException;
 import timeCat.Application.DuplicateException;
 import timeCat.Application.InvalidProjectNameException;
-import timeCat.Application.ProjectNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,12 +10,12 @@ import java.util.Optional;
 
 //@author  Benjamin Fríðberg - s224347
 public class Project implements Tabelify {
-    String name;
-    String projectID;
-    Employee pm;
-    Calendar startTimestamp;
-    Calendar finishTimestamp;
-    ArrayList<Activity> activities;
+    private String name;
+    private String projectID;
+    private Employee pm;
+    private Calendar startTimestamp;
+    private Calendar finishTimestamp;
+    private ArrayList<Activity> activities;
 
     //@author  Benjamin Fríðberg - s224347
     public Project(String name, String projectID) throws InvalidProjectNameException {
@@ -25,7 +24,7 @@ public class Project implements Tabelify {
         }
         this.name = name;
         this.projectID = projectID;
-        this.activities = new ArrayList<Activity>();
+        this.activities = new ArrayList<>();
     }
 
     public String getID(){
@@ -46,7 +45,7 @@ public class Project implements Tabelify {
 
     //@author  Benjamin Fríðberg - s224347
     public void addActivity(Activity activityToAdd) throws DuplicateException {
-        if(!activityExists(activityToAdd)){
+        if(!hasActivity(activityToAdd.getName())){
             activities.add(activityToAdd);
             return;
         }
@@ -57,13 +56,6 @@ public class Project implements Tabelify {
     public void removeActivity(int activityID) throws ActivityNotFoundException {
         Activity projectToRemove = getActivityByID(activityID);
         activities.remove(projectToRemove);
-    }
-
-
-    //@author  Benjamin Fríðberg - s224347
-    public boolean activityExists(Activity activity){
-        Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activity.getName())).findFirst();
-        return !FoundActivity.isEmpty();
     }
 
     //@author  Lukas Halberg - s216229
@@ -85,7 +77,7 @@ public class Project implements Tabelify {
     }
 
     //@author Lukas Halberg - s216229
-    public boolean activityExists(String activityName){
+    public boolean hasActivity(String activityName){
         Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();
         return !FoundActivity.isEmpty();
     }
