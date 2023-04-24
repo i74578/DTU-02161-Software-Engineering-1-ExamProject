@@ -43,10 +43,6 @@ public class Project implements Tabelify {
         return activities;
     }
 
-    //@author  Benjamin Fríðberg - s224347
-    public String[] getMainProperties(){
-        return new String[] {projectID, name};
-    }
     public void addActivity(Activity activityToAdd){
         activities.add(activityToAdd);
     }
@@ -60,5 +56,10 @@ public class Project implements Tabelify {
     public boolean activityExists(String activityName){
         Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();
         return !FoundActivity.isEmpty();
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    public String[] getMainProperties(){
+        return new String[] {projectID, name};
     }
 }

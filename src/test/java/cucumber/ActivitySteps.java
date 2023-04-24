@@ -106,6 +106,6 @@ public class ActivitySteps {
     @And("an activity with the name {string} isn't in the project {string}")
     public void anActivityWithTheNameIsnTInTheProject(String activityName, String projectName) throws ProjectNotFoundException, ActivityNotFoundException {
         Activity newActivity = timeCatApp.getProjectByName(projectName).getActivityByName(activityName);
-        assertTrue
+
     }
 }

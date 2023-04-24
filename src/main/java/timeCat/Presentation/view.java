@@ -83,7 +83,7 @@ public class view {
             if(printIndex){
                 recordText += (i+1) + ". ";
             }
-            recordText += String.join(" - ",recordProperties);
+            recordText += String.join(" | ",recordProperties);
             table += "#" + recordText + " ".repeat(cliWidth-2-recordText.length())+ "#\n";
         }
         table += HorizontalLine;
