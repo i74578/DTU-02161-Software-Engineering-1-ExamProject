@@ -14,6 +14,7 @@ public class Activity {
     ArrayList<Employee> assignedEmployees;
     Timesheet timesheet;
 
+
     public Activity(String activityName) throws InvalidActivityNameException {
         this.name = activityName;
         assignedEmployees = new ArrayList<Employee>();

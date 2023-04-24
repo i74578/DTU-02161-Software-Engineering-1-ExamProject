@@ -15,13 +15,13 @@ public class RemoveActivitySteps {
 
     private TimeCatApp timeCatApp;
     private ErrorMessage errorMessage;
-
     Activity activity;
 
     public RemoveActivitySteps(TimeCatApp timeCatApp, ErrorMessage errorMessage) {
         this.timeCatApp = timeCatApp;
         this.errorMessage = errorMessage;
     }
+
     @And("an activity with the name {string} is in the project {string}")
     public void anActivityWithTheNameIsInTheProject(String activityName, String projectName) {
 

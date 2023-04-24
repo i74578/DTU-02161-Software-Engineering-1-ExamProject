@@ -68,6 +68,7 @@ public class TimeCatApp {
         project.addActivity(activityToAdd);
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public void addEmployee(String initials) throws DuplicateException {
         if(!userExists(initials)){
             Employee employee = new Employee(initials);
@@ -77,21 +78,29 @@ public class TimeCatApp {
         throw new DuplicateException("The user already exists");
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public boolean projectExists(String projectName){
         Optional<Project> FoundProject = projectsRepo.stream().filter(p -> p.getName().equals(projectName)).findFirst();
         return !FoundProject.isEmpty();
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public boolean userExists(String initials){
         Optional<Employee> FoundEmployee = employeeRepo.stream().filter(p -> p.getInitials().equals(initials)).findFirst();
         return !FoundEmployee.isEmpty();
     }
 
-    public Employee getUser(String initials) throws UserNotFoundException {
+    //@author  Benjamin Fríðberg - s224347
+    public Employee getEmployee(String initials) throws UserNotFoundException {
         Optional<Employee> FoundEmployee = employeeRepo.stream().filter(p -> p.getInitials().equals(initials)).findFirst();
         if (!FoundEmployee.isEmpty()){
             return FoundEmployee.get();
         }
         throw new UserNotFoundException("The user is not found");
+    }
+
+    public void removeEmployee(String initials) throws UserNotFoundException {
+        Employee employeeToRemove = getEmployee(initials);
+        employeeRepo.remove(employeeToRemove);
     }
 }

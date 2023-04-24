@@ -14,6 +14,7 @@ public class Timesheet {
         entries = new ArrayList<TimesheetEntry>();
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public int getEntryCount(){
         return entries.size();
     }
