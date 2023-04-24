@@ -27,7 +27,7 @@ public class ActivitySteps {
     
     @When("a employee creates an activity with the name {string} in the project {string}")
     public void aEmployeeCreatesAnActivityWithTheNameInTheProject(String activityName, String projectName) throws ProjectNotFoundException {
-        Activity newActivity = new Activity();
+        Activity newActivity = new Activity(activityName);
         timeCatApp.getProjectByName(projectName).addActivity(newActivity);
     }
 
@@ -40,8 +40,7 @@ public class ActivitySteps {
 
     @And("the activity has no registered hours")
     public void theActivityHasNoRegisteredHours() {
-
-        
+    assertEquals(activity.getTimesheet().getEntryCount(),0);
     }
 
     @And("the activity has no assigned employees")
