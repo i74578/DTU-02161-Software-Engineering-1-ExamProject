@@ -57,4 +57,8 @@ public class Project implements Tabelify {
         }
         throw new ActivityNotFoundException("The activity is not found");
     }
+    public boolean activityExists(String activityName){
+        Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();
+        return !FoundActivity.isEmpty();
+    }
 }
