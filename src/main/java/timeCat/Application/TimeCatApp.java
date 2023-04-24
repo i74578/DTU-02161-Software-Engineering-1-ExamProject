@@ -11,6 +11,7 @@ public class TimeCatApp {
     private static ArrayList<Project> projectsRepo = new ArrayList<>();
     private static ArrayList<Employee> employeeRepo = new ArrayList<>();
 
+
     public ArrayList<Project> getProjects(){
         return projectsRepo;
     }
