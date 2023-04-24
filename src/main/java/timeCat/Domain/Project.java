@@ -1,9 +1,12 @@
 package timeCat.Domain;
 
+import timeCat.Application.ActivityNotFoundException;
 import timeCat.Application.InvalidProjectNameException;
+import timeCat.Application.ProjectNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Optional;
 
 //@author  Benjamin Fríðberg - s224347
 public class Project implements Tabelify {
@@ -43,5 +46,14 @@ public class Project implements Tabelify {
     public String[] getMainProperties(){
         return new String[] {projectID, name};
     }
-
+    public void addActivity(Activity newActivity){
+        activities.add(newActivity);
+    }
+    public Activity getActivityByName (String activityName) throws ActivityNotFoundException {
+        Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();
+        if (!FoundActivity.isEmpty()){
+            return FoundActivity.get();
+        }
+        throw new ActivityNotFoundException("The activity is not found");
+    }
 }
