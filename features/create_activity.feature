@@ -1,4 +1,4 @@
-#Author: Christian Colberg - s224343
+#author: Christian Colberg - s224343
 Feature: Create Activity
 	Description: An activity is created
 	Actors: Employee
