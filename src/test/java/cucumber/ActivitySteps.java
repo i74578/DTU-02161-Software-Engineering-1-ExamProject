@@ -49,6 +49,7 @@ public class ActivitySteps {
         assertTrue(activity.getAssignedEmployees().isEmpty());
     }
 
+
     @And("the startWeek is not assigned")
     public void theStartWeekIsNotAssigned() {
         assertEquals(activity.getStartWeek(),0);
