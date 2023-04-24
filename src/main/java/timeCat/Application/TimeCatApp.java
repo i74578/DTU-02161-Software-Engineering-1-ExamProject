@@ -40,9 +40,13 @@ public class TimeCatApp {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public void createCostumerProject(String projectName) throws InvalidProjectNameException {
-        Project costumerProject = new CostumerProject(projectName,getNextProjectID());
-        projectsRepo.add(costumerProject);
+    public void createCostumerProject(String projectName) throws InvalidProjectNameException, DuplicateException {
+        if(!projectExists(projectName)) {
+            Project costumerProject = new CostumerProject(projectName, getNextProjectID());
+            projectsRepo.add(costumerProject);
+            return;
+        }
+        throw new DuplicateException("Project with the same name already exists");
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -71,6 +75,11 @@ public class TimeCatApp {
             return;
         }
         throw new DuplicateException("The user already exists");
+    }
+
+    public boolean projectExists(String projectName){
+        Optional<Project> FoundProject = projectsRepo.stream().filter(p -> p.getName().equals(projectName)).findFirst();
+        return !FoundProject.isEmpty();
     }
 
     public boolean userExists(String initials){
