@@ -79,11 +79,6 @@ public class ActivitySteps {
     }
 
 
-    {
-
-
-    }
-
     //#author: Christian Colberg - s224343
     @And("an activity with the name {string} is in the project {string}")
     public void anActivityWithTheNameIsInTheProject(String activityName, String projectName) {
