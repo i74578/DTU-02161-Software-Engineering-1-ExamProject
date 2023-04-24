@@ -9,7 +9,6 @@ public class Activity {
     int startWeek;
     int weekDuration;
     ArrayList<Employee> assignedEmployees;
-
 public String getName(){
     return name;
 }
