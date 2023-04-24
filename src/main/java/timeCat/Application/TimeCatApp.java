@@ -58,8 +58,9 @@ public class TimeCatApp {
     }
 
     //author: Christian Colberg - s224343
-    public void createActivity(String activityName, String projectID) throws InvalidActivityNameException {
-        Activity newActivity = new Activity(activityName);
-        projectsRepo.add(costumerProject);
+    public void createActivity(String activityName, String projectID) throws InvalidActivityNameException, ProjectNotFoundException {
+        Project project = getProjectByID(projectID);
+        Activity activityToAdd = new Activity(activityName);
+        project.addActivity(activityToAdd);
     }
 }

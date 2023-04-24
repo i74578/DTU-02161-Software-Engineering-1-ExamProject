@@ -47,8 +47,8 @@ public class Project implements Tabelify {
     public String[] getMainProperties(){
         return new String[] {projectID, name};
     }
-    public void addActivity(Activity newActivity){
-        activities.add(newActivity);
+    public void addActivity(Activity activityToAdd){
+        activities.add(activityToAdd);
     }
     public Activity getActivityByName (String activityName) throws ActivityNotFoundException {
         Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();
