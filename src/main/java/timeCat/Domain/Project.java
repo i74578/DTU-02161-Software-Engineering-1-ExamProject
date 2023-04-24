@@ -40,6 +40,7 @@ public class Project implements Tabelify {
         return activities;
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public String[] getMainProperties(){
         return new String[] {projectID, name};
     }

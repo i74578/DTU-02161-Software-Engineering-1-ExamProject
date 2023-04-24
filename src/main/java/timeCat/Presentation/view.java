@@ -1,5 +1,4 @@
 package timeCat.Presentation;
-
 import io.cucumber.messages.types.TableCell;
 import timeCat.Domain.Project;
 import timeCat.Domain.Tabelify;
@@ -9,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+//@author  Benjamin Fríðberg - s224347
 public class view {
     String HorizontalLine = "#".repeat(100) + "\n";
     private static final int cliWidth = 100;
@@ -17,28 +17,34 @@ public class view {
 
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public void clearConsole(){
         print("\n".repeat(20));
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public void print(String stringToPrint){
         System.out.println(stringToPrint);
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public void printError(String errorMessage){
         System.out.println("ERROR - " + errorMessage);
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public void showMainMenu(ArrayList<commandOption> options){
         printTable(options,true);
         System.out.print("\n Choose option:");
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public void showProjects(ArrayList<Project> projects){
         printTableHeader("Projects");
         printTable(projects,false);
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public void showWelcomeScreen(){
         //Welcome screen ASCII art source: https://patorjk.com/software/taag/
         String welcomeScreen =
@@ -52,10 +58,12 @@ public class view {
         System.out.println(welcomeScreen);
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public void printTableHeader(String headerText){
         print(HorizontalLine + centerStringInTableRecord(headerText));
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public String centerStringInTableRecord(String stringToCenter){
         int spacesNeedToFillWidth = cliWidth-stringToCenter.length() - 2;
         String leftSpacePadding = " ".repeat(spacesNeedToFillWidth / 2);
@@ -63,6 +71,7 @@ public class view {
         return "#"+leftSpacePadding+stringToCenter+rightSpacePadding+"#";
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public void printTable(ArrayList<? extends Tabelify> objectToPrint, boolean printIndex){
         String table = HorizontalLine;
         if(objectToPrint.size() == 0){
@@ -80,7 +89,4 @@ public class view {
         table += HorizontalLine;
         print(table);
     }
-
-
-
 }
