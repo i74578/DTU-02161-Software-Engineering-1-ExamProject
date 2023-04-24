@@ -4,10 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import timeCat.Application.ActivityNotFoundException;
-import timeCat.Application.InvalidProjectNameException;
-import timeCat.Application.ProjectNotFoundException;
-import timeCat.Application.TimeCatApp;
+import timeCat.Application.*;
 import timeCat.Domain.Activity;
 import timeCat.Domain.CostumerProject;
 import timeCat.Domain.InternalProject;
@@ -31,9 +28,11 @@ public class ActivitySteps {
     }
 
     @When("a employee creates an activity with the name {string} in the project {string}")
-    public void aEmployeeCreatesAnActivityWithTheNameInTheProject(String activityName, String projectName) throws ProjectNotFoundException {
+    public void aEmployeeCreatesAnActivityWithTheNameInTheProject(String activityName, String projectName) throws ProjectNotFoundException, InvalidActivityNameException {
+        try{
         Activity newActivity = new Activity(activityName);
-        timeCatApp.getProjectByName(projectName).addActivity(newActivity);
+        timeCatApp.getProjectByName(projectName).addActivity(newActivity);}
+        catch{I
     }
 
     @Then("the activity with the name {string} is in the project {string}")
