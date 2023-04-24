@@ -70,37 +70,37 @@ public class ActivitySteps {
     //#author: Christian Colberg - s224343
     @Then("the activity with the name {string} is in the project {string}")
     public void theActivityWithTheNameIsInTheProject(String activityName, String projectName) throws Exception {
-        activity = timeCatApp.getProjectByName(projectName).getActivityByName(activityName);
-        assertNotNull(activity);
+        this.activity = timeCatApp.getProjectByName(projectName).getActivityByName(activityName);
+        assertNotNull(this.activity);
     }
 
     //#author: Christian Colberg - s224343
     @And("the activity has no registered hours")
     public void theActivityHasNoRegisteredHours() {
-        assertEquals(activity.getTimesheet().getEntryCount(), 0);
+        assertEquals(this.activity.getTimesheet().getEntryCount(), 0);
     }
 
     //#author: Christian Colberg - s224343
     @And("the activity has no assigned employees")
     public void theActivityHasNoAssignedEmployees() {
-        assertTrue(activity.getAssignedEmployees().isEmpty());
+        assertTrue(this.activity.getAssignedEmployees().isEmpty());
     }
 
     //#author: Christian Colberg - s224343
     @And("the startWeek is not assigned")
     public void theStartWeekIsNotAssigned() {
-        assertEquals(activity.getStartWeek(), 0);
+        assertEquals(this.activity.getStartWeek(), 0);
     }
 
     //#author: Christian Colberg - s224343
     @And("the hourEstimate is not assigned")
     public void theHourEstimateIsNotAssigned() {
-        assertEquals(activity.getHourEstimate(), 0);
+        assertEquals(this.activity.getHourEstimate(), 0);
     }
 
     //#author: Christian Colberg - s224343
     @And("the weekDuration is not assigned")
     public void theWeekDurationIsNotAssigned() {
-        assertEquals(activity.getWeekDuration(), 0);
+        assertEquals(this.activity.getWeekDuration(), 0);
     }
 }

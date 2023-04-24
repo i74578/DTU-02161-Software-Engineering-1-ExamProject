@@ -19,7 +19,7 @@ public class commandOption implements Tabelify {
     public command getOptionCallMethod(){return optionCallMethod;}
 
     //@author  Benjamin Fríðberg - s224347
-    public String[] getMainProperties(){
+    public String[] getPropertiesForTable(){
         return new String[] {optionName,optionDescription};
     }
 

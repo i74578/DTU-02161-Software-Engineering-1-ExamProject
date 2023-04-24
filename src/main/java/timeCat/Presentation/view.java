@@ -1,12 +1,8 @@
 package timeCat.Presentation;
-import io.cucumber.messages.types.TableCell;
 import timeCat.Domain.Project;
 import timeCat.Domain.Tabelify;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 //@author  Benjamin Fríðberg - s224347
 public class view {
@@ -78,7 +74,7 @@ public class view {
             table += centerStringInTableRecord("Empty")+"\n";
         }
         for (int i = 0;i<objectToPrint.size();i++){
-            String[] recordProperties = objectToPrint.get(i).getMainProperties();
+            String[] recordProperties = objectToPrint.get(i).getPropertiesForTable();
             String recordText = " ";
             if(printIndex){
                 recordText += (i+1) + ". ";

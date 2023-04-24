@@ -9,7 +9,7 @@ public class CostumerProject extends Project{
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public String[] getMainProperties(){
+    public String[] getPropertiesForTable(){
         return new String[] {super.getID(), super.getName(), "Customer Project"};
     }
 }

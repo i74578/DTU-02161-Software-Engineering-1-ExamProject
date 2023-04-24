@@ -78,6 +78,7 @@ public class TimeCatApp {
         activityCount++;
     }
 
+    //author: Christian Colberg - s224343
     public void removeActivity(int activityID, String projectID) throws ProjectNotFoundException, ActivityNotFoundException {
         Project project = getProjectByID(projectID);
         project.removeActivity(activityID);
@@ -86,8 +87,7 @@ public class TimeCatApp {
     //@author  Benjamin Fríðberg - s224347
     public void addEmployee(String initials) throws DuplicateException {
         if(!hasEmployee(initials)){
-            Employee employee = new Employee(initials);
-            employeeRepo.add(employee);
+            employeeRepo.add(new Employee(initials));
             return;
         }
         throw new DuplicateException("The user already exists");
@@ -95,14 +95,12 @@ public class TimeCatApp {
 
     //@author  Benjamin Fríðberg - s224347
     public boolean hasProject(String projectName){
-        Optional<Project> FoundProject = projectsRepo.stream().filter(p -> p.getName().equals(projectName)).findFirst();
-        return !FoundProject.isEmpty();
+        return projectsRepo.stream().anyMatch(p -> p.getName().equals(projectName));
     }
 
     //@author  Benjamin Fríðberg - s224347
     public boolean hasEmployee(String initials){
-        Optional<Employee> FoundEmployee = employeeRepo.stream().filter(p -> p.getInitials().equals(initials)).findFirst();
-        return !FoundEmployee.isEmpty();
+        return employeeRepo.stream().anyMatch(p -> p.getInitials().equals(initials));
     }
 
     //@author  Benjamin Fríðberg - s224347

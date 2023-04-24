@@ -43,21 +43,6 @@ public class Project implements Tabelify {
         return activities;
     }
 
-    //@author  Benjamin Fríðberg - s224347
-    public void addActivity(Activity activityToAdd) throws DuplicateException {
-        if(!hasActivity(activityToAdd.getName())){
-            activities.add(activityToAdd);
-            return;
-        }
-        throw new DuplicateException("Duplicate activity");
-    }
-
-    //@author  Benjamin Fríðberg - s224347
-    public void removeActivity(int activityID) throws ActivityNotFoundException {
-        Activity projectToRemove = getActivityByID(activityID);
-        activities.remove(projectToRemove);
-    }
-
     //@author  Lukas Halberg - s216229
     private Activity getActivityByID(int activityID) throws ActivityNotFoundException {
         Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getActivityID() == activityID).findFirst();
@@ -78,14 +63,26 @@ public class Project implements Tabelify {
 
     //@author Lukas Halberg - s216229
     public boolean hasActivity(String activityName){
-        Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();
-        return !FoundActivity.isEmpty();
+        return activities.stream().anyMatch(p -> p.getName().equals(activityName));
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public String[] getMainProperties(){
+    public String[] getPropertiesForTable(){
         return new String[] {projectID, name};
     }
 
+    //@author  Benjamin Fríðberg - s224347
+    public void addActivity(Activity activityToAdd) throws DuplicateException {
+        if(!hasActivity(activityToAdd.getName())){
+            activities.add(activityToAdd);
+            return;
+        }
+        throw new DuplicateException("Duplicate activity");
+    }
 
+    //@author  Benjamin Fríðberg - s224347
+    public void removeActivity(int activityID) throws ActivityNotFoundException {
+        Activity projectToRemove = getActivityByID(activityID);
+        activities.remove(projectToRemove);
+    }
 }

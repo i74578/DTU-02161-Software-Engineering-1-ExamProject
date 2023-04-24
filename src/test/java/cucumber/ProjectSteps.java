@@ -33,6 +33,18 @@ public class ProjectSteps {
     }
 
     //@author  Benjamin Fríðberg - s224347
+    @Then("I get the error message {string}")
+    public void iGetTheErrorMessage(String errorMessage) throws Exception {
+        assertEquals(errorMessage, this.errorMessage.getErrorMessage());
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    @Given("a project with the name {string} is in the project repository")
+    public void theProjectWithTheNameIsInTheProjectRepository(String projectName) throws Exception {
+        timeCatApp.createCostumerProject(projectName);
+    }
+
+    //@author  Benjamin Fríðberg - s224347
     @When("a employee creates a costumer project with the name {string}")
     public void aEmployeeCreatesACostumerProjectWithTheName(String projectName) {
         try {
@@ -64,40 +76,16 @@ public class ProjectSteps {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    @Given("a project with the name {string} is in the project repository")
-    public void theProjectWithTheNameIsInTheProjectRepository(String projectName) {
-        try {
-            timeCatApp.createCostumerProject(projectName);
-        } catch (InvalidProjectNameException | DuplicateException e ) {
-            errorMessage.setErrorMessage(e.getMessage());
-        }
-    }
-
-    //@author  Benjamin Fríðberg - s224347
     @Then("the project with the name {string} is in the project repository")
-    public void aProjectWithTheNameIsInTheProjectRepository(String projectName) {
-        ArrayList<Project> projects = timeCatApp.getProjects();
-        boolean projectExists = false;
-        for (Project project : projects){
-            if (project.getName().equals(projectName)){
-                projectExists = true;
-                this.project = project;
-            }
-        }
-        assertTrue(projectExists);
+    public void aProjectWithTheNameIsInTheProjectRepository(String projectName) throws Exception {
+        this.project = timeCatApp.getProjectByName(projectName);
+        assertNotNull(this.project);
     }
 
     //@author  Benjamin Fríðberg - s224347
     @Then("the project with the name {string} is not in the project repository")
-    public void theProjectWithTheNameIsNotInTheProjectRepository(String projectName) {
-        ArrayList<Project> projects = timeCatApp.getProjects();
-        boolean projectExists = false;
-        for (Project project : projects){
-            if (project.getName().equals(projectName)){
-                projectExists = true;
-            }
-        }
-        assertFalse(projectExists);
+    public void theProjectWithTheNameIsNotInTheProjectRepository(String projectName) throws Exception {
+        assertFalse(timeCatApp.hasProject(projectName));
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -129,11 +117,5 @@ public class ProjectSteps {
     @And("the project has no activities")
     public void theProjectHasNoActivities() {
         assertTrue(project.getActivities().isEmpty());
-    }
-
-    //@author  Benjamin Fríðberg - s224347
-    @Then("I get the error message {string}")
-    public void iGetTheErrorMessage(String errorMessage) throws Exception {
-        assertEquals(errorMessage, this.errorMessage.getErrorMessage());
     }
 }
