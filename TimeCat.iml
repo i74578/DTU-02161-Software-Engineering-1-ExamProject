@@ -4,6 +4,9 @@
     <content url="file://$MODULE_DIR$" dumb="true">
       <excludeFolder url="file://$MODULE_DIR$/NonImplementedFeatures" />
       <excludeFolder url="file://$MODULE_DIR$/docs" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/java/libraryexample" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/java/libraryexample/library" />
+      <excludeFolder url="file://$MODULE_DIR$/src/test/java/libraryExample" />
     </content>
   </component>
 </module>
