@@ -1,10 +1,10 @@
 package timeCat.Domain;
 
-import timeCat.Application.InvalidProjectNameException;
+import timeCat.Exceptions.InvalidNameException;
 
 //@author  Benjamin Fríðberg - s224347
 public class InternalProject extends Project{
-    public InternalProject(String name, String projectNumber) throws InvalidProjectNameException {
+    public InternalProject(String name, String projectNumber) throws InvalidNameException {
         super(name, projectNumber);
     }
 

@@ -1,4 +1,4 @@
-package timeCat.Application;
+package timeCat.Exceptions;
 
 //@author  Benjamin Fríðberg - s224347
 public class DuplicateException extends Exception{

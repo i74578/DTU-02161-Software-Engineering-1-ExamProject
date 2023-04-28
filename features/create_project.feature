@@ -4,6 +4,7 @@ Feature: Create Project
 	Actors: Employee
 
 Scenario: Employee creates a costumer project successfully
+	Given that a employee is logged in
  	When a employee creates a costumer project with the name "Program a very nice GUI"
  	Then the project with the name "Program a very nice GUI" is in the project repository
 	And the project is a costumer project
@@ -12,6 +13,7 @@ Scenario: Employee creates a costumer project successfully
 	And the project has no activities
 
 Scenario: Employee creates a internal project successfully
+	Given that a employee is logged in
 	When a employee creates a internal project with the name "Replace the light bulb"
 	Then the project with the name "Replace the light bulb" is in the project repository
 	And the project is a internal project
@@ -20,11 +22,13 @@ Scenario: Employee creates a internal project successfully
 	And the project has no activities
 
 Scenario: Employee creates a duplicate project
-	Given a project with the name "Program a very nice GUI" is in the project repository
+	Given that a employee is logged in
+	And a project with the name "Program a very nice GUI" is in the project repository
 	When a employee creates a costumer project with the name "Program a very nice GUI"
 	Then I get the error message "Project with the same name already exists"
 
 Scenario: Employee creates a project with a blank name
+	Given that a employee is logged in
 	When a employee creates a internal project with the name ""
 	Then I get the error message "Invalid project name"
 

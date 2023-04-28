@@ -7,7 +7,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import timeCat.Application.*;
 import timeCat.Domain.*;
-import java.util.ArrayList;
+import timeCat.Exceptions.NotFoundException;
+import timeCat.Exceptions.DuplicateException;
+import timeCat.Exceptions.InvalidNameException;
 
 
 import static org.junit.Assert.*;
@@ -43,7 +45,7 @@ public class ActivitySteps {
         try {
             String projectID = timeCatApp.getProjectByName(projectName).getID();
             timeCatApp.createActivity(activityName, projectID);
-        } catch (ProjectNotFoundException | InvalidActivityNameException | DuplicateException e) {
+        } catch (NotFoundException | InvalidNameException | DuplicateException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
@@ -56,7 +58,7 @@ public class ActivitySteps {
             Activity activity = project.getActivityByName(activityName);
             timeCatApp.removeActivity(activity.getActivityID(), project.getID());
         }
-        catch(ActivityNotFoundException | ProjectNotFoundException e){
+        catch(NotFoundException e){
             errorMessage.setErrorMessage(e.getMessage());
         }
     }

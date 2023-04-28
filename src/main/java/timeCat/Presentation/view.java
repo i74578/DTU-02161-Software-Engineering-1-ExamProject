@@ -1,4 +1,6 @@
 package timeCat.Presentation;
+import timeCat.Domain.Activity;
+import timeCat.Domain.Employee;
 import timeCat.Domain.Project;
 import timeCat.Domain.Tabelify;
 
@@ -38,6 +40,16 @@ public class view {
     public void showProjects(ArrayList<Project> projects){
         printTableHeader("Projects");
         printTable(projects,false);
+    }
+
+    public void showActivities(ArrayList<Activity> activities) {
+        printTableHeader("Activities");
+        printTable(activities,false);
+    }
+
+    public void showEmployees(ArrayList<Employee> employees) {
+        printTableHeader("Employees");
+        printTable(employees,false);
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -85,4 +97,5 @@ public class view {
         table += HorizontalLine;
         print(table);
     }
+
 }

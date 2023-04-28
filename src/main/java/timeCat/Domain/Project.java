@@ -1,8 +1,8 @@
 package timeCat.Domain;
 
-import timeCat.Application.ActivityNotFoundException;
-import timeCat.Application.DuplicateException;
-import timeCat.Application.InvalidProjectNameException;
+import timeCat.Exceptions.InvalidNameException;
+import timeCat.Exceptions.NotFoundException;
+import timeCat.Exceptions.DuplicateException;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -18,9 +18,9 @@ public class Project implements Tabelify {
     private ArrayList<Activity> activities;
 
     //@author  Benjamin Fríðberg - s224347
-    public Project(String name, String projectID) throws InvalidProjectNameException {
+    public Project(String name, String projectID) throws InvalidNameException {
         if (name.length() == 0){
-            throw new InvalidProjectNameException("Invalid project name");
+            throw new InvalidNameException("Invalid project name");
         }
         this.name = name;
         this.projectID = projectID;
@@ -44,21 +44,21 @@ public class Project implements Tabelify {
     }
 
     //@author  Lukas Halberg - s216229
-    private Activity getActivityByID(int activityID) throws ActivityNotFoundException {
-        Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getActivityID() == activityID).findFirst();
+    private Activity getActivityByID(String activityID) throws NotFoundException {
+        Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getActivityID().equals(activityID)).findFirst();
         if (!FoundActivity.isEmpty()){
             return FoundActivity.get();
         }
-        throw new ActivityNotFoundException("The activity is not found");
+        throw new NotFoundException("The activity is not found");
     }
 
     //@author  Lukas Halberg - s216229
-    public Activity getActivityByName(String activityName) throws ActivityNotFoundException {
+    public Activity getActivityByName(String activityName) throws NotFoundException {
         Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();
         if (!FoundActivity.isEmpty()){
             return FoundActivity.get();
         }
-        throw new ActivityNotFoundException("The activity is not found");
+        throw new NotFoundException("The activity is not found");
     }
 
     //@author Lukas Halberg - s216229
@@ -81,7 +81,7 @@ public class Project implements Tabelify {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public void removeActivity(int activityID) throws ActivityNotFoundException {
+    public void removeActivity(String activityID) throws NotFoundException {
         Activity projectToRemove = getActivityByID(activityID);
         activities.remove(projectToRemove);
     }

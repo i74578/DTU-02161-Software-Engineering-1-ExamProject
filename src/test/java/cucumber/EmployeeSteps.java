@@ -1,12 +1,12 @@
 package cucumber;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import timeCat.Application.*;
-import timeCat.Domain.Activity;
 import timeCat.Domain.Employee;
-import timeCat.Domain.Project;
+import timeCat.Exceptions.DuplicateException;
+import timeCat.Exceptions.InvalidNameException;
+import timeCat.Exceptions.NotFoundException;
 
 import static org.junit.Assert.*;
 
@@ -15,62 +15,90 @@ public class EmployeeSteps {
 
     private TimeCatApp timeCatApp;
     private ErrorMessage errorMessage;
+    private EmployeeHelper employeeHelper;
 
-    public EmployeeSteps(TimeCatApp timeCatApp, ErrorMessage errorMessage) {
+    public EmployeeSteps(TimeCatApp timeCatApp, ErrorMessage errorMessage, EmployeeHelper employeeHelper) {
         this.timeCatApp = timeCatApp;
         this.errorMessage = errorMessage;
+        this.employeeHelper = employeeHelper;
     }
 
     //@author  Benjamin Fríðberg - s224347
-    @When("an employee adds a new employee {string} to the user repository")
-    public void aEmployeeAddsANewEmployeeToTheUserRepository(String initials) {
+    @When("an employee registers a new employee")
+    public void aEmployeeRegistersANewEmployee() {
         try {
-            timeCatApp.addEmployee(initials);
-        } catch (DuplicateException e) {
+            timeCatApp.registerEmployee(employeeHelper.getEmployee().getInitials());
+        } catch (InvalidNameException | DuplicateException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @When("an employee registers a new employee with {int} letter initials")
+    public void anEmployeeRegistersANewEmployeeWithLetterInitials(int initialsCount) {
+        String employeeInitials = "A".repeat(initialsCount);
+        employeeHelper.setEmployee(new Employee(employeeInitials));
+        try {
+            timeCatApp.registerEmployee(employeeHelper.getEmployee().getInitials());
+        } catch (DuplicateException | InvalidNameException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
 
     //@author  Benjamin Fríðberg - s224347
-    @Then("the employee {string} is in the user repository")
-    public void theUserIsInTheUserRepository(String initials) {
+    @Then("the employee is registered")
+    public void theUserIsRegistered() {
         Employee employee = null;
         try {
-            employee = timeCatApp.getEmployee(initials);
-        } catch (UserNotFoundException e) {
+            employee = timeCatApp.getEmployee(employeeHelper.getEmployee().getInitials());
+        } catch (NotFoundException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
         assertNotNull(employee);
     }
 
     //@author  Benjamin Fríðberg - s224347
-    @Given("an employee {string} is in the user repository")
-    public void anEmployeeIsInTheUserRepository(String initials) {
+    @Given("an employee is registered")
+    public void anEmployeeIsRegistered() {
         try {
-            timeCatApp.addEmployee(initials);
+            timeCatApp.registerEmployee(employeeHelper.getEmployee().getInitials());
         }
-        catch(DuplicateException e){
+        catch(DuplicateException | InvalidNameException e){
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
 
-    @When("an employee removes the employee {string} from the user repository")
-    public void anEmployeeRemovesTheEmployeeFromTheUserRepository(String initials) {
+    @When("an employee registers a new employee with the same initials")
+    public void anEmployeeRegistersANewEmployeeWithTheSameInitials() {
         try {
-            timeCatApp.removeEmployee(initials);
-        }catch(UserNotFoundException e){
+            timeCatApp.registerEmployee(employeeHelper.getEmployee().getInitials());
+        } catch (DuplicateException | InvalidNameException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
 
-    @Then("the employee {string} is not in the user repository")
-    public void theEmployeeIsNotInTheUserRepository(String initials) {
+    @Then("the employee is not registered")
+    public void theEmployeeIsNotRegistered() {
         Employee employee = null;
         try {
-            employee = timeCatApp.getEmployee(initials);
-        } catch (UserNotFoundException e) {
+            employee = timeCatApp.getEmployee(employeeHelper.getEmployee().getInitials());
+        } catch (NotFoundException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
         assertNull(employee);
     }
+
+    @Given("an employee is not registered")
+    public void anEmployeeIsNotRegistered() {
+        theEmployeeIsNotRegistered();
+    }
+
+    @When("an employee unregisters the employee")
+    public void anEmployeeUnregisteresTheEmployee() {
+        try {
+            timeCatApp.unregisterEmployee(employeeHelper.getEmployee().getInitials());
+        }catch (NotFoundException e){
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
 }

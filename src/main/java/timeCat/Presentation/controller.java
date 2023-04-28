@@ -1,6 +1,11 @@
 package timeCat.Presentation;
-import timeCat.Application.TimeCatApp;
+import timeCat.Application.*;
+import timeCat.Domain.Activity;
+import timeCat.Domain.Employee;
 import timeCat.Domain.Project;
+import timeCat.Exceptions.NotFoundException;
+import timeCat.Exceptions.DuplicateException;
+import timeCat.Exceptions.InvalidNameException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -87,9 +92,86 @@ public class controller {
     }
 
     //@author  Benjamin Fríðberg - s224347
+    private void listActivities(){
+        view.print("ProjectID of project where activity is located:");
+        String projectID = scanner.nextLine();
+        try {
+            ArrayList<Activity> activities = timeCatApp.getProjectActivities(projectID);
+            view.showActivities(activities);
+        } catch (NotFoundException e) {
+            view.printError(e.getMessage());
+        }
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    private void removeActivity() {
+        view.print("ProjectID of project where activity is located:");
+        String projectID = scanner.nextLine();
+        view.print("ActivityID of activity to remove:");
+        String activityID = scanner.nextLine();
+        try {
+            timeCatApp.removeActivity(activityID,projectID);
+        } catch (NotFoundException e) {
+            view.printError(e.getMessage());
+        }
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    private void createActivity() {
+        view.print("ProjectID of project where activity should be added:");
+        String projectID = scanner.nextLine();
+        view.print("Name of activity:");
+        String activityName = scanner.nextLine();
+        try {
+            timeCatApp.createActivity(activityName,projectID);
+        } catch (DuplicateException | NotFoundException | InvalidNameException e) {
+            view.printError(e.getMessage());
+        }
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    private void listEmployees() {
+        ArrayList<Employee> employees = timeCatApp.getEmployees();
+        view.showEmployees(employees);
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    private void unregisterEmployee() {
+        view.print("Initials of employee to be unregistered: ");
+        String initials = scanner.nextLine();
+        try {
+            timeCatApp.unregisterEmployee(initials);
+            view.print("Employee was unregistered successfully");
+        }
+        catch(Exception e){
+            view.printError(e.getMessage());
+        }
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    private void registerEmployee() {
+        view.print("Initials of new employee: ");
+        String initials = scanner.nextLine();
+        try {
+            timeCatApp.registerEmployee(initials);
+            view.print("Employee registered successfully");
+        }
+        catch(Exception e){
+            view.printError(e.getMessage());
+        }
+    }
+
+    //@author  Benjamin Fríðberg - s224347
     public void initializeOptions(){
         options.add(new commandOption("Create project","This options creates a new project in the project repository",() -> createProject()));
         options.add(new commandOption("Remove project","This options removes a project from the project repository",() -> removeProject()));
         options.add(new commandOption("List projects","This options lists all the projects in the project repository",() -> listProjects()));
+        options.add(new commandOption("Create activity","This options creates a activity for a project",() -> createActivity()));
+        options.add(new commandOption("Remove activity","This options removes a activity from a project",() -> removeActivity()));
+        options.add(new commandOption("List activities","This options lists all activities in a project",() -> listActivities()));
+        options.add(new commandOption("Register employee","This options registers a employee",() -> registerEmployee()));
+        options.add(new commandOption("Unregister employee","This options unregisters a employee",() -> unregisterEmployee()));
+        options.add(new commandOption("List employees","This options lists all employees in the employee repository",() -> listEmployees()));
     }
+
 }

@@ -1,9 +1,7 @@
 package cucumber;
 
 import io.cucumber.java.en.Given;
-import timeCat.Application.DuplicateException;
-import timeCat.Application.InvalidProjectNameException;
-import timeCat.Application.ProjectNotFoundException;
+import timeCat.Exceptions.DuplicateException;
 import timeCat.Application.TimeCatApp;
 
 import io.cucumber.java.en.And;
@@ -12,10 +10,13 @@ import io.cucumber.java.en.When;
 import timeCat.Domain.CostumerProject;
 import timeCat.Domain.InternalProject;
 import timeCat.Domain.Project;
-import java.util.ArrayList;
+import timeCat.Exceptions.InvalidNameException;
+import timeCat.Exceptions.NotFoundException;
+
 import java.util.Calendar;
 
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 //@author  Benjamin Fríðberg - s224347
@@ -26,7 +27,7 @@ public class ProjectSteps {
     private ProjectHelper projectHelper;
     private Project project;
 
-    public ProjectSteps(TimeCatApp timeCatApp, ErrorMessage errorMessage, ProjectHelper projectHelper) {
+    public ProjectSteps(TimeCatApp timeCatApp, ErrorMessage errorMessage, ProjectHelper projectHelper,EmployeeHelper employeeHelper) {
         this.timeCatApp = timeCatApp;
         this.errorMessage = errorMessage;
         this.projectHelper = projectHelper;
@@ -49,7 +50,7 @@ public class ProjectSteps {
     public void aEmployeeCreatesACostumerProjectWithTheName(String projectName) {
         try {
             timeCatApp.createCostumerProject(projectName);
-        } catch (InvalidProjectNameException | DuplicateException e) {
+        } catch (InvalidNameException | DuplicateException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
@@ -59,7 +60,7 @@ public class ProjectSteps {
     public void aEmployeeCreatesAInternalProjectWithTheName(String projectName) {
         try {
             timeCatApp.createInternalProject(projectName);
-        } catch (InvalidProjectNameException e ) {
+        } catch (InvalidNameException | DuplicateException e ) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
@@ -70,7 +71,7 @@ public class ProjectSteps {
         try {
             Project projectToRemove = timeCatApp.getProjectByName(projectName);
             timeCatApp.removeProject(projectToRemove.getID());
-        } catch (ProjectNotFoundException e) {
+        } catch (NotFoundException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
@@ -117,5 +118,13 @@ public class ProjectSteps {
     @And("the project has no activities")
     public void theProjectHasNoActivities() {
         assertTrue(project.getActivities().isEmpty());
+    }
+
+    @Given("that a employee is logged in")
+    public void thatAEmployeeIsLoggedIn() {
+        //timeCatApp.registerEmployee(helper.getEmployee());
+        //thatTheUserHasBorrowedABook();
+        //dateHolder.advanceDateByDays(29);
+        //assertThat(libraryApp.userHasOverdueMedia(helper.getUser()),is(true));
     }
 }
