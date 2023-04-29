@@ -16,11 +16,16 @@ public class LoginSteps {
 
     private TimeCatApp timeCatApp;
     private ErrorMessage errorMessage;
+    private EmployeeHelper employeeHelper;
 
-    public LoginSteps(TimeCatApp timeCatApp, ErrorMessage errorMessage) {
+    public LoginSteps(TimeCatApp timeCatApp, ErrorMessage errorMessage, EmployeeHelper employeeHelper) {
         this.timeCatApp = timeCatApp;
         this.errorMessage = errorMessage;
+        this.employeeHelper = employeeHelper;
     }
+
+
+
     //@author  Benjamin Fríðberg - s224347
     @Given("no employee is logged in")
     public void thatNoEmployeeIsLoggedIn() {
@@ -31,12 +36,6 @@ public class LoginSteps {
     @Given("a employee with initials {string} is logged in")
     public void aEmployeeWithInitialsIsLoggedIn(String initials) throws Exception {
         timeCatApp.login(initials);
-    }
-
-    //@author  Benjamin Fríðberg - s224347
-    @And("a employee with initials {string} exists")
-    public void aEmployeeWithInitialsExists(String initials) throws Exception {
-        timeCatApp.registerEmployee(initials);
     }
 
     @And("a employee with initials {string} does not exist")
@@ -50,22 +49,21 @@ public class LoginSteps {
         assertNull(employee);
     }
 
-    //@author  Benjamin Fríðberg - s224347
-    @When("the employee logs in with the initials {string}")
-    public void theEmployeeLogsInWithTheInitials(String initials)  {
+    @When("the employee logs in")
+    public void theEmployeeLogsIn() {
         try {
-            timeCatApp.login(initials);
+            timeCatApp.login(employeeHelper.getEmployee().getInitials());
         } catch (NotFoundException | NotAllowedException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
 
-    //@author  Benjamin Fríðberg - s224347
-    @Then("employee with initials {string} is logged in")
-    public void employeeWithInitialsIsLoggedIn(String initials) {
+    @Then("employee is logged in")
+    public void employeeIsLoggedIn() {
         Employee loggedInUser = timeCatApp.GetLoggedInUser();
-        assertEquals(loggedInUser.getInitials(),initials);
+        assertEquals(loggedInUser.getInitials(),employeeHelper.getEmployee().getInitials());
     }
+
 
     @When("the employee logs out")
     public void theEmployeeLogsOut() {
@@ -74,5 +72,25 @@ public class LoginSteps {
         } catch (NotAllowedException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
+    }
+
+
+    @Given("a employee with initials {string} exists")
+    public void aEmployeeWithInitialsExists(String initials) throws Exception {
+        employeeHelper.registerEmployee(initials);
+    }
+
+    @When("the employee logs in with the initials {string}")
+    public void theEmployeeLogsInWithTheInitials(String initials) {
+        try {
+            timeCatApp.login(initials);
+        } catch (NotAllowedException | NotFoundException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @Then("employee with initials {string} is logged in")
+    public void employeeWithInitialsIsLoggedIn(String initials) {
+        assertEquals(timeCatApp.GetLoggedInUser().getInitials(),initials);
     }
 }

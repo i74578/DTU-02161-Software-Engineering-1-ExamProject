@@ -137,7 +137,7 @@ public class controller {
         String activityID = scanner.nextLine();
         try {
             timeCatApp.removeActivity(activityID,projectID);
-        } catch (NotFoundException e) {
+        } catch (NotFoundException | NotAllowedException e) {
             view.printError(e.getMessage());
         }
     }
@@ -150,7 +150,7 @@ public class controller {
         String activityName = scanner.nextLine();
         try {
             timeCatApp.createActivity(activityName,projectID);
-        } catch (DuplicateException | NotFoundException | InvalidNameException e) {
+        } catch (DuplicateException | NotFoundException | InvalidNameException | NotAllowedException e) {
             view.printError(e.getMessage());
         }
     }

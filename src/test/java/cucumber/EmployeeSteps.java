@@ -1,4 +1,5 @@
 package cucumber;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -6,8 +7,10 @@ import timeCat.Application.*;
 import timeCat.Domain.Employee;
 import timeCat.Exceptions.DuplicateException;
 import timeCat.Exceptions.InvalidNameException;
+import timeCat.Exceptions.NotAllowedException;
 import timeCat.Exceptions.NotFoundException;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 //@author  Benjamin Fríðberg - s224347
@@ -24,11 +27,11 @@ public class EmployeeSteps {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    @When("an employee registers a new employee")
+    @When("the employee registers a new employee")
     public void aEmployeeRegistersANewEmployee() {
         try {
-            timeCatApp.registerEmployee(employeeHelper.getEmployee().getInitials());
-        } catch (InvalidNameException | DuplicateException e) {
+            timeCatApp.registerEmployee("NEW");
+        } catch (InvalidNameException | DuplicateException | NotAllowedException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
@@ -39,7 +42,7 @@ public class EmployeeSteps {
         employeeHelper.setEmployee(new Employee(employeeInitials));
         try {
             timeCatApp.registerEmployee(employeeHelper.getEmployee().getInitials());
-        } catch (DuplicateException | InvalidNameException e) {
+        } catch (DuplicateException | InvalidNameException | NotAllowedException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
@@ -60,9 +63,9 @@ public class EmployeeSteps {
     @Given("an employee is registered")
     public void anEmployeeIsRegistered() {
         try {
-            timeCatApp.registerEmployee(employeeHelper.getEmployee().getInitials());
+            employeeHelper.registerEmployee(employeeHelper.getEmployee().getInitials());
         }
-        catch(DuplicateException | InvalidNameException e){
+        catch(Exception e){
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
@@ -71,7 +74,7 @@ public class EmployeeSteps {
     public void anEmployeeRegistersANewEmployeeWithTheSameInitials() {
         try {
             timeCatApp.registerEmployee(employeeHelper.getEmployee().getInitials());
-        } catch (DuplicateException | InvalidNameException e) {
+        } catch (DuplicateException | InvalidNameException | NotAllowedException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
@@ -96,9 +99,56 @@ public class EmployeeSteps {
     public void anEmployeeUnregisteresTheEmployee() {
         try {
             timeCatApp.unregisterEmployee(employeeHelper.getEmployee().getInitials());
-        }catch (NotFoundException e){
+        }catch (NotFoundException | NotAllowedException e){
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
 
+    //@author  Benjamin Fríðberg - s224347
+    @Given("that a employee is logged in")
+    public void thatAEmployeeIsLoggedIn() throws Exception {
+        String employeeInitials = employeeHelper.registerTestEmployee();
+        timeCatApp.login(employeeInitials);
+    }
+
+    @Given("that a employee is not logged in")
+    public void thatAEmployeeIsNotLoggedIn() {
+        assertFalse(timeCatApp.IsEmployeeLoggedIn());
+    }
+
+
+    @Then("the new employee is registered")
+    public void theNewEmployeeIsRegistered() {
+        assertTrue(timeCatApp.hasEmployee("NEW"));
+    }
+
+    @Given("an employee is with initials {string} is registered")
+    public void anEmployeeIsWithInitialsIsRegistered(String initials) throws Exception {
+        employeeHelper.registerEmployee(initials);
+    }
+
+    @When("the employee registers a new employee with the initials {string}")
+    public void theEmployeeRegistersANewEmployeeWithTheInitials(String initials) {
+        try {
+            timeCatApp.registerEmployee(initials);
+        } catch (DuplicateException | InvalidNameException | NotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+
+    }
+
+    @And("an employee with initials {string} is not registered")
+    public void anEmployeeWithInitialsIsNotRegistered(String initials) {
+        assertFalse(timeCatApp.hasEmployee(initials));
+
+    }
+
+    @When("the employee unregisters the employee with initials {string}")
+    public void theEmployeeUnregistersTheEmployeeWithInitials(String initials) {
+        try {
+            timeCatApp.unregisterEmployee(initials);
+        } catch (NotFoundException | NotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
 }

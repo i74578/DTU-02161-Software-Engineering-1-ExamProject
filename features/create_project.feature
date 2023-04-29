@@ -32,4 +32,8 @@ Scenario: Employee creates a project with a blank name
 	When a employee creates a internal project with the name ""
 	Then I get the error message "Invalid project name"
 
-	
+Scenario: Employee creates a project without being logged in
+	Given that a employee is not logged in
+	When a employee creates a costumer project with the name "Program a very nice GUI"
+	Then I get the error message "You need to be logged in to perform this action"
+	And the project with the name "Program a very nice GUI" is not in the project repository

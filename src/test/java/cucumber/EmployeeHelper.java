@@ -23,15 +23,23 @@ public class EmployeeHelper {
         return testEmployee;
     }
 
-    private Employee registerTestEmployee() throws Exception{
-        if(timeCatApp.IsEmployeeLoggedIn()){
+    public String registerTestEmployee() throws Exception{
+        return registerEmployee(getEmployee().getInitials());
+    }
+
+    public String registerEmployee(String initials) throws Exception{
+        Employee loggedInEmployee = timeCatApp.GetLoggedInUser();
+        if(loggedInEmployee == null){
+            timeCatApp.login("ADM");
+        }
+        timeCatApp.registerEmployee(initials);
+        if(loggedInEmployee == null){
             timeCatApp.logout();
         }
-        timeCatApp.login("ADM");
-        timeCatApp.registerEmployee(getEmployee().getInitials());
-        timeCatApp.logout();
-        return getEmployee();
+        return initials;
     }
+
+
 
     public void setEmployee(Employee employee){
         this.employee = employee;

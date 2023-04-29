@@ -85,4 +85,12 @@ public class Project implements Tabelify {
         Activity projectToRemove = getActivityByID(activityID);
         activities.remove(projectToRemove);
     }
+
+    public void assignPM(Employee employee) {
+        pm = employee;
+    }
+
+    public void deassignPM() {
+        pm = null;
+    }
 }

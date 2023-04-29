@@ -4,13 +4,13 @@ Feature: Assign a project manager
 	Actors: Employee
 
 
-#Scenario: Add a project manager
+#Scenario: Assign project manager
 #	Given a project with the name "Project A" is in the project repository
 #	And the project project with name "Project A" does not have a project manager
-#	And a employee exists
+#	And a employee with initials "TOM" exists
 #	And a employee with initials "BOB" exists
-#	When the employee assigns a employee to project manager for the project with name "Project A"
-#	Then the employee is assigned project manager of the project
+#	When the employee "TOM" assigns "BOB" to project manager for the project with name "Project A"
+#	Then the employee "BOB" is assigned project manager of the project with name "Project A"
 
 #Scenario: No employee exist
 #	Given a project exist

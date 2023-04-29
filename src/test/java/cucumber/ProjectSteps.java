@@ -1,18 +1,19 @@
 package cucumber;
 
 import io.cucumber.java.en.Given;
+import timeCat.Domain.*;
 import timeCat.Exceptions.DuplicateException;
 import timeCat.Application.TimeCatApp;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import timeCat.Domain.CostumerProject;
-import timeCat.Domain.InternalProject;
-import timeCat.Domain.Project;
 import timeCat.Exceptions.InvalidNameException;
+import timeCat.Exceptions.NotAllowedException;
 import timeCat.Exceptions.NotFoundException;
 
+import java.rmi.server.ExportException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -25,12 +26,14 @@ public class ProjectSteps {
     private TimeCatApp timeCatApp;
     private ErrorMessage errorMessage;
     private ProjectHelper projectHelper;
+    private EmployeeHelper employeeHelper;
     private Project project;
 
     public ProjectSteps(TimeCatApp timeCatApp, ErrorMessage errorMessage, ProjectHelper projectHelper,EmployeeHelper employeeHelper) {
         this.timeCatApp = timeCatApp;
         this.errorMessage = errorMessage;
         this.projectHelper = projectHelper;
+        this.employeeHelper = employeeHelper;
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -42,7 +45,7 @@ public class ProjectSteps {
     //@author  Benjamin Fríðberg - s224347
     @Given("a project with the name {string} is in the project repository")
     public void theProjectWithTheNameIsInTheProjectRepository(String projectName) throws Exception {
-        timeCatApp.createCostumerProject(projectName);
+        projectHelper.createCostumerProject(projectName);
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -50,7 +53,7 @@ public class ProjectSteps {
     public void aEmployeeCreatesACostumerProjectWithTheName(String projectName) {
         try {
             timeCatApp.createCostumerProject(projectName);
-        } catch (InvalidNameException | DuplicateException e) {
+        } catch (InvalidNameException | DuplicateException | NotAllowedException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
@@ -60,14 +63,14 @@ public class ProjectSteps {
     public void aEmployeeCreatesAInternalProjectWithTheName(String projectName) {
         try {
             timeCatApp.createInternalProject(projectName);
-        } catch (InvalidNameException | DuplicateException e ) {
+        } catch (InvalidNameException | DuplicateException | NotAllowedException e ) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
 
     //@author  Benjamin Fríðberg - s224347
     @When("a employee removes a project with the name {string}")
-    public void aEmployeeRemoveAProjectWithTheName(String projectName) {
+    public void aEmployeeRemoveAProjectWithTheName(String projectName) throws Exception {
         try {
             Project projectToRemove = timeCatApp.getProjectByName(projectName);
             timeCatApp.removeProject(projectToRemove.getID());
@@ -81,12 +84,6 @@ public class ProjectSteps {
     public void aProjectWithTheNameIsInTheProjectRepository(String projectName) throws Exception {
         this.project = timeCatApp.getProjectByName(projectName);
         assertNotNull(this.project);
-    }
-
-    //@author  Benjamin Fríðberg - s224347
-    @Then("the project with the name {string} is not in the project repository")
-    public void theProjectWithTheNameIsNotInTheProjectRepository(String projectName) throws Exception {
-        assertFalse(timeCatApp.hasProject(projectName));
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -120,11 +117,64 @@ public class ProjectSteps {
         assertTrue(project.getActivities().isEmpty());
     }
 
-    @Given("that a employee is logged in")
-    public void thatAEmployeeIsLoggedIn() {
-        //timeCatApp.registerEmployee(helper.getEmployee());
-        //thatTheUserHasBorrowedABook();
-        //dateHolder.advanceDateByDays(29);
-        //assertThat(libraryApp.userHasOverdueMedia(helper.getUser()),is(true));
+
+    //@author  Benjamin Fríðberg - s224347
+    @And("the project project with name {string} does not have a project manager")
+    public void theProjectProjectWithNameDoesNotHaveAProjectManager(String projectName) {
+
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    @Given("a project is in the project repository")
+    public void aProjectIsInTheProjectRepository() throws Exception {
+        projectHelper.addTestProject();
+        project = projectHelper.getProject();
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    @And("a employee exists")
+    public void aEmployeeExists() throws Exception {
+        employeeHelper.registerTestEmployee();
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    @And("the employee is assigned project manager for the project")
+    public void aEmployeeIsAssignedProjectManagerForTheProject() throws Exception {
+        Project project = projectHelper.getProject();
+        Employee employee = employeeHelper.getEmployee();
+        projectHelper.assignPM(project.getID(),employee.getInitials());
+
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    @When("the employee removes the project")
+    public void theEmployeeRemovesTheProject() throws Exception {
+        timeCatApp.removeProject(projectHelper.getProject().getID());
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    @Then("the project is not in the project repository")
+    public void theProjectIsNotInTheProjectRepository() throws Exception {
+        assertFalse(timeCatApp.hasProject(projectHelper.getProject().getName()));
+    }
+
+
+    //@author  Benjamin Fríðberg - s224347
+    @Then("the project with the name {string} is not in the project repository")
+    public void theProjectWithTheNameIsNotInTheProjectRepository(String projectName) throws Exception {
+        assertFalse(timeCatApp.hasProject(projectName));
+    }
+
+    @And("the employee is logged in")
+    public void theEmployeeIsLoggedIn() throws Exception {
+        timeCatApp.login(employeeHelper.getEmployee().getInitials());
+    }
+
+    @Given("a project is not in the project repository")
+    public void aProjectIsNotInTheProjectRepository() throws Exception {
+        ArrayList<Project> projects = timeCatApp.getProjects();
+        project = projectHelper.getProject();
+        String projectID = project.getID();
+        assertFalse(projects.stream().anyMatch(p -> p.getID().equals(projectID)));
     }
 }

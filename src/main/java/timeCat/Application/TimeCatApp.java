@@ -52,31 +52,51 @@ public class TimeCatApp {
         return loggedInUser != null;
     }
 
+    public void valdiateEmployee() throws NotAllowedException {
+        if (!IsEmployeeLoggedIn()){
+            throw new NotAllowedException("You need to be logged in to perform this action");
+        }
+    }
+
+    public void valdiatePM(String projectID) throws NotAllowedException, NotFoundException {
+        valdiateEmployee();
+        Project project = getProjectByID(projectID);
+        Employee pm = project.getPM();
+        if(pm != loggedInUser){
+            throw new NotAllowedException("You need to be a project manager for this project to perform this action");
+        }
+
+    }
 
 
     ///////Projects
     //@author  Benjamin Fríðberg - s224347
-    public void createCostumerProject(String projectName) throws InvalidNameException, DuplicateException {
+    public String createCostumerProject(String projectName) throws InvalidNameException, DuplicateException, NotAllowedException {
+        valdiateEmployee();
         if(!hasProject(projectName)) {
-            Project costumerProject = new CostumerProject(projectName, getNextProjectID());
+            String projectID = getNextProjectID();
+            Project costumerProject = new CostumerProject(projectName, projectID);
             projectsRepo.add(costumerProject);
-            return;
+            return projectID;
         }
         throw new DuplicateException("Project with the same name already exists");
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public void createInternalProject(String projectName) throws InvalidNameException, DuplicateException {
+    public String createInternalProject(String projectName) throws InvalidNameException, DuplicateException, NotAllowedException {
+        valdiateEmployee();
         if(!hasProject(projectName)) {
-            Project internalProject = new InternalProject(projectName, getNextProjectID());
+            String projectID = getNextProjectID();
+            Project internalProject = new InternalProject(projectName, projectID);
             projectsRepo.add(internalProject);
-            return;
+            return projectID;
         }
         throw new DuplicateException("Project with the same name already exists");
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public void removeProject(String projectID) throws NotFoundException {
+    public void removeProject(String projectID) throws NotFoundException, NotAllowedException {
+        valdiatePM(projectID);
         Project projectToRemove = getProjectByID(projectID);
         projectsRepo.remove(projectToRemove);
     }
@@ -120,15 +140,19 @@ public class TimeCatApp {
     ///////Activities
 
     //author: Christian Colberg - s224343
-    public void createActivity(String activityName, String projectID) throws InvalidNameException, NotFoundException, DuplicateException {
+    public Activity createActivity(String activityName, String projectID) throws InvalidNameException, NotFoundException, DuplicateException, NotAllowedException {
+        valdiatePM(projectID);
         Project project = getProjectByID(projectID);
-        Activity activityToAdd = new Activity(activityName,getNextActivityID());
+        String activityID = getNextActivityID();
+        Activity activityToAdd = new Activity(activityName,activityID);
         project.addActivity(activityToAdd);
         activityCount++;
+        return activityToAdd;
     }
 
     //author: Christian Colberg - s224343
-    public void removeActivity(String activityID, String projectID) throws NotFoundException, NotFoundException {
+    public void removeActivity(String activityID, String projectID) throws NotFoundException, NotFoundException, NotAllowedException {
+        valdiatePM(projectID);
         Project project = getProjectByID(projectID);
         project.removeActivity(activityID);
     }
@@ -147,12 +171,11 @@ public class TimeCatApp {
 
 
 
-
-
     ////////Employee
 
     //@author  Benjamin Fríðberg - s224347
-    public void registerEmployee(String initials) throws DuplicateException, InvalidNameException {
+    public void registerEmployee(String initials) throws DuplicateException, InvalidNameException, NotAllowedException {
+        valdiateEmployee();
         if(initials.length() == 0 || initials.length() > 4){
             throw new InvalidNameException("Invalid initials");
         }
@@ -163,7 +186,8 @@ public class TimeCatApp {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public void unregisterEmployee(String initials) throws NotFoundException {
+    public void unregisterEmployee(String initials) throws NotFoundException, NotAllowedException {
+        valdiateEmployee();
         Employee employeeToRemove = getEmployee(initials);
         employeeRepo.remove(employeeToRemove);
     }
@@ -185,6 +209,26 @@ public class TimeCatApp {
     //@author  Benjamin Fríðberg - s224347
     public boolean hasEmployee(String initials){
         return employeeRepo.stream().anyMatch(p -> p.getInitials().equals(initials));
+    }
+
+
+    public void assignPM(String projectID, String initials) throws NotFoundException, NotAllowedException {
+        valdiateEmployee();
+        Project project = getProjectByID(projectID);
+        if(project.getPM() != null){
+            throw new NotAllowedException("Project manager for this project is already assigned");
+        }
+        Employee employee = getEmployee(initials);
+        project.assignPM(employee);
+    }
+
+    public void deassignPM(String projectID) throws NotAllowedException, NotFoundException {
+        valdiatePM(projectID);
+        Project project = getProjectByID(projectID);
+        if(project.getPM() == null){
+            throw new NotAllowedException("Can't deassign PM, when not assigned");
+        }
+        project.deassignPM();
     }
 
 
