@@ -3,6 +3,7 @@ import timeCat.Application.*;
 import timeCat.Domain.Activity;
 import timeCat.Domain.Employee;
 import timeCat.Domain.Project;
+import timeCat.Exceptions.NotAllowedException;
 import timeCat.Exceptions.NotFoundException;
 import timeCat.Exceptions.DuplicateException;
 import timeCat.Exceptions.InvalidNameException;
@@ -31,6 +32,9 @@ public class controller {
         boolean stop = false;
         view.showWelcomeScreen();
         while(!stop){
+            while(!timeCatApp.IsEmployeeLoggedIn()){
+                login();
+            }
             view.showMainMenu(options);
             int chosenOption = getIntFromUser();
             if (chosenOption > 0 && chosenOption <= options.size()) {
@@ -48,6 +52,28 @@ public class controller {
         scanner.nextLine();
         return userInt;
     }
+
+    //@author  Benjamin Fríðberg - s224347
+    private void login() {
+        view.print("You need to login to continue");
+        view.print("Please enter your employee initials: ");
+        String initials = scanner.nextLine();
+        try {
+            timeCatApp.login(initials);
+        } catch (NotAllowedException | NotFoundException  e) {
+            view.printError(e.getMessage());
+        }
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    private void logout() {
+        try {
+            timeCatApp.logout();
+        } catch (NotAllowedException e) {
+            view.printError(e.getMessage());
+        }
+    }
+
 
     //@author  Benjamin Fríðberg - s224347
     public void createProject(){
@@ -172,6 +198,7 @@ public class controller {
         options.add(new commandOption("Register employee","This options registers a employee",() -> registerEmployee()));
         options.add(new commandOption("Unregister employee","This options unregisters a employee",() -> unregisterEmployee()));
         options.add(new commandOption("List employees","This options lists all employees in the employee repository",() -> listEmployees()));
+        options.add(new commandOption("Logout","Logout",() -> logout()));
     }
 
 }
