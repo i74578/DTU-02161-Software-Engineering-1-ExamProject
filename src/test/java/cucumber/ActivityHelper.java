@@ -1,15 +1,13 @@
 package cucumber;
 
 
-import io.cucumber.java.bs.A;
-import io.cucumber.java.en_old.Ac;
-import timeCat.Application.TimeCatApp;
-import timeCat.Domain.Activity;
-import timeCat.Domain.Employee;
-import timeCat.Exceptions.DuplicateException;
-import timeCat.Exceptions.InvalidNameException;
-import timeCat.Exceptions.NotAllowedException;
-import timeCat.Exceptions.NotFoundException;
+import timeCat.application.TimeCatApp;
+import timeCat.domain.Activity;
+import timeCat.domain.Employee;
+import timeCat.exceptions.DuplicateException;
+import timeCat.exceptions.InvalidNameException;
+import timeCat.exceptions.NotAllowedException;
+import timeCat.exceptions.NotFoundException;
 
 //@author  Benjamin Fríðberg - s224347
 public class ActivityHelper {
@@ -21,7 +19,7 @@ public class ActivityHelper {
     }
 
     public Activity createActivity(String activityName, String projectID) throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
-        Employee loggedInEmployee = timeCatApp.GetLoggedInUser();
+        Employee loggedInEmployee = timeCatApp.getLoggedInUser();
         Employee PM = timeCatApp.getProjectByID(projectID).getPM();
         if(loggedInEmployee == null) {
             if (PM == null) {

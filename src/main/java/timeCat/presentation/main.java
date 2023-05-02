@@ -1,4 +1,4 @@
-package timeCat.Presentation;
+package timeCat.presentation;
 
 //@author  Benjamin Fríðberg - s224347
 public class main {

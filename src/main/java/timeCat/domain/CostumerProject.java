@@ -1,6 +1,6 @@
-package timeCat.Domain;
+package timeCat.domain;
 
-import timeCat.Exceptions.InvalidNameException;
+import timeCat.exceptions.InvalidNameException;
 
 //@author  Benjamin Fríðberg - s224347
 public class CostumerProject extends Project{

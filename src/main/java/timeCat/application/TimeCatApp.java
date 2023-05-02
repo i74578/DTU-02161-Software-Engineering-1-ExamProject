@@ -1,7 +1,7 @@
-package timeCat.Application;
+package timeCat.application;
 
-import timeCat.Domain.*;
-import timeCat.Exceptions.*;
+import timeCat.domain.*;
+import timeCat.exceptions.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -9,42 +9,22 @@ import java.util.Optional;
 
 //@author  Benjamin Fríðberg - s224347
 public class TimeCatApp {
-    private ArrayList<Project> projectsRepo;
-    private ArrayList<Employee> employeeRepo;
+    private final ArrayList<Project> projectsRepo;
+    private final ArrayList<Employee> employeeRepo;
     private int activityCount;
     private Employee loggedInUser;
 
     public TimeCatApp(){
         projectsRepo = new ArrayList<>();
-        employeeRepo = new ArrayList<Employee>();
+        employeeRepo = new ArrayList<>();
         employeeRepo.add(new Employee("ADM"));
-        activityCount = 0;
-        Employee loggedInUser = null;
     }
 
 
     //////Login
-
     //@author  Benjamin Fríðberg - s224347
-    public Employee GetLoggedInUser(){
+    public Employee getLoggedInUser(){
         return loggedInUser;
-    }
-
-    //@author  Benjamin Fríðberg - s224347
-    public void login(String initials) throws NotAllowedException, NotFoundException {
-        if(loggedInUser == null){
-            loggedInUser = getEmployee(initials);
-            return;
-        }
-        throw new NotAllowedException("A user is already logged in");
-    }
-
-    //@author  Benjamin Fríðberg - s224347
-    public void logout() throws NotAllowedException {
-        if(loggedInUser == null){
-            throw new NotAllowedException("Can't logout since no user is logged in");
-        }
-        loggedInUser = null;
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -52,56 +32,40 @@ public class TimeCatApp {
         return loggedInUser != null;
     }
 
-    public void valdiateEmployee() throws NotAllowedException {
+    //@author  Benjamin Fríðberg - s224347
+    public void login(String initials) throws NotAllowedException, NotFoundException {
+        if(IsEmployeeLoggedIn()){
+            throw new NotAllowedException("A employee is already logged in");
+        }
+        loggedInUser = getEmployee(initials);
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    public void logout() throws NotAllowedException {
+        if(!IsEmployeeLoggedIn()){
+            throw new NotAllowedException("Can't logout since no user is logged in");
+        }
+        loggedInUser = null;
+    }
+
+    //////Permission levels
+    //@author  Benjamin Fríðberg - s224347
+    public void validateEmployeePermissions() throws NotAllowedException {
         if (!IsEmployeeLoggedIn()){
             throw new NotAllowedException("You need to be logged in to perform this action");
         }
     }
 
-    public void valdiatePM(String projectID) throws NotAllowedException, NotFoundException {
-        valdiateEmployee();
-        Project project = getProjectByID(projectID);
-        Employee pm = project.getPM();
-        if(pm != loggedInUser){
+    //@author  Benjamin Fríðberg - s224347
+    public void validatePMPermissions(String projectID) throws NotAllowedException, NotFoundException {
+        validateEmployeePermissions();
+        Employee ProjectManager = getProjectByID(projectID).getPM();
+        if(ProjectManager != loggedInUser){
             throw new NotAllowedException("You need to be a project manager for this project to perform this action");
         }
-
     }
-
 
     ///////Projects
-    //@author  Benjamin Fríðberg - s224347
-    public String createCostumerProject(String projectName) throws InvalidNameException, DuplicateException, NotAllowedException {
-        valdiateEmployee();
-        if(!hasProject(projectName)) {
-            String projectID = getNextProjectID();
-            Project costumerProject = new CostumerProject(projectName, projectID);
-            projectsRepo.add(costumerProject);
-            return projectID;
-        }
-        throw new DuplicateException("Project with the same name already exists");
-    }
-
-    //@author  Benjamin Fríðberg - s224347
-    public String createInternalProject(String projectName) throws InvalidNameException, DuplicateException, NotAllowedException {
-        valdiateEmployee();
-        if(!hasProject(projectName)) {
-            String projectID = getNextProjectID();
-            Project internalProject = new InternalProject(projectName, projectID);
-            projectsRepo.add(internalProject);
-            return projectID;
-        }
-        throw new DuplicateException("Project with the same name already exists");
-    }
-
-    //@author  Benjamin Fríðberg - s224347
-    public void removeProject(String projectID) throws NotFoundException, NotAllowedException {
-        valdiatePM(projectID);
-        Project projectToRemove = getProjectByID(projectID);
-        projectsRepo.remove(projectToRemove);
-    }
-
-
     //@author  Benjamin Fríðberg - s224347
     public boolean hasProject(String projectName){
         return projectsRepo.stream().anyMatch(p -> p.getName().equals(projectName));
@@ -120,7 +84,7 @@ public class TimeCatApp {
     //@author Benjamin Fríðberg - s224347
     public Project getProjectByID(String projectID) throws NotFoundException {
         Optional<Project> FoundProject = projectsRepo.stream().filter(p -> p.getID().equals(projectID)).findFirst();
-        if (!FoundProject.isEmpty()){
+        if (FoundProject.isPresent()){
             return FoundProject.get();
         }
         throw new NotFoundException("The project is not found");
@@ -129,53 +93,76 @@ public class TimeCatApp {
     //@author Benjamin Fríðberg - s224347
     public Project getProjectByName(String projectName) throws NotFoundException {
         Optional<Project> FoundProject = projectsRepo.stream().filter(p -> p.getName().equals(projectName)).findFirst();
-        if (!FoundProject.isEmpty()){
+        if (FoundProject.isPresent()){
             return FoundProject.get();
         }
         throw new NotFoundException("The project is not found");
     }
 
-
-
-    ///////Activities
-
-    //author: Christian Colberg - s224343
-    public Activity createActivity(String activityName, String projectID) throws InvalidNameException, NotFoundException, DuplicateException, NotAllowedException {
-        valdiatePM(projectID);
-        Project project = getProjectByID(projectID);
-        String activityID = getNextActivityID();
-        Activity activityToAdd = new Activity(activityName,activityID);
-        project.addActivity(activityToAdd);
-        activityCount++;
-        return activityToAdd;
-    }
-
-    //author: Christian Colberg - s224343
-    public void removeActivity(String activityID, String projectID) throws NotFoundException, NotFoundException, NotAllowedException {
-        valdiatePM(projectID);
-        Project project = getProjectByID(projectID);
-        project.removeActivity(activityID);
+    //@author  Benjamin Fríðberg - s224347
+    public String createCostumerProject(String projectName) throws InvalidNameException, DuplicateException, NotAllowedException {
+        validateEmployeePermissions();
+        if(hasProject(projectName)) {
+            throw new DuplicateException("Project with the same name already exists");
+        }
+        String projectID = getNextProjectID();
+        Project costumerProject = new CostumerProject(projectName, projectID);
+        projectsRepo.add(costumerProject);
+        return projectID;
     }
 
     //@author  Benjamin Fríðberg - s224347
+    public String createInternalProject(String projectName) throws InvalidNameException, DuplicateException, NotAllowedException {
+        validateEmployeePermissions();
+        if(hasProject(projectName)) {
+            throw new DuplicateException("Project with the same name already exists");
+        }
+        String projectID = getNextProjectID();
+        Project internalProject = new InternalProject(projectName, projectID);
+        projectsRepo.add(internalProject);
+        return projectID;
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    public void removeProject(String projectID) throws NotFoundException, NotAllowedException {
+        validatePMPermissions(projectID);
+        projectsRepo.remove(getProjectByID(projectID));
+    }
+
+
+    ///////Activities
+    //@author  Benjamin Fríðberg - s224347
     public ArrayList<Activity> getProjectActivities(String projectID) throws NotFoundException {
-        Project project = getProjectByID(projectID);
-        return project.getActivities();
+        return getProjectByID(projectID).getActivities();
     }
 
     //author: Christian Colberg - s224343
     public String getNextActivityID(){
-        return "A"+String.valueOf(activityCount+1);
+        return "A"+(activityCount+1);
+    }
+
+    //author: Christian Colberg - s224343
+    public Activity createActivity(String activityName, String projectID) throws InvalidNameException, NotFoundException, DuplicateException, NotAllowedException {
+        validatePMPermissions(projectID);
+        Project project = getProjectByID(projectID);
+        String newActivityID = getNextActivityID();
+        Activity newActivity = new Activity(activityName,newActivityID);
+        project.addActivity(newActivity);
+        activityCount++;
+        return newActivity;
+    }
+
+    //author: Christian Colberg - s224343
+    public void removeActivity(String activityID, String projectID) throws NotFoundException, NotAllowedException {
+        validatePMPermissions(projectID);
+        getProjectByID(projectID).removeActivity(activityID);
     }
 
 
-
-
     ////////Employee
-
     //@author  Benjamin Fríðberg - s224347
     public void registerEmployee(String initials) throws DuplicateException, InvalidNameException, NotAllowedException {
-        valdiateEmployee();
+        validateEmployeePermissions();
         if(initials.length() == 0 || initials.length() > 4){
             throw new InvalidNameException("Invalid initials");
         }
@@ -187,18 +174,17 @@ public class TimeCatApp {
 
     //@author  Benjamin Fríðberg - s224347
     public void unregisterEmployee(String initials) throws NotFoundException, NotAllowedException {
-        valdiateEmployee();
-        Employee employeeToRemove = getEmployee(initials);
-        employeeRepo.remove(employeeToRemove);
+        validateEmployeePermissions();
+        employeeRepo.remove(getEmployee(initials));
     }
 
     //@author  Benjamin Fríðberg - s224347
     public Employee getEmployee(String initials) throws NotFoundException {
-        Optional<Employee> FoundEmployee = employeeRepo.stream().filter(p -> p.getInitials().equals(initials)).findFirst();
-        if (!FoundEmployee.isEmpty()){
-            return FoundEmployee.get();
+        Optional<Employee> employeeSearch = employeeRepo.stream().filter(p -> p.getInitials().equals(initials)).findFirst();
+        if (employeeSearch.isPresent()){
+            return employeeSearch.get();
         }
-        throw new NotFoundException("The user is not found");
+        throw new NotFoundException("The employee is not found");
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -212,24 +198,23 @@ public class TimeCatApp {
     }
 
 
+    //Project manager assign and deassign
+    //@author  Benjamin Fríðberg - s224347
     public void assignPM(String projectID, String initials) throws NotFoundException, NotAllowedException {
-        valdiateEmployee();
+        validateEmployeePermissions();
         Project project = getProjectByID(projectID);
         if(project.getPM() != null){
             throw new NotAllowedException("Project manager for this project is already assigned");
         }
-        Employee employee = getEmployee(initials);
-        project.assignPM(employee);
+        project.assignPM(getEmployee(initials));
     }
 
     public void deassignPM(String projectID) throws NotAllowedException, NotFoundException {
-        valdiatePM(projectID);
+        validatePMPermissions(projectID);
         Project project = getProjectByID(projectID);
         if(project.getPM() == null){
             throw new NotAllowedException("Can't deassign PM, when not assigned");
         }
         project.deassignPM();
     }
-
-
 }

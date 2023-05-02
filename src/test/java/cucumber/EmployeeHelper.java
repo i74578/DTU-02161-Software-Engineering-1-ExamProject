@@ -1,6 +1,6 @@
 package cucumber;
-import timeCat.Application.TimeCatApp;
-import timeCat.Domain.Employee;
+import timeCat.application.TimeCatApp;
+import timeCat.domain.Employee;
 
 //@author  Benjamin Fríðberg - s224347
 public class EmployeeHelper {
@@ -28,7 +28,7 @@ public class EmployeeHelper {
     }
 
     public String registerEmployee(String initials) throws Exception{
-        Employee loggedInEmployee = timeCatApp.GetLoggedInUser();
+        Employee loggedInEmployee = timeCatApp.getLoggedInUser();
         if(loggedInEmployee == null){
             timeCatApp.login("ADM");
         }

@@ -1,11 +1,11 @@
 package cucumber;
-import timeCat.Application.TimeCatApp;
-import timeCat.Domain.Employee;
-import timeCat.Domain.Project;
-import timeCat.Exceptions.DuplicateException;
-import timeCat.Exceptions.InvalidNameException;
-import timeCat.Exceptions.NotAllowedException;
-import timeCat.Exceptions.NotFoundException;
+import timeCat.application.TimeCatApp;
+import timeCat.domain.Employee;
+import timeCat.domain.Project;
+import timeCat.exceptions.DuplicateException;
+import timeCat.exceptions.InvalidNameException;
+import timeCat.exceptions.NotAllowedException;
+import timeCat.exceptions.NotFoundException;
 
 //@author  Benjamin Fríðberg - s224347
 public class ProjectHelper {
@@ -17,7 +17,7 @@ public class ProjectHelper {
     }
 
     public String createCostumerProject(String projectName) throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
-        Employee loggedInEmployee = timeCatApp.GetLoggedInUser();
+        Employee loggedInEmployee = timeCatApp.getLoggedInUser();
         if(loggedInEmployee == null){
             timeCatApp.login("ADM");
         }
@@ -29,7 +29,7 @@ public class ProjectHelper {
     }
 
     public String createInternalProject(String projectName) throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
-        Employee loggedInEmployee = timeCatApp.GetLoggedInUser();
+        Employee loggedInEmployee = timeCatApp.getLoggedInUser();
         if(loggedInEmployee == null){
             timeCatApp.login("ADM");
         }
@@ -41,7 +41,7 @@ public class ProjectHelper {
     }
 
     public void removeProject(String projectID, String PMinitials) throws NotAllowedException, NotFoundException {
-        Employee loggedInEmployee = timeCatApp.GetLoggedInUser();
+        Employee loggedInEmployee = timeCatApp.getLoggedInUser();
         if(loggedInEmployee == null){
             timeCatApp.login(PMinitials);
         }
@@ -74,7 +74,7 @@ public class ProjectHelper {
 
 
     public void assignPM(String projectID, String initials) throws NotAllowedException, NotFoundException {
-        Employee loggedInEmployee = timeCatApp.GetLoggedInUser();
+        Employee loggedInEmployee = timeCatApp.getLoggedInUser();
         if(loggedInEmployee == null){
             timeCatApp.login("ADM");
         }

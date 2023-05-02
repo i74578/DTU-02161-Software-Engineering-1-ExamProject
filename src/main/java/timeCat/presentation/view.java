@@ -1,19 +1,15 @@
-package timeCat.Presentation;
-import timeCat.Domain.Activity;
-import timeCat.Domain.Employee;
-import timeCat.Domain.Project;
-import timeCat.Domain.Tabelify;
+package timeCat.presentation;
+import timeCat.domain.Activity;
+import timeCat.domain.Employee;
+import timeCat.domain.Project;
+import timeCat.domain.Tabelify;
 
 import java.util.ArrayList;
 
 //@author  Benjamin Fríðberg - s224347
 public class view {
-    String HorizontalLine = "#".repeat(100) + "\n";
-    private static final int cliWidth = 100;
-
-    public static void view(){
-
-    }
+    private final static String HorizontalLine = "#".repeat(100);
+    private final static int cliWidth = 100;
 
     //@author  Benjamin Fríðberg - s224347
     public void clearConsole(){
@@ -68,7 +64,8 @@ public class view {
 
     //@author  Benjamin Fríðberg - s224347
     public void printTableHeader(String headerText){
-        print(HorizontalLine + centerStringInTableRecord(headerText));
+        print(HorizontalLine);
+        print(centerStringInTableRecord(headerText));
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -81,9 +78,9 @@ public class view {
 
     //@author  Benjamin Fríðberg - s224347
     public void printTable(ArrayList<? extends Tabelify> objectToPrint, boolean printIndex){
-        String table = HorizontalLine;
+        print(HorizontalLine);
         if(objectToPrint.size() == 0){
-            table += centerStringInTableRecord("Empty")+"\n";
+            print(centerStringInTableRecord("Empty"));
         }
         for (int i = 0;i<objectToPrint.size();i++){
             String[] recordProperties = objectToPrint.get(i).getPropertiesForTable();
@@ -92,10 +89,9 @@ public class view {
                 recordText += (i+1) + ". ";
             }
             recordText += String.join(" | ",recordProperties);
-            table += "#" + recordText + " ".repeat(cliWidth-2-recordText.length())+ "#\n";
-        }
-        table += HorizontalLine;
-        print(table);
-    }
 
+            print("#" + recordText + " ".repeat(cliWidth-2-recordText.length())+ "#");
+        }
+        print(HorizontalLine);
+    }
 }

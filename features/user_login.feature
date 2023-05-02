@@ -14,7 +14,7 @@ Scenario: Employee fails to login with non existing initials
 	And an employee is not registered
 	When the employee logs in
 	Then no employee is logged in
-	And I get the error message "The user is not found"
+	And I get the error message "The employee is not found"
 
 Scenario: Employee already logged in
 	Given a employee with initials "TOM" exists
@@ -22,4 +22,4 @@ Scenario: Employee already logged in
 	And a employee with initials "BOB" exists
 	When the employee logs in with the initials "BOB"
 	Then employee with initials "TOM" is logged in
-	And I get the error message "A user is already logged in"
+	And I get the error message "A employee is already logged in"

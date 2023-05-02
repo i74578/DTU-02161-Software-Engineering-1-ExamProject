@@ -1,11 +1,11 @@
-package timeCat.Presentation;
-import timeCat.Domain.Tabelify;
+package timeCat.presentation;
+import timeCat.domain.Tabelify;
 
 //@author  Benjamin Fríðberg - s224347
 public class commandOption implements Tabelify {
-    String optionName;
-    String optionDescription;
-    command optionCallMethod;
+    private final String optionName;
+    private final String optionDescription;
+    private final command optionCallMethod;
 
     //@author  Benjamin Fríðberg - s224347
     public commandOption(String optionName,String optionDescription, command optionCallMethod){
@@ -14,8 +14,6 @@ public class commandOption implements Tabelify {
         this.optionCallMethod = optionCallMethod;
     }
 
-    public String getOptionName(){return optionName;}
-    public String getOptionDescription(){return optionDescription;}
     public command getOptionCallMethod(){return optionCallMethod;}
 
     //@author  Benjamin Fríðberg - s224347

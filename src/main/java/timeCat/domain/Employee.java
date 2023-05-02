@@ -1,14 +1,12 @@
-package timeCat.Domain;
-
-import javax.swing.table.TableCellEditor;
+package timeCat.domain;
 
 //@author  Benjamin Fríðberg - s224347
 public class Employee implements Tabelify {
-    private String initials;
+    private final String initials;
 
 
     public Employee(String initials){
-        this.initials = initials;
+        this.initials = initials.toUpperCase();
     }
 
     public String getInitials(){

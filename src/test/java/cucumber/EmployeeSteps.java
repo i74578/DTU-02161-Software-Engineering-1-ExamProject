@@ -3,12 +3,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import timeCat.Application.*;
-import timeCat.Domain.Employee;
-import timeCat.Exceptions.DuplicateException;
-import timeCat.Exceptions.InvalidNameException;
-import timeCat.Exceptions.NotAllowedException;
-import timeCat.Exceptions.NotFoundException;
+import timeCat.application.*;
+import timeCat.domain.Employee;
+import timeCat.exceptions.DuplicateException;
+import timeCat.exceptions.InvalidNameException;
+import timeCat.exceptions.NotAllowedException;
+import timeCat.exceptions.NotFoundException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;

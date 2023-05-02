@@ -4,10 +4,10 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import timeCat.Application.TimeCatApp;
-import timeCat.Domain.Employee;
-import timeCat.Exceptions.NotAllowedException;
-import timeCat.Exceptions.NotFoundException;
+import timeCat.application.TimeCatApp;
+import timeCat.domain.Employee;
+import timeCat.exceptions.NotAllowedException;
+import timeCat.exceptions.NotFoundException;
 
 import static org.junit.Assert.*;
 
@@ -60,7 +60,7 @@ public class LoginSteps {
 
     @Then("employee is logged in")
     public void employeeIsLoggedIn() {
-        Employee loggedInUser = timeCatApp.GetLoggedInUser();
+        Employee loggedInUser = timeCatApp.getLoggedInUser();
         assertEquals(loggedInUser.getInitials(),employeeHelper.getEmployee().getInitials());
     }
 
@@ -91,6 +91,6 @@ public class LoginSteps {
 
     @Then("employee with initials {string} is logged in")
     public void employeeWithInitialsIsLoggedIn(String initials) {
-        assertEquals(timeCatApp.GetLoggedInUser().getInitials(),initials);
+        assertEquals(timeCatApp.getLoggedInUser().getInitials(),initials);
     }
 }

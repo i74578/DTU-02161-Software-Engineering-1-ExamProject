@@ -13,6 +13,6 @@ Scenario: Employee unregisters a non existing employee
 	Given that a employee is logged in
 	And an employee with initials "TOM" is not registered
 	When the employee unregisters the employee with initials "TOM"
-	Then I get the error message "The user is not found"
+	Then I get the error message "The employee is not found"
 
 	

@@ -1,18 +1,17 @@
 package cucumber;
 
 import io.cucumber.java.en.Given;
-import timeCat.Domain.*;
-import timeCat.Exceptions.DuplicateException;
-import timeCat.Application.TimeCatApp;
+import timeCat.domain.*;
+import timeCat.exceptions.DuplicateException;
+import timeCat.application.TimeCatApp;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import timeCat.Exceptions.InvalidNameException;
-import timeCat.Exceptions.NotAllowedException;
-import timeCat.Exceptions.NotFoundException;
+import timeCat.exceptions.InvalidNameException;
+import timeCat.exceptions.NotAllowedException;
+import timeCat.exceptions.NotFoundException;
 
-import java.rmi.server.ExportException;
 import java.util.ArrayList;
 import java.util.Calendar;
 

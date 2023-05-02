@@ -1,21 +1,18 @@
-package timeCat.Domain;
+package timeCat.domain;
 
-import timeCat.Exceptions.InvalidNameException;
-import timeCat.Exceptions.NotFoundException;
-import timeCat.Exceptions.DuplicateException;
+import timeCat.exceptions.InvalidNameException;
+import timeCat.exceptions.NotFoundException;
+import timeCat.exceptions.DuplicateException;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Optional;
 
 //@author  Benjamin Fríðberg - s224347
 public class Project implements Tabelify {
-    private String name;
-    private String projectID;
+    private final String name;
+    private final String projectID;
     private Employee pm;
-    private Calendar startTimestamp;
-    private Calendar finishTimestamp;
-    private ArrayList<Activity> activities;
+    private final ArrayList<Activity> activities;
 
     //@author  Benjamin Fríðberg - s224347
     public Project(String name, String projectID) throws InvalidNameException {
@@ -46,7 +43,7 @@ public class Project implements Tabelify {
     //@author  Lukas Halberg - s216229
     private Activity getActivityByID(String activityID) throws NotFoundException {
         Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getActivityID().equals(activityID)).findFirst();
-        if (!FoundActivity.isEmpty()){
+        if (FoundActivity.isPresent()){
             return FoundActivity.get();
         }
         throw new NotFoundException("The activity is not found");
@@ -55,7 +52,7 @@ public class Project implements Tabelify {
     //@author  Lukas Halberg - s216229
     public Activity getActivityByName(String activityName) throws NotFoundException {
         Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();
-        if (!FoundActivity.isEmpty()){
+        if (FoundActivity.isPresent()){
             return FoundActivity.get();
         }
         throw new NotFoundException("The activity is not found");

@@ -1,4 +1,4 @@
-package timeCat.Exceptions;
+package timeCat.exceptions;
 
 //#author: Christian Colberg - s224343
 public class InvalidNameException extends Exception{

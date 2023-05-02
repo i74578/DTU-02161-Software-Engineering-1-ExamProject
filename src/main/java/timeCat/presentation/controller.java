@@ -1,21 +1,21 @@
-package timeCat.Presentation;
-import timeCat.Application.*;
-import timeCat.Domain.Activity;
-import timeCat.Domain.Employee;
-import timeCat.Domain.Project;
-import timeCat.Exceptions.NotAllowedException;
-import timeCat.Exceptions.NotFoundException;
-import timeCat.Exceptions.DuplicateException;
-import timeCat.Exceptions.InvalidNameException;
+package timeCat.presentation;
+import timeCat.application.*;
+import timeCat.domain.Activity;
+import timeCat.domain.Employee;
+import timeCat.domain.Project;
+import timeCat.exceptions.NotAllowedException;
+import timeCat.exceptions.NotFoundException;
+import timeCat.exceptions.DuplicateException;
+import timeCat.exceptions.InvalidNameException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 //@author  Benjamin Fríðberg - s224347
 public class controller {
-    private ArrayList<commandOption> options;
-    private Scanner scanner;
-    private view view;
+    private final ArrayList<commandOption> options;
+    private final Scanner scanner;
+    private final view view;
     private final TimeCatApp timeCatApp;
 
     //@author  Benjamin Fríðberg - s224347
@@ -23,22 +23,21 @@ public class controller {
         timeCatApp = new TimeCatApp();
         scanner = new Scanner(System.in);
         view = new view();
-        options = new ArrayList<commandOption>();
+        options = new ArrayList<>();
         initializeOptions();
     }
 
     //@author  Benjamin Fríðberg - s224347
     public void run(){
-        boolean stop = false;
         view.showWelcomeScreen();
-        while(!stop){
+        while(true){
             while(!timeCatApp.IsEmployeeLoggedIn()){
                 login();
             }
             view.showMainMenu(options);
             int chosenOption = getIntFromUser();
             if (chosenOption > 0 && chosenOption <= options.size()) {
-                options.get(chosenOption - 1).optionCallMethod.run();
+                options.get(chosenOption - 1).getOptionCallMethod().run();
             }
             else{
                 view.printError("Invalid option");
@@ -189,16 +188,16 @@ public class controller {
 
     //@author  Benjamin Fríðberg - s224347
     public void initializeOptions(){
-        options.add(new commandOption("Create project","This options creates a new project in the project repository",() -> createProject()));
-        options.add(new commandOption("Remove project","This options removes a project from the project repository",() -> removeProject()));
-        options.add(new commandOption("List projects","This options lists all the projects in the project repository",() -> listProjects()));
-        options.add(new commandOption("Create activity","This options creates a activity for a project",() -> createActivity()));
-        options.add(new commandOption("Remove activity","This options removes a activity from a project",() -> removeActivity()));
-        options.add(new commandOption("List activities","This options lists all activities in a project",() -> listActivities()));
-        options.add(new commandOption("Register employee","This options registers a employee",() -> registerEmployee()));
-        options.add(new commandOption("Unregister employee","This options unregisters a employee",() -> unregisterEmployee()));
-        options.add(new commandOption("List employees","This options lists all employees in the employee repository",() -> listEmployees()));
-        options.add(new commandOption("Logout","Logout",() -> logout()));
+        options.add(new commandOption("Create project","This options creates a new project in the project repository", this::createProject));
+        options.add(new commandOption("Remove project","This options removes a project from the project repository", this::removeProject));
+        options.add(new commandOption("List projects","This options lists all the projects in the project repository", this::listProjects));
+        options.add(new commandOption("Create activity","This options creates a activity for a project", this::createActivity));
+        options.add(new commandOption("Remove activity","This options removes a activity from a project", this::removeActivity));
+        options.add(new commandOption("List activities","This options lists all activities in a project", this::listActivities));
+        options.add(new commandOption("Register employee","This options registers a employee", this::registerEmployee));
+        options.add(new commandOption("Unregister employee","This options unregisters a employee", this::unregisterEmployee));
+        options.add(new commandOption("List employees","This options lists all employees in the employee repository", this::listEmployees));
+        options.add(new commandOption("Logout","Logout", this::logout));
     }
 
 }
