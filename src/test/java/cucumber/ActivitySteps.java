@@ -1,4 +1,4 @@
-//#author: Christian Colberg - s224343
+//author: Christian Colberg - s224343
 package cucumber;
 
 import io.cucumber.java.en.And;
