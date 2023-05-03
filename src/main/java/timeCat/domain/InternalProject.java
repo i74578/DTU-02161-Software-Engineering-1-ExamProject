@@ -2,6 +2,8 @@ package timeCat.domain;
 
 import timeCat.exceptions.InvalidNameException;
 
+import java.util.Objects;
+
 //@author  Benjamin Fríðberg - s224347
 public class InternalProject extends Project{
     public InternalProject(String name, String projectNumber) throws InvalidNameException {
@@ -10,6 +12,10 @@ public class InternalProject extends Project{
 
     //@author  Benjamin Fríðberg - s224347
     public String[] getPropertiesForTable(){
-        return new String[] {super.getID(), super.getName(), "Internal Project"};
+        String employeeInitials = "NaN PM";
+        if(super.getPM() != null){
+            employeeInitials = super.getPM().getInitials();
+        }
+        return new String[] {super.getID(), super.getName(), "Internal Project", employeeInitials};
     }
 }

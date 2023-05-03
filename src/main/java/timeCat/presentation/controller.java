@@ -186,6 +186,34 @@ public class controller {
         }
     }
 
+    private void assignPM() {
+        view.print("ProjectID to assign PM: ");
+        String projectID = scanner.nextLine();
+        view.print("Initials of new PM: ");
+        String initials = scanner.nextLine();
+        try {
+            timeCatApp.assignPM(projectID,initials);
+            view.print("Project manager assigned successfully");
+        }
+        catch(Exception e){
+            view.printError(e.getMessage());
+        }
+    }
+
+    private void deassignPM() {
+        view.print("ProjectID to deassign PM: ");
+        String projectID = scanner.nextLine();
+        try {
+            timeCatApp.deassignPM(projectID);
+            view.print("Project manager deassigned successfully");
+        }
+        catch(Exception e){
+            view.printError(e.getMessage());
+        }
+    }
+
+
+
     //@author  Benjamin Fríðberg - s224347
     public void initializeOptions(){
         options.add(new commandOption("Create project","This options creates a new project in the project repository", this::createProject));
@@ -197,7 +225,8 @@ public class controller {
         options.add(new commandOption("Register employee","This options registers a employee", this::registerEmployee));
         options.add(new commandOption("Unregister employee","This options unregisters a employee", this::unregisterEmployee));
         options.add(new commandOption("List employees","This options lists all employees in the employee repository", this::listEmployees));
+        options.add(new commandOption("Assign Project Manager","This options assigns a project manager for a project", this::assignPM));
+        options.add(new commandOption("Deassign Project Manager","This options deassigns a project manager for a project", this::deassignPM));
         options.add(new commandOption("Logout","Logout", this::logout));
     }
-
 }
