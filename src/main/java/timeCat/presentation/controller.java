@@ -54,7 +54,6 @@ public class controller {
             while(!timeCatApp.IsEmployeeLoggedIn()){
                 login();
             }
-            view.clearConsole();
             view.showMainMenu(features);
             int chosenFeature = getIntFromUser();
             if (chosenFeature > 0 && chosenFeature <= features.size()) {
@@ -65,6 +64,7 @@ public class controller {
                 view.printError("Invalid feature selected");
                 proceedAfterUserInput();
             }
+            view.clearConsole();
         }
     }
 
@@ -97,7 +97,6 @@ public class controller {
 
     //@author  Benjamin Fríðberg - s224347
     private void login() {
-        view.clearConsole();
         view.print("You need to login to continue");
         view.print("Please enter your employee initials: ");
         String initials = scanner.nextLine();
@@ -106,6 +105,8 @@ public class controller {
         } catch (NotAllowedException | NotFoundException  e) {
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
+        view.clearConsole();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -279,7 +280,11 @@ public class controller {
         if (date == null){return;}
         view.print("Hours spent:");
         double hoursSpent = getDoubleFromUser();
-
+        try {
+            timeCatApp.registerTime(projectID, activityID, date, hoursSpent);
+        } catch (NotFoundException e) {
+            view.printError("Invalid date format");
+        }
     }
 
 

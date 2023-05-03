@@ -1,3 +1,4 @@
+//author: Christian Colberg - s224343
 //author: Lukas Halberg - s216229
 package cucumber;
 
@@ -64,9 +65,5 @@ public class TimeSteps {
         assertEquals(timesheetEntries, registreredHours);
 
     }
-
-}
-
-
 
 }
