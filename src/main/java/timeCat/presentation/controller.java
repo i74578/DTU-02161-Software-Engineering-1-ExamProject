@@ -113,7 +113,7 @@ public class controller {
     //@author  Benjamin Fríðberg - s224347
     public void listProjects(){
         ArrayList<Project> projects = timeCatApp.getProjects();
-        view.showProjects(projects);
+        view.printTableWithHeader(projects,false,"Projects");
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -122,7 +122,7 @@ public class controller {
         String projectID = scanner.nextLine();
         try {
             ArrayList<Activity> activities = timeCatApp.getProjectActivities(projectID);
-            view.showActivities(activities);
+            view.printTableWithHeader(activities,false,"Activities");
         } catch (NotFoundException e) {
             view.printError(e.getMessage());
         }
@@ -157,7 +157,7 @@ public class controller {
     //@author  Benjamin Fríðberg - s224347
     private void listEmployees() {
         ArrayList<Employee> employees = timeCatApp.getEmployees();
-        view.showEmployees(employees);
+        view.printTableWithHeader(employees,false,"Employees");
     }
 
     //@author  Benjamin Fríðberg - s224347

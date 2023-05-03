@@ -33,22 +33,6 @@ public class view {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public void showProjects(ArrayList<Project> projects){
-        printTableHeader("Projects");
-        printTable(projects,false);
-    }
-
-    public void showActivities(ArrayList<Activity> activities) {
-        printTableHeader("Activities");
-        printTable(activities,false);
-    }
-
-    public void showEmployees(ArrayList<Employee> employees) {
-        printTableHeader("Employees");
-        printTable(employees,false);
-    }
-
-    //@author  Benjamin Fríðberg - s224347
     public void showWelcomeScreen(){
         //Welcome screen ASCII art source: https://patorjk.com/software/taag/
         String welcomeScreen =
@@ -63,27 +47,20 @@ public class view {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public void printTableHeader(String headerText){
+    public void printTableWithHeader(ArrayList<? extends Tabelify> tableElements,boolean printIndex,String tableHeader){
         print(HorizontalLine);
-        print(centerStringInTableRecord(headerText));
+        print(centerStringInTableRecord(tableHeader));
+        printTable(tableElements,printIndex);
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public String centerStringInTableRecord(String stringToCenter){
-        int spacesNeedToFillWidth = cliWidth-stringToCenter.length() - 2;
-        String leftSpacePadding = " ".repeat(spacesNeedToFillWidth / 2);
-        String rightSpacePadding = " ".repeat((spacesNeedToFillWidth / 2)+(stringToCenter.length() % 2));
-        return "#"+leftSpacePadding+stringToCenter+rightSpacePadding+"#";
-    }
-
-    //@author  Benjamin Fríðberg - s224347
-    public void printTable(ArrayList<? extends Tabelify> objectToPrint, boolean printIndex){
+    public void printTable(ArrayList<? extends Tabelify> tableContent, boolean printIndex){
         print(HorizontalLine);
-        if(objectToPrint.size() == 0){
+        if(tableContent.size() == 0){
             print(centerStringInTableRecord("Empty"));
         }
-        for (int i = 0;i<objectToPrint.size();i++){
-            String[] recordProperties = objectToPrint.get(i).getPropertiesForTable();
+        for (int i = 0;i<tableContent.size();i++){
+            String[] recordProperties = tableContent.get(i).getPropertiesForTable();
             String recordText = " ";
             if(printIndex){
                 recordText += (i+1) + ". ";
@@ -93,5 +70,13 @@ public class view {
             print("#" + recordText + " ".repeat(cliWidth-2-recordText.length())+ "#");
         }
         print(HorizontalLine);
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    public String centerStringInTableRecord(String stringToCenter){
+        int spacesNeedToFillWidth = cliWidth-stringToCenter.length() - 2;
+        String leftSpacePadding = " ".repeat(spacesNeedToFillWidth / 2);
+        String rightSpacePadding = " ".repeat((spacesNeedToFillWidth / 2)+(stringToCenter.length() % 2));
+        return "#"+leftSpacePadding+stringToCenter+rightSpacePadding+"#";
     }
 }
