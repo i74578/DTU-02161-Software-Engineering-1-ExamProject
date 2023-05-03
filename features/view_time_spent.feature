@@ -1,4 +1,4 @@
-//author: Christian Colberg - s224343
+#//author: Christian Colberg - s224343
 
 
 Feature: View registered time on activity

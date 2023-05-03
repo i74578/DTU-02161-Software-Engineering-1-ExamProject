@@ -83,4 +83,16 @@ public class ProjectHelper {
             timeCatApp.logout();
         }
     }
+
+    public void assignTestPM() throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
+        Employee loggedInEmployee = timeCatApp.getLoggedInUser();
+        if(loggedInEmployee == null){
+            timeCatApp.login("ADM");
+        }
+        timeCatApp.registerEmployee("MGR");
+        timeCatApp.assignPM(project.getID(),"MGR");
+        if(loggedInEmployee == null){
+            timeCatApp.logout();
+        }
+    }
 }

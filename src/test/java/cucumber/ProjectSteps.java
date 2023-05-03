@@ -183,8 +183,13 @@ public class ProjectSteps {
     }
 
     @When("the employee assigns {string} to project manager for the project")
-    public void theEmployeeAssignsToProjectManagerForTheProject(String initials) throws Exception {
-        timeCatApp.assignPM(project.getID(),initials);
+    public void theEmployeeAssignsToProjectManagerForTheProject(String initials) {
+        try {
+            projectHelper.assignPM(project.getID(),initials);
+        } catch (NotAllowedException | NotFoundException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+
     }
 
     @Then("the employee {string} is assigned project manager of the project")
@@ -195,4 +200,13 @@ public class ProjectSteps {
     }
 
 
+    @And("the project has a project manager")
+    public void theProjectHasAProjectManager() throws Exception {
+        projectHelper.assignTestPM();
+    }
+
+    @And("a employee with initials {string} does not exists")
+    public void aEmployeeWithInitialsDoesNotExists(String initials) {
+        assertFalse(timeCatApp.hasProject(initials));
+    }
 }
