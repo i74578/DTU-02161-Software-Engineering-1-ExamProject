@@ -20,7 +20,4 @@ public class commandOption implements Tabelify {
     public String[] getPropertiesForTable(){
         return new String[] {optionName,optionDescription};
     }
-
-
-
 }
