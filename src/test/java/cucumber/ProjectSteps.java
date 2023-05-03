@@ -209,4 +209,24 @@ public class ProjectSteps {
     public void aEmployeeWithInitialsDoesNotExists(String initials) {
         assertFalse(timeCatApp.hasProject(initials));
     }
+
+    @When("the employee deassigns the project manager from the project")
+    public void theEmployeeDeassignsTheProjectManagerFromTheProject() {
+        try {
+            timeCatApp.deassignPM(project.getID());
+        } catch (NotFoundException | NotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @Then("the employee is assigned project manager of the project")
+    public void theEmployeeIsAssignedProjectManagerOfTheProject() throws NotFoundException {
+        String projectID = project.getID();
+        assertNull(timeCatApp.getProjectByID(projectID).getPM());
+    }
+
+    @And("the project still has a project manager")
+    public void theProjectStillHasAProjectManager() {
+        assertNotNull(project.getPM());
+    }
 }

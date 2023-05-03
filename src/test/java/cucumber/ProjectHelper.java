@@ -16,28 +16,28 @@ public class ProjectHelper {
         this.timeCatApp = timeCatApp;
     }
 
-    public String createCostumerProject(String projectName) throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
+    public Project createCostumerProject(String projectName) throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
         Employee loggedInEmployee = timeCatApp.getLoggedInUser();
         if(loggedInEmployee == null){
             timeCatApp.login("ADM");
         }
-        String projectID = timeCatApp.createCostumerProject(projectName);
+        Project project = timeCatApp.createCostumerProject(projectName);
         if(loggedInEmployee == null){
             timeCatApp.logout();
         }
-        return projectID;
+        return project;
     }
 
-    public String createInternalProject(String projectName) throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
+    public Project createInternalProject(String projectName) throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
         Employee loggedInEmployee = timeCatApp.getLoggedInUser();
         if(loggedInEmployee == null){
             timeCatApp.login("ADM");
         }
-        String projectID = timeCatApp.createInternalProject(projectName);
+        Project project = timeCatApp.createInternalProject(projectName);
         if(loggedInEmployee == null){
             timeCatApp.logout();
         }
-        return projectID;
+        return project;
     }
 
     public void removeProject(String projectID, String PMinitials) throws NotAllowedException, NotFoundException {
@@ -52,8 +52,7 @@ public class ProjectHelper {
     }
 
     public void addTestProject() throws Exception{
-        String projectID = createCostumerProject(getProject().getName());
-        project = new Project(project.getName(),projectID);
+        project = createCostumerProject(getProject().getName());
     }
 
     public Project getProject() throws InvalidNameException {

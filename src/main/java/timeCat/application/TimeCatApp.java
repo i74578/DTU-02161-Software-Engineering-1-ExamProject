@@ -100,27 +100,25 @@ public class TimeCatApp {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public String createCostumerProject(String projectName) throws InvalidNameException, DuplicateException, NotAllowedException {
+    public Project createCostumerProject(String projectName) throws InvalidNameException, DuplicateException, NotAllowedException {
         validateEmployeePermissions();
         if(hasProject(projectName)) {
             throw new DuplicateException("Project with the same name already exists");
         }
-        String projectID = getNextProjectID();
-        Project costumerProject = new CostumerProject(projectName, projectID);
+        Project costumerProject = new CostumerProject(projectName, getNextProjectID());
         projectsRepo.add(costumerProject);
-        return projectID;
+        return costumerProject;
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public String createInternalProject(String projectName) throws InvalidNameException, DuplicateException, NotAllowedException {
+    public Project createInternalProject(String projectName) throws InvalidNameException, DuplicateException, NotAllowedException {
         validateEmployeePermissions();
         if(hasProject(projectName)) {
             throw new DuplicateException("Project with the same name already exists");
         }
-        String projectID = getNextProjectID();
-        Project internalProject = new InternalProject(projectName, projectID);
+        Project internalProject = new InternalProject(projectName, getNextProjectID());
         projectsRepo.add(internalProject);
-        return projectID;
+        return internalProject;
     }
 
     //@author  Benjamin Fríðberg - s224347
