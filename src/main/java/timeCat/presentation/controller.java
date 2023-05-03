@@ -34,6 +34,7 @@ public class controller {
             while(!timeCatApp.IsEmployeeLoggedIn()){
                 login();
             }
+            view.clearConsole();
             view.showMainMenu(options);
             int chosenOption = getIntFromUser();
             if (chosenOption > 0 && chosenOption <= options.size()) {
@@ -43,6 +44,14 @@ public class controller {
                 view.printError("Invalid option");
             }
         }
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    public void proceedAfterUserInput(){
+        view.print("Press enter to continue");
+        scanner.nextLine();
+        scanner.nextLine();
+        view.clearConsole();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -95,6 +104,7 @@ public class controller {
         catch(Exception e){
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -108,12 +118,14 @@ public class controller {
         catch(Exception e){
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
     public void listProjects(){
         ArrayList<Project> projects = timeCatApp.getProjects();
         view.printTableWithHeader(projects,false,"Projects");
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -126,6 +138,7 @@ public class controller {
         } catch (NotFoundException e) {
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -139,6 +152,7 @@ public class controller {
         } catch (NotFoundException | NotAllowedException e) {
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -152,12 +166,14 @@ public class controller {
         } catch (DuplicateException | NotFoundException | InvalidNameException | NotAllowedException e) {
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
     private void listEmployees() {
         ArrayList<Employee> employees = timeCatApp.getEmployees();
         view.printTableWithHeader(employees,false,"Employees");
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -171,6 +187,7 @@ public class controller {
         catch(Exception e){
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -184,6 +201,7 @@ public class controller {
         catch(Exception e){
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     private void assignPM() {
@@ -198,6 +216,7 @@ public class controller {
         catch(Exception e){
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     private void deassignPM() {
@@ -210,6 +229,7 @@ public class controller {
         catch(Exception e){
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
 
