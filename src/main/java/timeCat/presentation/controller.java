@@ -285,13 +285,14 @@ public class controller {
         } catch (NotFoundException e) {
             view.printError("Invalid date format");
         }
+        proceedAfterUserInput();
     }
 
 
 
     private Calendar getDateFromUser(){
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         try {
             cal.setTime(sdf.parse(scanner.nextLine()));
         } catch(java.text.ParseException e){
