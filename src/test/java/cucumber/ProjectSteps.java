@@ -176,4 +176,57 @@ public class ProjectSteps {
         String projectID = project.getID();
         assertFalse(projects.stream().anyMatch(p -> p.getID().equals(projectID)));
     }
+
+    @And("the project does not have a project manager")
+    public void theProjectDoesNotHaveAProjectManager() {
+        assertNull(project.getPM());
+    }
+
+    @When("the employee assigns {string} to project manager for the project")
+    public void theEmployeeAssignsToProjectManagerForTheProject(String initials) {
+        try {
+            projectHelper.assignPM(project.getID(),initials);
+        } catch (NotAllowedException | NotFoundException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+
+    }
+
+    @Then("the employee {string} is assigned project manager of the project")
+    public void theEmployeeIsAssignedProjectManagerOfTheProject(String initials) throws Exception {
+        String projectID = project.getID();
+        Employee projectManager = timeCatApp.getProjectByID(projectID).getPM();
+        assertTrue(projectManager == timeCatApp.getEmployee(initials));
+    }
+
+
+    @And("the project has a project manager")
+    public void theProjectHasAProjectManager() throws Exception {
+        projectHelper.assignTestPM();
+    }
+
+    @And("a employee with initials {string} does not exists")
+    public void aEmployeeWithInitialsDoesNotExists(String initials) {
+        assertFalse(timeCatApp.hasProject(initials));
+    }
+
+    @When("the employee deassigns the project manager from the project")
+    public void theEmployeeDeassignsTheProjectManagerFromTheProject() {
+        try {
+            timeCatApp.deassignPM(project.getID());
+        } catch (NotFoundException | NotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @Then("the employee is assigned project manager of the project")
+    public void theEmployeeIsAssignedProjectManagerOfTheProject() throws NotFoundException {
+        String projectID = project.getID();
+        assertNull(timeCatApp.getProjectByID(projectID).getPM());
+    }
+
+    @And("the project still has a project manager")
+    public void theProjectStillHasAProjectManager() {
+        assertNotNull(project.getPM());
+    }
 }
