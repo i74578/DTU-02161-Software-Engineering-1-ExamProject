@@ -1,4 +1,3 @@
-
 //author: Lukas Halberg - s216229
 package cucumber;
 
@@ -41,6 +40,7 @@ public class TimeSteps {
     //author: Lukas Halberg - s216229
     @When("the employee registers hours spent on activity")
     public void theEmployeeRegistersHoursSpentOnActivity() {
+
         registreredHours.add(new TimesheetEntry(Calendar.getInstance(),employeeHelper.getEmployee(),2));
         registreredHours.add(new TimesheetEntry(Calendar.getInstance(),employeeHelper.getEmployee(),4));
 
@@ -51,20 +51,21 @@ public class TimeSteps {
         } catch(InvalidNameException | NotFoundException e){
             errorMessage.setErrorMessage(e.getMessage());
         }
+
     }
 
     //author: Lukas Halberg - s216229
     @Then("the hours are registered")
     public void theHoursAreRegistered() throws InvalidNameException, NotFoundException {
-       Project project = timeCatApp.getProjectByID(projectHelper.getProject().getID());
-       Activity activity = project.getActivityByID(activityHelper.getActivity().getActivityID());
-       Timesheet timesheet = activity.getTimesheet();
-       ArrayList<TimesheetEntry> timesheetEntries = timesheet.getEntries();
-       assertEquals(timesheetEntries, registreredHours);
+        Project project = timeCatApp.getProjectByID(projectHelper.getProject().getID());
+        Activity activity = project.getActivityByID(activityHelper.getActivity().getActivityID());
+        Timesheet timesheet = activity.getTimesheet();
+        ArrayList<TimesheetEntry> timesheetEntries = timesheet.getEntries();
+        assertEquals(timesheetEntries, registreredHours);
 
     }
 
-    }
+}
 
 
 

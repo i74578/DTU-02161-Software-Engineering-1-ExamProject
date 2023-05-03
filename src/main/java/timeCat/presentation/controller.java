@@ -34,9 +34,11 @@ public class controller {
             while(!timeCatApp.IsEmployeeLoggedIn()){
                 login();
             }
+            view.clearConsole();
             view.showMainMenu(options);
             int chosenOption = getIntFromUser();
             if (chosenOption > 0 && chosenOption <= options.size()) {
+                view.clearConsole();
                 options.get(chosenOption - 1).getOptionCallMethod().run();
             }
             else{
@@ -46,14 +48,28 @@ public class controller {
     }
 
     //@author  Benjamin Fríðberg - s224347
+    public void proceedAfterUserInput(){
+        view.print("Press enter to continue");
+        scanner.nextLine();
+        view.clearConsole();
+    }
+
+    //@author  Benjamin Fríðberg - s224347
     public int getIntFromUser(){
         int userInt = scanner.nextInt();
         scanner.nextLine();
         return userInt;
     }
 
+    public String getTokenFromUser(){
+        String token = scanner.next();
+        scanner.nextLine();
+        return token;
+    }
+
     //@author  Benjamin Fríðberg - s224347
     private void login() {
+        view.clearConsole();
         view.print("You need to login to continue");
         view.print("Please enter your employee initials: ");
         String initials = scanner.nextLine();
@@ -79,7 +95,7 @@ public class controller {
         view.print("Name of new project: ");
         String projectName = scanner.nextLine();
         view.print("Is the project a customer project? [y/n]");
-        String isCustomerProject = scanner.next();
+        String isCustomerProject = getTokenFromUser();
         try {
             if (isCustomerProject.equals("y")) {
                 timeCatApp.createCostumerProject(projectName);
@@ -95,6 +111,7 @@ public class controller {
         catch(Exception e){
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -108,12 +125,14 @@ public class controller {
         catch(Exception e){
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
     public void listProjects(){
         ArrayList<Project> projects = timeCatApp.getProjects();
         view.printTableWithHeader(projects,false,"Projects");
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -126,6 +145,7 @@ public class controller {
         } catch (NotFoundException e) {
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -139,6 +159,7 @@ public class controller {
         } catch (NotFoundException | NotAllowedException e) {
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -152,12 +173,14 @@ public class controller {
         } catch (DuplicateException | NotFoundException | InvalidNameException | NotAllowedException e) {
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
     private void listEmployees() {
         ArrayList<Employee> employees = timeCatApp.getEmployees();
         view.printTableWithHeader(employees,false,"Employees");
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -171,6 +194,7 @@ public class controller {
         catch(Exception e){
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -184,6 +208,7 @@ public class controller {
         catch(Exception e){
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     private void assignPM() {
@@ -198,6 +223,7 @@ public class controller {
         catch(Exception e){
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
     private void deassignPM() {
@@ -210,6 +236,7 @@ public class controller {
         catch(Exception e){
             view.printError(e.getMessage());
         }
+        proceedAfterUserInput();
     }
 
 
