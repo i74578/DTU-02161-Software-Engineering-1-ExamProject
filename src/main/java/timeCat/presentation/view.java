@@ -1,7 +1,4 @@
 package timeCat.presentation;
-import timeCat.domain.Activity;
-import timeCat.domain.Employee;
-import timeCat.domain.Project;
 import timeCat.domain.Tabelify;
 
 import java.util.ArrayList;
@@ -41,8 +38,8 @@ public class view {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public void showMainMenu(ArrayList<commandOption> options){
-        printTable(options,true);
+    public void showMainMenu(ArrayList<feature> features){
+        printTable(features,true);
         System.out.print("\n Choose option:");
     }
 
