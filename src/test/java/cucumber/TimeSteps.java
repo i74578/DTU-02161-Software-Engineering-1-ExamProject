@@ -30,11 +30,6 @@ public class TimeSteps {
     @When("the employee registers hours spent on activity")
     public void theEmployeeRegistersHoursSpentOnActivity() {
 
-sefe
-
-
-
-
     }
 
 

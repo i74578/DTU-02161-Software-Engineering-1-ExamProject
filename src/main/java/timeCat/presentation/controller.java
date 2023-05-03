@@ -38,6 +38,7 @@ public class controller {
             view.showMainMenu(options);
             int chosenOption = getIntFromUser();
             if (chosenOption > 0 && chosenOption <= options.size()) {
+                view.clearConsole();
                 options.get(chosenOption - 1).getOptionCallMethod().run();
             }
             else{
@@ -50,7 +51,6 @@ public class controller {
     public void proceedAfterUserInput(){
         view.print("Press enter to continue");
         scanner.nextLine();
-        scanner.nextLine();
         view.clearConsole();
     }
 
@@ -61,8 +61,15 @@ public class controller {
         return userInt;
     }
 
+    public String getTokenFromUser(){
+        String token = scanner.next();
+        scanner.nextLine();
+        return token;
+    }
+
     //@author  Benjamin Fríðberg - s224347
     private void login() {
+        view.clearConsole();
         view.print("You need to login to continue");
         view.print("Please enter your employee initials: ");
         String initials = scanner.nextLine();
@@ -88,7 +95,7 @@ public class controller {
         view.print("Name of new project: ");
         String projectName = scanner.nextLine();
         view.print("Is the project a customer project? [y/n]");
-        String isCustomerProject = scanner.next();
+        String isCustomerProject = getTokenFromUser();
         try {
             if (isCustomerProject.equals("y")) {
                 timeCatApp.createCostumerProject(projectName);
