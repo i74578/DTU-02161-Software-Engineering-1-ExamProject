@@ -7,6 +7,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import timeCat.application.TimeCatApp;
+import timeCat.domain.TimesheetEntry;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertNull;
 
@@ -15,17 +18,23 @@ public class TimeSteps {
     private TimeCatApp timeCatApp;
     private ErrorMessage errorMessage;
     private TimeSteps timeSteps;
-
+    private ArrayList<TimesheetEntry> registreredHours;
 
 
     public TimeSteps(TimeCatApp timeCatApp, ErrorMessage errorMessage) {
         this.timeCatApp = timeCatApp;
         this.errorMessage = errorMessage;
-
+        this.registreredHours = new ArrayList<>();
     }
 
     @When("the employee registers hours spent on activity")
     public void theEmployeeRegistersHoursSpentOnActivity() {
+
+sefe
+
+
+
+
     }
 
 
