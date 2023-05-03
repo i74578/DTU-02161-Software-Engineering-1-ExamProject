@@ -1,5 +1,6 @@
 package timeCat.application;
 
+import io.cucumber.java.en_old.Ac;
 import timeCat.domain.*;
 import timeCat.exceptions.*;
 
@@ -219,15 +220,26 @@ public class TimeCatApp {
         project.deassignPM();
 
     }//author: Lukas Halberg - s216229
-    public void registerTime(String projectID, String activityID, Calendar date, double hoursSpent) throws NotFoundException {
+    public void registerTime(String projectID, String activityID, Calendar date, double hoursSpent) throws NotFoundException, NotAllowedException {
+        validateEmployeePermissions();
         Project project = getProjectByID(projectID);
         Activity activity = project.getActivityByID(activityID);
         Timesheet timesheet = activity.getTimesheet();
-        timesheet.add(date, loggedInUser, hoursSpent);
+        timesheet.add(project,activity,date, loggedInUser, hoursSpent);
 
     }
-
-
-
-
+    public ArrayList<TimesheetEntry> getTimeReport() throws NotAllowedException {
+        validateEmployeePermissions();
+        ArrayList<TimesheetEntry> timeReport = new ArrayList<>();
+        for(Project project : projectsRepo){
+           for(Activity activity : project.getActivities()){
+               for(TimesheetEntry timesheetEntry : activity.getTimesheet().getEntries()){
+                   if(timesheetEntry.getEmployee() == loggedInUser){
+                       timeReport.add(timesheetEntry);
+                   }
+               }
+           }
+        }
+       return timeReport;
+    }
 }

@@ -1,15 +1,23 @@
 package timeCat.domain;
 
+import io.cucumber.java.en_old.Ac;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 //@author  Benjamin Fríðberg - s224347
-public class TimesheetEntry {
+public class TimesheetEntry implements Tabelify {
     private Calendar date;
     private double hoursSpent;
     private Employee employee;
+    private Project project;
+    private Activity activity;
 
     //@author  Benjamin Fríðberg - s224347
-    public TimesheetEntry(Calendar date, Employee employee, double hoursSpent){
+    public TimesheetEntry(Project project, Activity activity, Calendar date, Employee employee, double hoursSpent){
+        this.project = project;
+        this.activity = activity;
         this.date = date;
         this.employee = employee;
         this.hoursSpent = hoursSpent;
@@ -34,7 +42,14 @@ public class TimesheetEntry {
         }
         TimesheetEntry timesheetEntry = (TimesheetEntry) obj;
         return timesheetEntry.getDate().equals(date) && timesheetEntry.getHours() == hoursSpent && timesheetEntry.getEmployee() == employee;
+    }
 
+    //@author  Benjamin Fríðberg - s224347
+    public String[] getPropertiesForTable(){
+        DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String test = sdf.format(date);
+
+        return new String[] {project.getName(),activity.getName(), sdf.format(date), String.valueOf(hoursSpent)};
     }
 
 }

@@ -4,6 +4,7 @@ import timeCat.application.*;
 import timeCat.domain.Activity;
 import timeCat.domain.Employee;
 import timeCat.domain.Project;
+import timeCat.domain.TimesheetEntry;
 import timeCat.exceptions.NotAllowedException;
 import timeCat.exceptions.NotFoundException;
 import timeCat.exceptions.DuplicateException;
@@ -33,6 +34,7 @@ public class controller {
     //@author  Benjamin Fríðberg - s224347
     public void addFeaturesToArray(){
         features.add(new feature("Register time","This feature is used for registering time for a activity", this::registerTime));
+        features.add(new feature("View time report","This feature shows a time report for the employee", this::timeReport));
         features.add(new feature("Create project","This feature creates a new project in the project repository", this::createProject));
         features.add(new feature("Remove project","This feature removes a project from the project repository", this::removeProject));
         features.add(new feature("List projects","This feature lists all the projects in the project repository", this::listProjects));
@@ -89,10 +91,24 @@ public class controller {
         return userDouble;
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public String getTokenFromUser(){
         String token = scanner.next();
         scanner.nextLine();
         return token;
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    private Calendar getDateFromUser(){
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            cal.setTime(sdf.parse(scanner.nextLine()));
+        } catch(java.text.ParseException e){
+            view.printError("Invalid date format");
+            return null;
+        }
+        return cal;
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -199,6 +215,7 @@ public class controller {
         String activityName = scanner.nextLine();
         try {
             timeCatApp.createActivity(activityName,projectID);
+            view.print("Activity created successfully");
         } catch (DuplicateException | NotFoundException | InvalidNameException | NotAllowedException e) {
             view.printError(e.getMessage());
         }
@@ -270,6 +287,7 @@ public class controller {
         proceedAfterUserInput();
     }
 
+    //@author  Benjamin Fríðberg - s224347
     private void registerTime() {
         view.print("ProjectID of project where activity is located:");
         String projectID = scanner.nextLine();
@@ -282,24 +300,22 @@ public class controller {
         double hoursSpent = getDoubleFromUser();
         try {
             timeCatApp.registerTime(projectID, activityID, date, hoursSpent);
-        } catch (NotFoundException e) {
+            view.print("Time registered successfully to activity");
+        } catch (NotFoundException | NotAllowedException e) {
             view.printError("Invalid date format");
         }
         proceedAfterUserInput();
     }
 
-
-
-    private Calendar getDateFromUser(){
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    private void timeReport() {
+        ArrayList<TimesheetEntry> timeReport = null;
         try {
-            cal.setTime(sdf.parse(scanner.nextLine()));
-        } catch(java.text.ParseException e){
-            view.printError("Invalid date format");
-            return null;
+            timeReport = timeCatApp.getTimeReport();
+        } catch (NotAllowedException e) {
+            view.printError("Not allowed");
         }
-        return cal;
+        view.printTableWithHeader(timeReport,false,"Time Report");
+
     }
 
 }

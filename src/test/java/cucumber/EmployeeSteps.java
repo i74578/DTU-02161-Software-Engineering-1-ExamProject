@@ -111,8 +111,8 @@ public class EmployeeSteps {
         timeCatApp.login(employeeInitials);
     }
     //@author  Benjamin Fríðberg - s224347
-    @Given("that a employee is not logged in")
-    public void thatAEmployeeIsNotLoggedIn() {
+    @Given("a employee is not logged in")
+    public void AEmployeeIsNotLoggedIn() {
         assertFalse(timeCatApp.IsEmployeeLoggedIn());
     }
 

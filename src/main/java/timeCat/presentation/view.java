@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 //@author  Benjamin Fríðberg - s224347
 public class view {
-    private final static String HorizontalLine = "#".repeat(100);
-    private final static int cliWidth = 100;
+    private final static int cliWidth = 150;
+    private final static String HorizontalLine = "#".repeat(cliWidth);
 
     //@author  Benjamin Fríðberg - s224347
     public void showWelcomeScreen(){
@@ -56,15 +56,19 @@ public class view {
         if(tableContent.size() == 0){
             print(centerString("Empty"));
         }
-        for (int i = 0;i<tableContent.size();i++){
-            String[] recordProperties = tableContent.get(i).getPropertiesForTable();
+        for (int tableRow = 0;tableRow<tableContent.size();tableRow++){
+            String[] recordProperties = tableContent.get(tableRow).getPropertiesForTable();
             String recordText = " ";
             if(printIndex){
-                recordText += (i+1) + ". ";
+                recordText += (tableRow+1) + ". ";
             }
             recordText += String.join(" | ",recordProperties);
-
-            print("#" + recordText + " ".repeat(cliWidth-2-recordText.length())+ "#");
+            if(cliWidth-2-recordText.length() >= 0) {
+                print("#" + recordText + " ".repeat(cliWidth - 2 - recordText.length()) + "#");
+            }
+            else{
+                print("#" + recordText + "#");
+            }
         }
         print(HorizontalLine);
     }

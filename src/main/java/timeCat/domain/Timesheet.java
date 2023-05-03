@@ -17,8 +17,8 @@ public class Timesheet {
     }
 
     //author: Lukas Halberg - s216229
-    public void add(Calendar date, Employee employee, double hoursSpent) {
-        entries.add(new TimesheetEntry(date, employee, hoursSpent ));
+    public void add(Project project, Activity activity, Calendar date, Employee employee, double hoursSpent) {
+        entries.add(new TimesheetEntry(project,activity,date, employee, hoursSpent ));
 
     }
     public ArrayList<TimesheetEntry> getEntries(){return entries;}

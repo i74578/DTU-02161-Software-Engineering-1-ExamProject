@@ -26,33 +26,34 @@ public class TimeSteps {
     private TimeCatApp timeCatApp;
     private ErrorMessage errorMessage;
     private ArrayList<TimesheetEntry> registreredHours;
+    private ArrayList<TimesheetEntry> hoursSpentDisplayed;
     private EmployeeHelper employeeHelper;
     private ProjectHelper projectHelper;
     private ActivityHelper activityHelper;
+    private TimeHelper timeHelper;
     //author: Lukas Halberg - s216229
-    public TimeSteps(TimeCatApp timeCatApp, ErrorMessage errorMessage,EmployeeHelper employeeHelper,ProjectHelper projectHelper,ActivityHelper activityHelper) {
+    public TimeSteps(TimeCatApp timeCatApp, ErrorMessage errorMessage,EmployeeHelper employeeHelper,ProjectHelper projectHelper,ActivityHelper activityHelper, TimeHelper timeHelper) {
         this.timeCatApp = timeCatApp;
         this.errorMessage = errorMessage;
         this.registreredHours = new ArrayList<>();
         this.employeeHelper = employeeHelper;
         this.projectHelper = projectHelper;
         this.activityHelper = activityHelper;
+        this.timeHelper = timeHelper;
     }
+
     //author: Lukas Halberg - s216229
     @When("the employee registers hours spent on activity")
     public void theEmployeeRegistersHoursSpentOnActivity() {
-
-        registreredHours.add(new TimesheetEntry(Calendar.getInstance(),employeeHelper.getEmployee(),2));
-        registreredHours.add(new TimesheetEntry(Calendar.getInstance(),employeeHelper.getEmployee(),4));
-
+        registreredHours.add(new TimesheetEntry(null,null,Calendar.getInstance(),employeeHelper.getEmployee(),2));
+        registreredHours.add(new TimesheetEntry(null,null,Calendar.getInstance(),employeeHelper.getEmployee(),4));
         try{
             for(TimesheetEntry entry : registreredHours){
                 timeCatApp.registerTime(projectHelper.getProject().getID(),activityHelper.getActivity().getActivityID(),entry.getDate(),entry.getHours());
             }
-        } catch(InvalidNameException | NotFoundException e){
+        } catch(InvalidNameException | NotFoundException |NotAllowedException e){
             errorMessage.setErrorMessage(e.getMessage());
         }
-
     }
 
     //author: Lukas Halberg - s216229
@@ -66,4 +67,42 @@ public class TimeSteps {
 
     }
 
+    @Given("employee has registered hours on activity")
+    public void employeeHasRegisteredHoursOnActivity() throws Exception {
+        registreredHours.add(new TimesheetEntry(null,null,Calendar.getInstance(),employeeHelper.getEmployee(),2));
+        registreredHours.add(new TimesheetEntry(null,null,Calendar.getInstance(),employeeHelper.getEmployee(),4));
+        for(TimesheetEntry entry : registreredHours){
+            timeHelper.registerTime(projectHelper.getProject().getID(),activityHelper.getActivity().getActivityID(),entry.getDate(),entry.getHours());
+        }
+    }
+
+
+
+    @When("employee views total hours spent")
+    public void employeeViewsTotalHoursSpent() {
+        try {
+            hoursSpentDisplayed = timeCatApp.getTimeReport();
+        } catch (NotAllowedException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @Then("hours spent is displayed")
+    public void hoursSpentIsDisplayed() {
+        assertEquals(hoursSpentDisplayed, registreredHours);
+    }
+
+    @And("employee has no registered hours")
+    public void employeeHasNoRegisteredHours() throws Exception {
+        assertTrue(timeCatApp.getTimeReport().size() == 0);
+    }
+
+    @Then("I get {double} hours spent")
+    public void iGetHoursSpent(double hoursSpent) {
+        double totalHoursSpent = 0;
+        for(TimesheetEntry entry : hoursSpentDisplayed){
+            totalHoursSpent += entry.getHours();
+        }
+        assertEquals(totalHoursSpent,hoursSpent,0.01);
+    }
 }
