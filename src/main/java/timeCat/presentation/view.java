@@ -46,7 +46,6 @@ public class view {
         System.out.print("\n Choose option:");
     }
 
-
     //@author  Benjamin Fríðberg - s224347
     public void printTableWithHeader(ArrayList<? extends Tabelify> tableElements,boolean printIndex,String tableHeader){
         print(HorizontalLine);

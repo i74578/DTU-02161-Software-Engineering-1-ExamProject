@@ -176,4 +176,23 @@ public class ProjectSteps {
         String projectID = project.getID();
         assertFalse(projects.stream().anyMatch(p -> p.getID().equals(projectID)));
     }
+
+    @And("the project does not have a project manager")
+    public void theProjectDoesNotHaveAProjectManager() {
+        assertNull(project.getPM());
+    }
+
+    @When("the employee assigns {string} to project manager for the project")
+    public void theEmployeeAssignsToProjectManagerForTheProject(String initials) throws Exception {
+        timeCatApp.assignPM(project.getID(),initials);
+    }
+
+    @Then("the employee {string} is assigned project manager of the project")
+    public void theEmployeeIsAssignedProjectManagerOfTheProject(String initials) throws Exception {
+        String projectID = project.getID();
+        Employee projectManager = timeCatApp.getProjectByID(projectID).getPM();
+        assertTrue(projectManager == timeCatApp.getEmployee(initials));
+    }
+
+
 }
