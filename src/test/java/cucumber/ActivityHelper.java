@@ -13,11 +13,11 @@ import timeCat.exceptions.NotFoundException;
 public class ActivityHelper {
     private TimeCatApp timeCatApp;
     private Activity activity;
-
+    //@author  Benjamin Fríðberg - s224347
     public ActivityHelper(TimeCatApp timeCatApp) {
         this.timeCatApp = timeCatApp;
     }
-
+    //@author  Benjamin Fríðberg - s224347
     public Activity createActivity(String activityName, String projectID) throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
         Employee loggedInEmployee = timeCatApp.getLoggedInUser();
         Employee PM = timeCatApp.getProjectByID(projectID).getPM();
@@ -38,23 +38,23 @@ public class ActivityHelper {
         }
         return activity;
     }
-
+    //@author  Benjamin Fríðberg - s224347
     public Activity getActivity() throws InvalidNameException {
         if(activity == null){
             activity = getTestActivity();
         }
         return activity;
     }
-
+    //@author  Benjamin Fríðberg - s224347
     private Activity getTestActivity() throws InvalidNameException {
         Activity testActivity = new Activity("Test Activity","A0");
         return testActivity;
     }
-
+    //@author  Benjamin Fríðberg - s224347
     public String createTestActivity() throws Exception{
         return "";
     }
-
+    //@author  Benjamin Fríðberg - s224347
     public void setActivity(Activity activity) throws InvalidNameException {
         this.activity = activity;
     }

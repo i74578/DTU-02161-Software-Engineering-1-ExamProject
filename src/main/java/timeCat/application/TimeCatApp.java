@@ -3,6 +3,7 @@ package timeCat.application;
 import timeCat.domain.*;
 import timeCat.exceptions.*;
 
+import java.net.IDN;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Optional;
@@ -159,7 +160,7 @@ public class TimeCatApp {
 
     ////////Employee
     //@author  Benjamin Fríðberg - s224347
-    public void registerEmployee(String initials) throws DuplicateException, InvalidNameException, NotAllowedException {
+    public Employee registerEmployee(String initials) throws DuplicateException, InvalidNameException, NotAllowedException {
         validateEmployeePermissions();
         if(initials.length() == 0 || initials.length() > 4){
             throw new InvalidNameException("Invalid initials");
@@ -167,7 +168,9 @@ public class TimeCatApp {
         if(hasEmployee(initials)){
             throw new DuplicateException("The user could not be registered");
         }
-        employeeRepo.add(new Employee(initials));
+        Employee employee = new Employee(initials);
+        employeeRepo.add(employee);
+        return employee;
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -206,7 +209,7 @@ public class TimeCatApp {
         }
         project.assignPM(getEmployee(initials));
     }
-
+    //author: Lukas Halberg - s216229
     public void deassignPM(String projectID) throws NotAllowedException, NotFoundException {
         validatePMPermissions(projectID);
         Project project = getProjectByID(projectID);
@@ -214,5 +217,17 @@ public class TimeCatApp {
             throw new NotAllowedException("Can't deassign PM, when not assigned");
         }
         project.deassignPM();
+
+    }//author: Lukas Halberg - s216229
+    public void registerTime(String projectID, String activityID, Calendar date, double hoursSpent) throws NotFoundException {
+        Project project = getProjectByID(projectID);
+        Activity activity = project.getActivityByID(activityID);
+        Timesheet timesheet = activity.getTimesheet();
+        timesheet.add(date, loggedInUser, hoursSpent);
+
     }
+
+
+
+
 }

@@ -41,7 +41,7 @@ public class Project implements Tabelify {
     }
 
     //@author  Lukas Halberg - s216229
-    private Activity getActivityByID(String activityID) throws NotFoundException {
+    public Activity getActivityByID(String activityID) throws NotFoundException {
         Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getActivityID().equals(activityID)).findFirst();
         if (FoundActivity.isPresent()){
             return FoundActivity.get();

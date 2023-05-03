@@ -110,7 +110,7 @@ public class ActivitySteps {
     public void theWeekDurationIsNotAssigned() throws Exception {
         assertEquals(activity.getWeekDuration(), 0);
     }
-
+    //#author: Christian Colberg - s224343
     @And("the activity is not in the project")
     public void aActivityIsNotInTheProject() throws Exception {
         ArrayList<Activity> activitiesInProject = timeCatApp.getProjectByID(projectHelper.getProject().getID()).getActivities();
@@ -118,7 +118,7 @@ public class ActivitySteps {
         String activityID = activity.getActivityID();
         assertFalse(activitiesInProject.stream().anyMatch(p -> p.getActivityID().equals(activityID)));
     }
-
+    //#author: Christian Colberg - s224343
     @When("the employee creates the activity in the project")
     public void theEmployeeCreatesTheActivityInTheProject() throws Exception {
         try {
@@ -130,19 +130,19 @@ public class ActivitySteps {
         activity = activityHelper.getActivity();
 
     }
-
+    //#author: Christian Colberg - s224343
     @Then("the activity is in the project")
     public void theActivityIsInTheProject() throws Exception {
         ArrayList<Activity> activitiesInProject = timeCatApp.getProjectByID(projectHelper.getProject().getID()).getActivities();
         String activityID = activity.getActivityID();
         assertTrue(activitiesInProject.stream().anyMatch(p -> p.getActivityID().equals(activityID)));
     }
-
+    //#author: Christian Colberg - s224343
     @And("an activity is in the project")
     public void anActivityIsInTheProject() throws Exception {
         activity = activityHelper.createActivity("Test Activity",projectHelper.getProject().getID());
     }
-
+    //#author: Christian Colberg - s224343
     @When("the employee creates an activity with the name {string} in the project")
     public void theEmployeeCreatesAnActivityWithTheNameInTheProject(String activityName) {
         try {
@@ -151,7 +151,7 @@ public class ActivitySteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
-
+    //#author: Christian Colberg - s224343
     @When("a employee removes the activity from the project")
     public void aEmployeeRemovesTheActivityFromTheProject() {
         try {
@@ -162,7 +162,7 @@ public class ActivitySteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
-
+    //#author: Christian Colberg - s224343
     @When("the employee removes the activity from the project")
     public void theEmployeeRemovesTheActivityFromTheProject() throws Exception {
         timeCatApp.removeActivity(activity.getActivityID(),projectHelper.getProject().getID());

@@ -37,7 +37,7 @@ public class LoginSteps {
     public void aEmployeeWithInitialsIsLoggedIn(String initials) throws Exception {
         timeCatApp.login(initials);
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @And("a employee with initials {string} does not exist")
     public void aEmployeeWithInitialsDoesNotExist(String initials) {
         Employee employee;
@@ -48,7 +48,7 @@ public class LoginSteps {
         }
         assertNull(employee);
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @When("the employee logs in")
     public void theEmployeeLogsIn() {
         try {
@@ -57,14 +57,14 @@ public class LoginSteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @Then("employee is logged in")
     public void employeeIsLoggedIn() {
         Employee loggedInUser = timeCatApp.getLoggedInUser();
         assertEquals(loggedInUser.getInitials(),employeeHelper.getEmployee().getInitials());
     }
 
-
+    //@author  Benjamin Fríðberg - s224347
     @When("the employee logs out")
     public void theEmployeeLogsOut() {
         try {
@@ -74,12 +74,12 @@ public class LoginSteps {
         }
     }
 
-
+    //@author  Benjamin Fríðberg - s224347
     @Given("a employee with initials {string} exists")
     public void aEmployeeWithInitialsExists(String initials) throws Exception {
         employeeHelper.registerEmployee(initials);
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @When("the employee logs in with the initials {string}")
     public void theEmployeeLogsInWithTheInitials(String initials) {
         try {
@@ -88,7 +88,7 @@ public class LoginSteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @Then("employee with initials {string} is logged in")
     public void employeeWithInitialsIsLoggedIn(String initials) {
         assertEquals(timeCatApp.getLoggedInUser().getInitials(),initials);

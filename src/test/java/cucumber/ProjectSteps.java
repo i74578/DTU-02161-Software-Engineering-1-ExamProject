@@ -163,12 +163,12 @@ public class ProjectSteps {
     public void theProjectWithTheNameIsNotInTheProjectRepository(String projectName) throws Exception {
         assertFalse(timeCatApp.hasProject(projectName));
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @And("the employee is logged in")
     public void theEmployeeIsLoggedIn() throws Exception {
         timeCatApp.login(employeeHelper.getEmployee().getInitials());
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @Given("a project is not in the project repository")
     public void aProjectIsNotInTheProjectRepository() throws Exception {
         ArrayList<Project> projects = timeCatApp.getProjects();
@@ -176,12 +176,12 @@ public class ProjectSteps {
         String projectID = project.getID();
         assertFalse(projects.stream().anyMatch(p -> p.getID().equals(projectID)));
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @And("the project does not have a project manager")
     public void theProjectDoesNotHaveAProjectManager() {
         assertNull(project.getPM());
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @When("the employee assigns {string} to project manager for the project")
     public void theEmployeeAssignsToProjectManagerForTheProject(String initials) {
         try {
@@ -191,7 +191,7 @@ public class ProjectSteps {
         }
 
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @Then("the employee {string} is assigned project manager of the project")
     public void theEmployeeIsAssignedProjectManagerOfTheProject(String initials) throws Exception {
         String projectID = project.getID();
@@ -199,17 +199,17 @@ public class ProjectSteps {
         assertTrue(projectManager == timeCatApp.getEmployee(initials));
     }
 
-
+    //@author  Benjamin Fríðberg - s224347
     @And("the project has a project manager")
     public void theProjectHasAProjectManager() throws Exception {
         projectHelper.assignTestPM();
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @And("a employee with initials {string} does not exists")
     public void aEmployeeWithInitialsDoesNotExists(String initials) {
         assertFalse(timeCatApp.hasProject(initials));
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @When("the employee deassigns the project manager from the project")
     public void theEmployeeDeassignsTheProjectManagerFromTheProject() {
         try {
@@ -218,13 +218,13 @@ public class ProjectSteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @Then("the employee is assigned project manager of the project")
     public void theEmployeeIsAssignedProjectManagerOfTheProject() throws NotFoundException {
         String projectID = project.getID();
         assertNull(timeCatApp.getProjectByID(projectID).getPM());
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @And("the project still has a project manager")
     public void theProjectStillHasAProjectManager() {
         assertNotNull(project.getPM());

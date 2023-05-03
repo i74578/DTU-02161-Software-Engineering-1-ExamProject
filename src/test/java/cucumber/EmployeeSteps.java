@@ -35,7 +35,7 @@ public class EmployeeSteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @When("an employee registers a new employee with {int} letter initials")
     public void anEmployeeRegistersANewEmployeeWithLetterInitials(int initialsCount) {
         String employeeInitials = "A".repeat(initialsCount);
@@ -69,7 +69,7 @@ public class EmployeeSteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @When("an employee registers a new employee with the same initials")
     public void anEmployeeRegistersANewEmployeeWithTheSameInitials() {
         try {
@@ -78,7 +78,7 @@ public class EmployeeSteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @Then("the employee is not registered")
     public void theEmployeeIsNotRegistered() {
         Employee employee = null;
@@ -89,12 +89,12 @@ public class EmployeeSteps {
         }
         assertNull(employee);
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @Given("an employee is not registered")
     public void anEmployeeIsNotRegistered() {
         theEmployeeIsNotRegistered();
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @When("an employee unregisters the employee")
     public void anEmployeeUnregisteresTheEmployee() {
         try {
@@ -110,23 +110,23 @@ public class EmployeeSteps {
         String employeeInitials = employeeHelper.registerTestEmployee();
         timeCatApp.login(employeeInitials);
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @Given("that a employee is not logged in")
     public void thatAEmployeeIsNotLoggedIn() {
         assertFalse(timeCatApp.IsEmployeeLoggedIn());
     }
 
-
+    //@author  Benjamin Fríðberg - s224347
     @Then("the new employee is registered")
     public void theNewEmployeeIsRegistered() {
         assertTrue(timeCatApp.hasEmployee("NEW"));
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @Given("an employee is with initials {string} is registered")
     public void anEmployeeIsWithInitialsIsRegistered(String initials) throws Exception {
         employeeHelper.registerEmployee(initials);
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @When("the employee registers a new employee with the initials {string}")
     public void theEmployeeRegistersANewEmployeeWithTheInitials(String initials) {
         try {
@@ -136,13 +136,13 @@ public class EmployeeSteps {
         }
 
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @And("an employee with initials {string} is not registered")
     public void anEmployeeWithInitialsIsNotRegistered(String initials) {
         assertFalse(timeCatApp.hasEmployee(initials));
 
     }
-
+    //@author  Benjamin Fríðberg - s224347
     @When("the employee unregisters the employee with initials {string}")
     public void theEmployeeUnregistersTheEmployeeWithInitials(String initials) {
         try {

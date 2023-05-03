@@ -13,12 +13,12 @@ Scenario: Employee registers hours spent on activity
 	When the employee registers hours spent on activity
 	Then the hours are registered
 
-#Scenario: Employee registers hours spent on activity that doesn't exist
-#	And a project is in the project repository
-#	Given a employee exists
-#	Given employee is logged in
-#	And the activity is not in the project
-#	When the employee registers hours spent on activity
-#	Then the activity has no registered hours
-#	And I get the error message "asd"
+Scenario: Employee registers hours spent on activity that doesn't exist
+	Given a project is in the project repository
+	And a employee exists
+	And the employee is logged in
+	And the activity is not in the project
+	When the employee registers hours spent on activity
+	Then the activity has no registered hours
+	And I get the error message "The activity is not found"
 
