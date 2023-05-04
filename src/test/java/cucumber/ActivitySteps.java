@@ -113,7 +113,7 @@ public class ActivitySteps {
     //#author: Christian Colberg - s224343
     @And("the activity is not in the project")
     public void aActivityIsNotInTheProject() throws Exception {
-        ArrayList<Activity> activitiesInProject = timeCatApp.getProjectByID(projectHelper.getProject().getID()).getActivities();
+        ArrayList<Activity> activitiesInProject = timeCatApp.getProjectActivities(projectHelper.getProject().getID());
         activity = activityHelper.getActivity();
         String activityID = activity.getActivityID();
         assertFalse(activitiesInProject.stream().anyMatch(p -> p.getActivityID().equals(activityID)));
@@ -133,7 +133,7 @@ public class ActivitySteps {
     //#author: Christian Colberg - s224343
     @Then("the activity is in the project")
     public void theActivityIsInTheProject() throws Exception {
-        ArrayList<Activity> activitiesInProject = timeCatApp.getProjectByID(projectHelper.getProject().getID()).getActivities();
+        ArrayList<Activity> activitiesInProject = timeCatApp.getProjectActivities(projectHelper.getProject().getID());
         String activityID = activity.getActivityID();
         assertTrue(activitiesInProject.stream().anyMatch(p -> p.getActivityID().equals(activityID)));
     }

@@ -42,9 +42,15 @@ public class ProjectSteps {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    @Given("a project with the name {string} is in the project repository")
-    public void theProjectWithTheNameIsInTheProjectRepository(String projectName) throws Exception {
+    @Given("a costumer project with the name {string} is in the project repository")
+    public void aCostumerProjectWithTheNameIsInTheProjectRepository(String projectName) throws Exception {
         projectHelper.createCostumerProject(projectName);
+    }
+
+    //@author  Benjamin Fríðberg - s224347
+    @Given("a internal project with the name {string} is in the project repository")
+    public void aInternalProjectWithTheNameIsInTheProjectRepository(String projectName) throws Exception {
+        projectHelper.createInternalProject(projectName);
     }
 
     //@author  Benjamin Fríðberg - s224347

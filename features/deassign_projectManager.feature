@@ -19,5 +19,3 @@ Scenario: Non project manager for project deassigns project manager
 	When the employee deassigns the project manager from the project
 	Then I get the error message "You need to be a project manager for this project to perform this action"
 	And the project still has a project manager
-
-

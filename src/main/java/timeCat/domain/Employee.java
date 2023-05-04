@@ -1,7 +1,7 @@
 package timeCat.domain;
 
 //@author  Benjamin Fríðberg - s224347
-public class Employee implements Tabelify {
+public class Employee{
     private final String initials;
 
 
@@ -11,10 +11,5 @@ public class Employee implements Tabelify {
 
     public String getInitials(){
         return initials;
-    }
-
-    //@author  Benjamin Fríðberg - s224347
-    public String[] getPropertiesForTable(){
-        return new String[] {initials};
     }
 }

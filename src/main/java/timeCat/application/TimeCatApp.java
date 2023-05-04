@@ -1,10 +1,7 @@
 package timeCat.application;
 
-import io.cucumber.java.en_old.Ac;
 import timeCat.domain.*;
 import timeCat.exceptions.*;
-
-import java.net.IDN;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Optional;
@@ -215,11 +212,7 @@ public class TimeCatApp {
     public void deassignPM(String projectID) throws NotAllowedException, NotFoundException {
         validatePMPermissions(projectID);
         Project project = getProjectByID(projectID);
-        if(project.getPM() == null){
-            throw new NotAllowedException("Can't deassign PM, when not assigned");
-        }
         project.deassignPM();
-
     }
 
     //author: Lukas Halberg - s216229
@@ -231,6 +224,8 @@ public class TimeCatApp {
         timesheet.add(project,activity,date, loggedInUser, hoursSpent);
 
     }
+
+    //@author  Benjamin Fríðberg - s224347
     public ArrayList<TimesheetEntry> getTimeReport() throws NotAllowedException {
         validateEmployeePermissions();
         ArrayList<TimesheetEntry> timeReport = new ArrayList<>();

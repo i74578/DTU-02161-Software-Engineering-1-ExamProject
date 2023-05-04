@@ -5,7 +5,7 @@ import timeCat.exceptions.InvalidNameException;
 import java.util.ArrayList;
 
 //@author  Benjamin Fríðberg - s224347
-public class Activity implements Tabelify {
+public class Activity{
     private final String name;
     private final String activityID;
     private final Timesheet timesheet;
@@ -45,10 +45,5 @@ public class Activity implements Tabelify {
     }
     public int getWeekDuration(){
         return weekDuration;
-    }
-
-    //@author  Benjamin Fríðberg - s224347
-    public String[] getPropertiesForTable(){
-        return new String[] {String.valueOf(activityID), name};
     }
 }

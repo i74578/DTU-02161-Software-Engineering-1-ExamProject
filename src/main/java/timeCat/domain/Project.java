@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 //@author  Benjamin Fríðberg - s224347
-public class Project implements Tabelify {
+public class Project {
     private final String name;
     private final String projectID;
     private Employee pm;
@@ -61,11 +61,6 @@ public class Project implements Tabelify {
     //@author Lukas Halberg - s216229
     public boolean hasActivity(String activityName){
         return activities.stream().anyMatch(p -> p.getName().equals(activityName));
-    }
-
-    //@author  Benjamin Fríðberg - s224347
-    public String[] getPropertiesForTable(){
-        return new String[] {projectID, name};
     }
 
     //@author  Benjamin Fríðberg - s224347

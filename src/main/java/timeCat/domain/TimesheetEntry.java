@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 //@author  Benjamin Fríðberg - s224347
-public class TimesheetEntry implements Tabelify {
+public class TimesheetEntry{
     private Calendar date;
     private double hoursSpent;
     private Employee employee;
@@ -45,11 +45,11 @@ public class TimesheetEntry implements Tabelify {
         return timesheetEntry.getDate().equals(date) && timesheetEntry.getHours() == hoursSpent && timesheetEntry.getEmployee() == employee;
     }
 
-    //@author  Benjamin Fríðberg - s224347
-    public String[] getPropertiesForTable(){
-        DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        sdf.setTimeZone(date.getTimeZone());
-        return new String[] {project.getName(),activity.getName(), sdf.format(date.getTime()), String.valueOf(hoursSpent)};
+    public Activity getActivity() {
+        return activity;
     }
 
+    public Project getProject() {
+        return project;
+    }
 }

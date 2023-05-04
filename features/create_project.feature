@@ -21,10 +21,16 @@ Scenario: Employee creates a internal project successfully
 	And the project has no project manager
 	And the project has no activities
 
-Scenario: Employee creates a duplicate project
+Scenario: Employee creates a duplicate costumer project
 	Given that a employee is logged in
-	And a project with the name "Program a very nice GUI" is in the project repository
+	And a costumer project with the name "Program a very nice GUI" is in the project repository
 	When a employee creates a costumer project with the name "Program a very nice GUI"
+	Then I get the error message "Project with the same name already exists"
+
+Scenario: Employee creates a duplicate internal project
+	Given that a employee is logged in
+	And a internal project with the name "Program a very nice GUI" is in the project repository
+	When a employee creates a internal project with the name "Program a very nice GUI"
 	Then I get the error message "Project with the same name already exists"
 
 Scenario: Employee creates a project with a blank name

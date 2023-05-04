@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 //@author  Benjamin Fríðberg - s224347
 public class controller {
-    private final ArrayList<feature> features;
+    private final ArrayList<Feature> features;
     private final Scanner scanner;
     private final view view;
     private final TimeCatApp timeCatApp;
@@ -34,20 +34,20 @@ public class controller {
 
     //@author  Benjamin Fríðberg - s224347
     public void addFeaturesToArray(){
-        features.add(new feature("Register time","This feature is used for registering time for a activity", this::registerTime));
-        features.add(new feature("View time report","This feature shows a time report for the employee", this::timeReport));
-        features.add(new feature("Create project","This feature creates a new project in the project repository", this::createProject));
-        features.add(new feature("Remove project","This feature removes a project from the project repository", this::removeProject));
-        features.add(new feature("List projects","This feature lists all the projects in the project repository", this::listProjects));
-        features.add(new feature("Create activity","This feature creates a activity for a project", this::createActivity));
-        features.add(new feature("Remove activity","This feature removes a activity from a project", this::removeActivity));
-        features.add(new feature("List activities","This feature lists all activities in a project", this::listActivities));
-        features.add(new feature("Register employee","This feature registers a employee", this::registerEmployee));
-        features.add(new feature("Unregister employee","This feature unregisters a employee", this::unregisterEmployee));
-        features.add(new feature("List employees","This feature lists all employees in the employee repository", this::listEmployees));
-        features.add(new feature("Assign Project Manager","This feature assigns a project manager for a project", this::assignPM));
-        features.add(new feature("Deassign Project Manager","This feature deassigns a project manager for a project", this::deassignPM));
-        features.add(new feature("Logout","Logout", this::logout));
+        features.add(new Feature("Register time","This feature is used for registering time for a activity", this::registerTime));
+        features.add(new Feature("View time report","This feature shows a time report for the employee", this::timeReport));
+        features.add(new Feature("Create project","This feature creates a new project in the project repository", this::createProject));
+        features.add(new Feature("Remove project","This feature removes a project from the project repository", this::removeProject));
+        features.add(new Feature("List projects","This feature lists all the projects in the project repository", this::listProjects));
+        features.add(new Feature("Create activity","This feature creates a activity for a project", this::createActivity));
+        features.add(new Feature("Remove activity","This feature removes a activity from a project", this::removeActivity));
+        features.add(new Feature("List activities","This feature lists all activities in a project", this::listActivities));
+        features.add(new Feature("Register employee","This feature registers a employee", this::registerEmployee));
+        features.add(new Feature("Unregister employee","This feature unregisters a employee", this::unregisterEmployee));
+        features.add(new Feature("List employees","This feature lists all employees in the employee repository", this::listEmployees));
+        features.add(new Feature("Assign Project Manager","This feature assigns a project manager for a project", this::assignPM));
+        features.add(new Feature("Deassign Project Manager","This feature deassigns a project manager for a project", this::deassignPM));
+        features.add(new Feature("Logout","Logout", this::logout));
     }
 
     //@author  Benjamin Fríðberg - s224347

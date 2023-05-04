@@ -1,6 +1,5 @@
 #author: Lukas Halberg - s216229
 
-
 Feature: Register hours spent
 	Description: The employee registers time spent on activity
 	Actors: Employee
