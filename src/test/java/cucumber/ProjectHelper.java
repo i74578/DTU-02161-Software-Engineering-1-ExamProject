@@ -7,6 +7,9 @@ import timeCat.exceptions.InvalidNameException;
 import timeCat.exceptions.NotAllowedException;
 import timeCat.exceptions.NotFoundException;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 //@author  Benjamin Fríðberg - s224347
 public class ProjectHelper {
     private TimeCatApp timeCatApp;
@@ -39,17 +42,7 @@ public class ProjectHelper {
         }
         return project;
     }
-    //@author  Benjamin Fríðberg - s224347
-    public void removeProject(String projectID, String PMinitials) throws NotAllowedException, NotFoundException {
-        Employee loggedInEmployee = timeCatApp.getLoggedInUser();
-        if(loggedInEmployee == null){
-            timeCatApp.login(PMinitials);
-        }
-        timeCatApp.removeProject(projectID);
-        if(loggedInEmployee == null){
-            timeCatApp.logout();
-        }
-    }
+
     //@author  Benjamin Fríðberg - s224347
     public void addTestProject() throws Exception{
         project = createCostumerProject(getProject().getName());
@@ -65,10 +58,6 @@ public class ProjectHelper {
     private Project getTestProject() throws InvalidNameException {
         Project testProject = new Project("Test Project","239999");
         return testProject;
-    }
-    //@author  Benjamin Fríðberg - s224347
-    public void setProject(Project project){
-        this.project = project;
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -93,5 +82,15 @@ public class ProjectHelper {
         if(loggedInEmployee == null){
             timeCatApp.logout();
         }
+    }
+
+    //@author Benjamin Fríðberg - s224347
+    public Project getProjectByName(String projectName) throws NotFoundException, NotAllowedException {
+        ArrayList<Project> allProjects = timeCatApp.getProjects();
+        Optional<Project> FoundProject = allProjects.stream().filter(p -> p.getName().equals(projectName)).findFirst();
+        if (FoundProject.isPresent()){
+            return FoundProject.get();
+        }
+        throw new NotFoundException("The project is not found");
     }
 }

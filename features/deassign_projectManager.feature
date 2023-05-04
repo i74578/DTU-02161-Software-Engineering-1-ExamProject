@@ -1,7 +1,7 @@
 #auther Lukas Halberg - s216229
 Feature: Deassign a project manager
 	Description: Deassign a project manager
-	Actors: Employee
+	Actors: Project Manager
 
 Scenario: Project manager deassigns himself as project manager successfully
 	Given a project is in the project repository

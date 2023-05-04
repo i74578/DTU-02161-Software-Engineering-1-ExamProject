@@ -1,9 +1,6 @@
 package timeCat.presentation;
 import timeCat.application.*;
-import timeCat.domain.Activity;
-import timeCat.domain.Employee;
-import timeCat.domain.Project;
-import timeCat.domain.TimesheetEntry;
+import timeCat.domain.*;
 import timeCat.exceptions.NotAllowedException;
 import timeCat.exceptions.NotFoundException;
 import timeCat.exceptions.DuplicateException;
@@ -35,7 +32,7 @@ public class controller {
     //@author  Benjamin Fríðberg - s224347
     public void addFeaturesToArray(){
         features.add(new Feature("Register time","This feature is used for registering time for a activity", this::registerTime));
-        features.add(new Feature("View time report","This feature shows a time report for the employee", this::timeReport));
+        features.add(new Feature("View today time report","This feature shows a time report for all your registered hours today", this::todayTimeReport));
         features.add(new Feature("Create project","This feature creates a new project in the project repository", this::createProject));
         features.add(new Feature("Remove project","This feature removes a project from the project repository", this::removeProject));
         features.add(new Feature("List projects","This feature lists all the projects in the project repository", this::listProjects));
@@ -171,9 +168,14 @@ public class controller {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public void listProjects(){
-        ArrayList<Project> projects = timeCatApp.getProjects();
-        view.printTableWithHeader(projects,false,"Projects");
+    public void listProjects() {
+        ArrayList<Project> projects = null;
+        try {
+            projects = timeCatApp.getProjects();
+            view.printTableWithHeader(projects,false,"Projects");
+        } catch (NotAllowedException e) {
+            view.printError(e.getMessage());
+        }
         proceedAfterUserInput();
     }
 
@@ -221,8 +223,13 @@ public class controller {
 
     //@author  Benjamin Fríðberg - s224347
     private void listEmployees() {
-        ArrayList<Employee> employees = timeCatApp.getEmployees();
-        view.printTableWithHeader(employees,false,"Employees");
+        ArrayList<Employee> employees = null;
+        try {
+            employees = timeCatApp.getEmployees();
+            view.printTableWithHeader(employees,false,"Employees");
+        } catch (NotAllowedException e) {
+            view.printError(e.getMessage());
+        }
         proceedAfterUserInput();
     }
 
@@ -320,10 +327,10 @@ public class controller {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    private void timeReport() {
-        ArrayList<TimesheetEntry> timeReport = null;
+    private void todayTimeReport() {
+        ArrayList<ReportEntry> timeReport = null;
         try {
-            timeReport = timeCatApp.getTimeReport();
+            timeReport = timeCatApp.getTodayTimeReport();
         } catch (NotAllowedException e) {
             view.printError("Not allowed");
         }

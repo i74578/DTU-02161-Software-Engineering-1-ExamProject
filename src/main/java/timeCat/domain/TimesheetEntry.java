@@ -11,13 +11,9 @@ public class TimesheetEntry{
     private Calendar date;
     private double hoursSpent;
     private Employee employee;
-    private Project project;
-    private Activity activity;
 
     //@author  Benjamin Fríðberg - s224347
-    public TimesheetEntry(Project project, Activity activity, Calendar date, Employee employee, double hoursSpent){
-        this.project = project;
-        this.activity = activity;
+    public TimesheetEntry(Calendar date, Employee employee, double hoursSpent){
         this.date = date;
         this.employee = employee;
         this.hoursSpent = hoursSpent;
@@ -43,13 +39,5 @@ public class TimesheetEntry{
         }
         TimesheetEntry timesheetEntry = (TimesheetEntry) obj;
         return timesheetEntry.getDate().equals(date) && timesheetEntry.getHours() == hoursSpent && timesheetEntry.getEmployee() == employee;
-    }
-
-    public Activity getActivity() {
-        return activity;
-    }
-
-    public Project getProject() {
-        return project;
     }
 }

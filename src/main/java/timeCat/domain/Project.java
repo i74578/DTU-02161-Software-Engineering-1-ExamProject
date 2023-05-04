@@ -49,15 +49,6 @@ public class Project {
         throw new NotFoundException("The activity is not found");
     }
 
-    //@author  Lukas Halberg - s216229
-    public Activity getActivityByName(String activityName) throws NotFoundException {
-        Optional<Activity> FoundActivity = activities.stream().filter(p -> p.getName().equals(activityName)).findFirst();
-        if (FoundActivity.isPresent()){
-            return FoundActivity.get();
-        }
-        throw new NotFoundException("The activity is not found");
-    }
-
     //@author Lukas Halberg - s216229
     public boolean hasActivity(String activityName){
         return activities.stream().anyMatch(p -> p.getName().equals(activityName));

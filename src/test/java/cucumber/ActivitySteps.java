@@ -1,6 +1,7 @@
 //author: Christian Colberg - s224343
 package cucumber;
 
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -21,64 +22,43 @@ public class ActivitySteps {
     private ErrorMessage errorMessage;
     private ActivityHelper activityHelper;
     private ProjectHelper projectHelper;
-
     private Activity activity;
+    private ArrayList<Activity> activityList;
 
     public ActivitySteps(TimeCatApp timeCatApp, ErrorMessage errorMessage,ActivityHelper activityHelper, ProjectHelper projectHelper) {
         this.timeCatApp = timeCatApp;
         this.errorMessage = errorMessage;
         this.activityHelper = activityHelper;
         this.projectHelper = projectHelper;
+        this.activityList = new ArrayList<>();
     }
 
     //#author: Christian Colberg - s224343
-    @Given("a project with the name {string} is not in the project repository")
-    public void aProjectWithTheNameIsNotInTheProjectRepository(String projectName) {
-        assertFalse(timeCatApp.hasProject(projectName));
-    }
-
-    //#author: Christian Colberg - s224343
-    @And("a activity with the name {string} is in the project {string}")
-    public void anActivityWithTheNameIsInTheProject(String activityName, String projectName) throws Exception {
-        String projectID = timeCatApp.getProjectByName(projectName).getID();
-        activityHelper.createActivity(activityName, projectID);
-    }
-
-    //#author: Christian Colberg - s224343
-    @When("the employee creates an activity with the name {string} in the project {string}")
-    public void aEmployeeCreatesAnActivityWithTheNameInTheProject(String activityName, String projectName)  {
+    @When("the employee creates an activity with a blank name in the project")
+    public void theEmployeeCreatesAnActivityWithABlankNameInTheProject()  {
         try {
-            String projectID = timeCatApp.getProjectByName(projectName).getID();
-            timeCatApp.createActivity(activityName, projectID);
+            String projectID = projectHelper.getProject().getID();
+            timeCatApp.createActivity("", projectID);
         } catch (NotFoundException | InvalidNameException | DuplicateException | NotAllowedException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
 
+    @When("the employee creates an activity id {string} in the project with id {string}")
+    public void theEmployeeCreatesAnActivityIdInTheProjectWithId(String arg0, String arg1) {
+    }
+
+
     //#author: Christian Colberg - s224343
-    @When("a employee removes an activity with the name {string} in the project {string}")
-    public void aEmployeeRemovesAnActivityWithTheNameInTheProject(String activityName, String projectName)  {
+    @When("a employee removes an activity from project {string}")
+    public void aEmployeeRemovesAnActivityFromProject(String projectName) {
         try {
-            Project project = timeCatApp.getProjectByName(projectName);
-            Activity activity = project.getActivityByName(activityName);
-            timeCatApp.removeActivity(activity.getActivityID(), project.getID());
+            Project project = projectHelper.getProjectByName(projectName);
+            timeCatApp.removeActivity("", project.getID());
         }
         catch(NotFoundException | NotAllowedException e){
             errorMessage.setErrorMessage(e.getMessage());
         }
-    }
-
-    //#author: Christian Colberg - s224343
-    @Then("the activity with the name {string} is not in the project {string}")
-    public void the_activity_with_the_name_is_not_in_the_project(String activityName, String projectName) throws Exception {
-        assertFalse(timeCatApp.getProjectByName(projectName).hasActivity(activityName));
-    }
-
-    //#author: Christian Colberg - s224343
-    @Then("the activity with the name {string} is in the project {string}")
-    public void theActivityWithTheNameIsInTheProject(String activityName, String projectName) throws Exception {
-        this.activity = timeCatApp.getProjectByName(projectName).getActivityByName(activityName);
-        assertNotNull(this.activity);
     }
 
     //#author: Christian Colberg - s224343
@@ -166,5 +146,25 @@ public class ActivitySteps {
     @When("the employee removes the activity from the project")
     public void theEmployeeRemovesTheActivityFromTheProject() throws Exception {
         timeCatApp.removeActivity(activity.getActivityID(),projectHelper.getProject().getID());
+    }
+
+    @When("the employee requests a activity list for the project")
+    public void theEmployeeRequestsAActivityListForTheProject() {
+        try {
+            activityList = timeCatApp.getProjectActivities(projectHelper.getProject().getID());
+        } catch (InvalidNameException | NotFoundException e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @Then("there are {int} activities on the activity list")
+    public void thereAreActivitiesOnTheActivityList(int acitivityCount) {
+        assertEquals(activityList.size(),acitivityCount);
+    }
+
+    @And("the activity is in the list")
+    public void theActivityIsInTheList() throws InvalidNameException{
+        activity = activityHelper.getActivity();
+        assertTrue(activityList.stream().anyMatch(p -> p.equals(activity)));
     }
 }

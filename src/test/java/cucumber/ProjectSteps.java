@@ -12,6 +12,7 @@ import timeCat.exceptions.InvalidNameException;
 import timeCat.exceptions.NotAllowedException;
 import timeCat.exceptions.NotFoundException;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -27,12 +28,14 @@ public class ProjectSteps {
     private ProjectHelper projectHelper;
     private EmployeeHelper employeeHelper;
     private Project project;
+    private ArrayList<Project> projectList;
 
     public ProjectSteps(TimeCatApp timeCatApp, ErrorMessage errorMessage, ProjectHelper projectHelper,EmployeeHelper employeeHelper) {
         this.timeCatApp = timeCatApp;
         this.errorMessage = errorMessage;
         this.projectHelper = projectHelper;
         this.employeeHelper = employeeHelper;
+        this.projectList = new ArrayList<>();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -77,7 +80,7 @@ public class ProjectSteps {
     @When("a employee removes a project with the name {string}")
     public void aEmployeeRemoveAProjectWithTheName(String projectName) throws Exception {
         try {
-            Project projectToRemove = timeCatApp.getProjectByName(projectName);
+            Project projectToRemove = projectHelper.getProjectByName(projectName);
             timeCatApp.removeProject(projectToRemove.getID());
         } catch (NotFoundException e) {
             errorMessage.setErrorMessage(e.getMessage());
@@ -87,7 +90,7 @@ public class ProjectSteps {
     //@author  Benjamin Fríðberg - s224347
     @Then("the project with the name {string} is in the project repository")
     public void aProjectWithTheNameIsInTheProjectRepository(String projectName) throws Exception {
-        this.project = timeCatApp.getProjectByName(projectName);
+        this.project = projectHelper.getProjectByName(projectName);
         assertNotNull(this.project);
     }
 
@@ -236,4 +239,23 @@ public class ProjectSteps {
         assertNotNull(project.getPM());
     }
 
+    @When("the employee requests a project list")
+    public void theEmployeeRequestsAProjectList() throws Exception {
+        projectList = timeCatApp.getProjects();
+    }
+
+    @Then("a project with the name {string} is on the list")
+    public void aProjectWithTheNameIsOnTheList(String projectName) {
+        assertTrue(projectList.stream().anyMatch(p -> p.getName().equals(projectName)));
+    }
+
+    @Then("there are {int} projects on the project list")
+    public void thereAreProjectsOnTheProjectList(int projectsCount) {
+        assertEquals(projectList.size(),projectsCount);
+    }
+
+    @Given("there are {int} projects on the project repository")
+    public void thereAreProjectsOnTheProjectRepository(int projectCount) throws Exception {
+        assertEquals(timeCatApp.getProjects().size(),0);
+    }
 }

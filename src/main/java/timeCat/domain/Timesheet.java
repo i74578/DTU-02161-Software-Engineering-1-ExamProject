@@ -24,7 +24,7 @@ public class Timesheet {
         if(hoursSpent > 24){
             throw new IllegalArgumentException("Can't register more than 24 hours a day");
         }
-        entries.add(new TimesheetEntry(project,activity,date, employee, hoursSpent ));
+        entries.add(new TimesheetEntry(date, employee, hoursSpent ));
     }
     public ArrayList<TimesheetEntry> getEntries(){return entries;}
 

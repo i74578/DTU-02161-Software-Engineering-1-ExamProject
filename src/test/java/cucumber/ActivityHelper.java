@@ -50,10 +50,7 @@ public class ActivityHelper {
         Activity testActivity = new Activity("Test Activity","A0");
         return testActivity;
     }
-    //@author  Benjamin Fríðberg - s224347
-    public String createTestActivity() throws Exception{
-        return "";
-    }
+
     //@author  Benjamin Fríðberg - s224347
     public void setActivity(Activity activity) throws InvalidNameException {
         this.activity = activity;

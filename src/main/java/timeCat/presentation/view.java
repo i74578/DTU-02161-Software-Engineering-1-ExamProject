@@ -102,7 +102,6 @@ public class view {
             }
             return new String[]{project.getID(), project.getName(), projectType, pmInitials};
         }
-
         if (obj instanceof Activity) {
             Activity activity = (Activity) obj;
             return new String[]{String.valueOf(activity.getActivityID()), activity.getName()};
@@ -111,11 +110,11 @@ public class view {
             Employee employee = (Employee) obj;
             return new String[]{employee.getInitials()};
         }
-        if (obj instanceof TimesheetEntry) {
-            TimesheetEntry timesheetEntry = (TimesheetEntry) obj;
+        if (obj instanceof ReportEntry) {
+            ReportEntry reportEntry = (ReportEntry) obj;
             DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            sdf.setTimeZone(timesheetEntry.getDate().getTimeZone());
-            return new String[]{timesheetEntry.getProject().getName(), timesheetEntry.getActivity().getName(), sdf.format(timesheetEntry.getDate().getTime()), String.valueOf(timesheetEntry.getHours())};
+            sdf.setTimeZone(reportEntry.getDate().getTimeZone());
+            return new String[]{reportEntry.getProjectName(),reportEntry.getActivityName(),sdf.format(reportEntry.getDate().getTime()), String.valueOf(reportEntry.getHours())};
         }
         if (obj instanceof Feature) {
             Feature feature = (Feature) obj;

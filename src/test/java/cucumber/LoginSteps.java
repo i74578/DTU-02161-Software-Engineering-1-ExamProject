@@ -38,17 +38,6 @@ public class LoginSteps {
         timeCatApp.login(initials);
     }
     //@author  Benjamin Fríðberg - s224347
-    @And("a employee with initials {string} does not exist")
-    public void aEmployeeWithInitialsDoesNotExist(String initials) {
-        Employee employee;
-        try {
-            employee = timeCatApp.getEmployee(initials);
-        } catch (NotFoundException e) {
-            employee = null;
-        }
-        assertNull(employee);
-    }
-    //@author  Benjamin Fríðberg - s224347
     @When("the employee logs in")
     public void theEmployeeLogsIn() {
         try {

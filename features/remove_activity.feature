@@ -1,7 +1,7 @@
 #author: Christian Colberg - s224343
 Feature: Remove Activity
 	Description: An activity is created
-	Actors: Employee
+	Actors: Project Manager
 
 
 Scenario: Employee removes an activity successfully
@@ -17,7 +17,7 @@ Scenario: Employee removes an activity from non-existent project
 	Given the project with the name "Project B" is not in the project repository
 	And a employee exists
 	And the employee is logged in
-	When a employee removes an activity with the name "Activity B" in the project "Project B"
+	When a employee removes an activity from project "Project B"
 	Then I get the error message "The project is not found"
 
 Scenario: Employee removes an non-existent activity

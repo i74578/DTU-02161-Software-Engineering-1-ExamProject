@@ -10,6 +10,8 @@ import timeCat.exceptions.InvalidNameException;
 import timeCat.exceptions.NotAllowedException;
 import timeCat.exceptions.NotFoundException;
 
+import java.util.ArrayList;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
@@ -19,11 +21,13 @@ public class EmployeeSteps {
     private TimeCatApp timeCatApp;
     private ErrorMessage errorMessage;
     private EmployeeHelper employeeHelper;
+    private ArrayList<Employee> employeeList;
 
     public EmployeeSteps(TimeCatApp timeCatApp, ErrorMessage errorMessage, EmployeeHelper employeeHelper) {
         this.timeCatApp = timeCatApp;
         this.errorMessage = errorMessage;
         this.employeeHelper = employeeHelper;
+        this.employeeList = new ArrayList<>();
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -48,18 +52,6 @@ public class EmployeeSteps {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    @Then("the employee is registered")
-    public void theUserIsRegistered() {
-        Employee employee = null;
-        try {
-            employee = timeCatApp.getEmployee(employeeHelper.getEmployee().getInitials());
-        } catch (NotFoundException e) {
-            errorMessage.setErrorMessage(e.getMessage());
-        }
-        assertNotNull(employee);
-    }
-
-    //@author  Benjamin Fríðberg - s224347
     @Given("an employee is registered")
     public void anEmployeeIsRegistered() {
         try {
@@ -69,15 +61,7 @@ public class EmployeeSteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
-    //@author  Benjamin Fríðberg - s224347
-    @When("an employee registers a new employee with the same initials")
-    public void anEmployeeRegistersANewEmployeeWithTheSameInitials() {
-        try {
-            timeCatApp.registerEmployee(employeeHelper.getEmployee().getInitials());
-        } catch (DuplicateException | InvalidNameException | NotAllowedException e) {
-            errorMessage.setErrorMessage(e.getMessage());
-        }
-    }
+
     //@author  Benjamin Fríðberg - s224347
     @Then("the employee is not registered")
     public void theEmployeeIsNotRegistered() {
@@ -150,5 +134,26 @@ public class EmployeeSteps {
         } catch (NotFoundException | NotAllowedException e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
+    }
+
+    @When("the employee requests a employee list")
+    public void theEmployeeRequestsAEmployeeList() throws Exception {
+        employeeList = timeCatApp.getEmployees();
+    }
+
+    @And("a employee on the list is {string}")
+    public void aEmployeeOnTheListIs(String initials) {
+        assertTrue(employeeList.stream().anyMatch(p -> p.getInitials().equals(initials)));
+    }
+
+    @And("a employee on the list is the employee")
+    public void aEmployeeOnTheListIsTheEmployee() {
+        String employeeInitials = employeeHelper.getEmployee().getInitials();
+        assertTrue(employeeList.stream().anyMatch(p -> p.getInitials().equals(employeeInitials)));
+    }
+
+    @Then("the employee gets a list of {int} employees")
+    public void theEmployeeGetsAListOfEmployees(int employeesCount) {
+        assertEquals(employeeList.size(),employeesCount);
     }
 }

@@ -1,5 +1,6 @@
 package timeCat.application;
 
+import io.cucumber.java.ca.Cal;
 import timeCat.domain.*;
 import timeCat.exceptions.*;
 import java.util.ArrayList;
@@ -8,9 +9,16 @@ import java.util.Optional;
 
 //@author  Benjamin Fríðberg - s224347
 public class TimeCatApp {
+    //Repository for all saved project
     private final ArrayList<Project> projectsRepo;
+
+    //Repository for employees
     private final ArrayList<Employee> employeeRepo;
+
+    //Counters to make sure projects and activities have unique ids
     private int activityCount;
+    private int projectCount;
+
     private Employee loggedInUser;
 
     public TimeCatApp(){
@@ -73,25 +81,16 @@ public class TimeCatApp {
     //@author  Benjamin Fríðberg - s224347
     public String getNextProjectID(){
         int currentYear = Calendar.getInstance().get(Calendar.YEAR) % 100;
-        return currentYear+String.format("%04d",projectsRepo.size()+1);
+        return currentYear+String.format("%04d",projectCount+1);
     }
 
-    public ArrayList<Project> getProjects(){
+    public ArrayList<Project> getProjects() throws NotAllowedException {
         return projectsRepo;
     }
 
     //@author Benjamin Fríðberg - s224347
     public Project getProjectByID(String projectID) throws NotFoundException {
         Optional<Project> FoundProject = projectsRepo.stream().filter(p -> p.getID().equals(projectID)).findFirst();
-        if (FoundProject.isPresent()){
-            return FoundProject.get();
-        }
-        throw new NotFoundException("The project is not found");
-    }
-
-    //@author Benjamin Fríðberg - s224347
-    public Project getProjectByName(String projectName) throws NotFoundException {
-        Optional<Project> FoundProject = projectsRepo.stream().filter(p -> p.getName().equals(projectName)).findFirst();
         if (FoundProject.isPresent()){
             return FoundProject.get();
         }
@@ -106,6 +105,7 @@ public class TimeCatApp {
         }
         Project costumerProject = new CostumerProject(projectName, getNextProjectID());
         projectsRepo.add(costumerProject);
+        projectCount++;
         return costumerProject;
     }
 
@@ -117,6 +117,7 @@ public class TimeCatApp {
         }
         Project internalProject = new InternalProject(projectName, getNextProjectID());
         projectsRepo.add(internalProject);
+        projectCount++;
         return internalProject;
     }
 
@@ -187,7 +188,7 @@ public class TimeCatApp {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public ArrayList<Employee> getEmployees() {
+    public ArrayList<Employee> getEmployees() throws NotAllowedException {
         return employeeRepo;
     }
 
@@ -226,18 +227,26 @@ public class TimeCatApp {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public ArrayList<TimesheetEntry> getTimeReport() throws NotAllowedException {
+    public ArrayList<ReportEntry> getTodayTimeReport() throws NotAllowedException {
         validateEmployeePermissions();
-        ArrayList<TimesheetEntry> timeReport = new ArrayList<>();
+        ArrayList<ReportEntry> timeReport = new ArrayList<>();
         for(Project project : projectsRepo){
            for(Activity activity : project.getActivities()){
                for(TimesheetEntry timesheetEntry : activity.getTimesheet().getEntries()){
-                   if(timesheetEntry.getEmployee() == loggedInUser){
-                       timeReport.add(timesheetEntry);
+                   Calendar today = Calendar.getInstance();
+                   if(timesheetEntry.getEmployee() == loggedInUser && isSameDate(timesheetEntry.getDate(),today)){
+                       timeReport.add(new ReportEntry(project,activity,timesheetEntry.getDate(),timesheetEntry.getEmployee(),timesheetEntry.getHours()));
                    }
                }
            }
         }
        return timeReport;
+    }
+
+    public boolean isSameDate(Calendar cal1, Calendar cal2){
+        if (cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR)) {
+            return true;
+        }
+        return false;
     }
 }

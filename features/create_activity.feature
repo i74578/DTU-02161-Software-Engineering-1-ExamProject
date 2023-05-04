@@ -1,7 +1,7 @@
 #author: Christian Colberg - s224343
 Feature: Create Activity
 	Description: An activity is created
-	Actors: Employee
+	Actors: Project Manager
 
 
 Scenario: Employee creates an activity successfully
@@ -22,7 +22,7 @@ Scenario: Employee creates an activity under non-existent project
 	Given a project is not in the project repository
 	And a employee exists
 	And the employee is logged in
-	When the employee creates an activity with the name "Activity A" in the project "Project A"
+	When the employee creates an activity with the name "Activity A" in the project
 	Then I get the error message "The project is not found"
 
 Scenario: Employee creates a duplicate activity
@@ -40,7 +40,7 @@ Scenario: Employee creates an activity with a blank name
 	And a employee exists
 	And the employee is assigned project manager for the project
 	And the employee is logged in
-	When the employee creates an activity with the name "" in the project
+	When the employee creates an activity with a blank name in the project
 	Then I get the error message "Invalid activity name"
 
 
