@@ -210,6 +210,7 @@ public class TimeCatApp {
         }
         project.assignPM(getEmployee(initials));
     }
+
     //author: Lukas Halberg - s216229
     public void deassignPM(String projectID) throws NotAllowedException, NotFoundException {
         validatePMPermissions(projectID);
@@ -219,7 +220,9 @@ public class TimeCatApp {
         }
         project.deassignPM();
 
-    }//author: Lukas Halberg - s216229
+    }
+
+    //author: Lukas Halberg - s216229
     public void registerTime(String projectID, String activityID, Calendar date, double hoursSpent) throws NotFoundException, NotAllowedException {
         validateEmployeePermissions();
         Project project = getProjectByID(projectID);

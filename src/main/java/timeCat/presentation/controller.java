@@ -1,5 +1,4 @@
 package timeCat.presentation;
-import org.w3c.dom.html.HTMLTableCaptionElement;
 import timeCat.application.*;
 import timeCat.domain.Activity;
 import timeCat.domain.Employee;
@@ -10,9 +9,11 @@ import timeCat.exceptions.NotFoundException;
 import timeCat.exceptions.DuplicateException;
 import timeCat.exceptions.InvalidNameException;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //@author  Benjamin Fríðberg - s224347
@@ -85,7 +86,7 @@ public class controller {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    private double getDoubleFromUser() {
+    private double getDoubleFromUser() throws InputMismatchException {
         double userDouble = scanner.nextDouble();
         scanner.nextLine();
         return userDouble;
@@ -99,15 +100,11 @@ public class controller {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    private Calendar getDateFromUser(){
+    private Calendar getDateFromUser() throws java.text.ParseException{
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        try {
-            cal.setTime(sdf.parse(scanner.nextLine()));
-        } catch(java.text.ParseException e){
-            view.printError("Invalid date format");
-            return null;
-        }
+        sdf.setLenient(false);
+        cal.setTime(sdf.parse(scanner.nextLine()));
         return cal;
     }
 
@@ -294,19 +291,35 @@ public class controller {
         view.print("ActivityID of activity to register time to:");
         String activityID = scanner.nextLine();
         view.print("Date in format dd-mm-yyyy:");
-        Calendar date = getDateFromUser();
-        if (date == null){return;}
+        Calendar date;
+        try {
+            date = getDateFromUser();
+        } catch (ParseException e) {
+            scanner.nextLine();
+            view.printError("Invalid date");
+            proceedAfterUserInput();
+            return;
+        }
         view.print("Hours spent:");
-        double hoursSpent = getDoubleFromUser();
+        double hoursSpent;
+        try{
+            hoursSpent = getDoubleFromUser();
+        } catch(InputMismatchException e){
+            scanner.nextLine();
+            view.printError("Invalid hour count");
+            proceedAfterUserInput();
+            return;
+        }
         try {
             timeCatApp.registerTime(projectID, activityID, date, hoursSpent);
             view.print("Time registered successfully to activity");
         } catch (NotFoundException | NotAllowedException e) {
-            view.printError("Invalid date format");
+            view.printError(e.getMessage());
         }
         proceedAfterUserInput();
     }
 
+    //@author  Benjamin Fríðberg - s224347
     private void timeReport() {
         ArrayList<TimesheetEntry> timeReport = null;
         try {
@@ -315,7 +328,7 @@ public class controller {
             view.printError("Not allowed");
         }
         view.printTableWithHeader(timeReport,false,"Time Report");
-
+        proceedAfterUserInput();
     }
 
 }

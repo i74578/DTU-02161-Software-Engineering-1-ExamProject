@@ -34,6 +34,7 @@ public class TimesheetEntry implements Tabelify {
     public Employee getEmployee() {
         return employee;
     }
+
     //author: Lukas Halberg - s216229
     @Override
     public boolean equals(Object obj){
@@ -47,9 +48,8 @@ public class TimesheetEntry implements Tabelify {
     //@author  Benjamin Fríðberg - s224347
     public String[] getPropertiesForTable(){
         DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String test = sdf.format(date);
-
-        return new String[] {project.getName(),activity.getName(), sdf.format(date), String.valueOf(hoursSpent)};
+        sdf.setTimeZone(date.getTimeZone());
+        return new String[] {project.getName(),activity.getName(), sdf.format(date.getTime()), String.valueOf(hoursSpent)};
     }
 
 }
