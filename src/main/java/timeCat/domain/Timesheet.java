@@ -17,9 +17,14 @@ public class Timesheet {
     }
 
     //author: Lukas Halberg - s216229
-    public void add(Project project, Activity activity, Calendar date, Employee employee, double hoursSpent) {
+    public void add(Project project, Activity activity, Calendar date, Employee employee, double hoursSpent) throws IllegalArgumentException {
+        if(hoursSpent < 0){
+            throw new IllegalArgumentException("Can't register negative hours");
+        }
+        if(hoursSpent > 24){
+            throw new IllegalArgumentException("Can't register more than 24 hours a day");
+        }
         entries.add(new TimesheetEntry(project,activity,date, employee, hoursSpent ));
-
     }
     public ArrayList<TimesheetEntry> getEntries(){return entries;}
 

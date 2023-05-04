@@ -313,7 +313,7 @@ public class controller {
         try {
             timeCatApp.registerTime(projectID, activityID, date, hoursSpent);
             view.print("Time registered successfully to activity");
-        } catch (NotFoundException | NotAllowedException e) {
+        } catch (NotFoundException | NotAllowedException | IllegalArgumentException e) {
             view.printError(e.getMessage());
         }
         proceedAfterUserInput();

@@ -223,7 +223,7 @@ public class TimeCatApp {
     }
 
     //author: Lukas Halberg - s216229
-    public void registerTime(String projectID, String activityID, Calendar date, double hoursSpent) throws NotFoundException, NotAllowedException {
+    public void registerTime(String projectID, String activityID, Calendar date, double hoursSpent) throws NotFoundException, NotAllowedException, IllegalArgumentException {
         validateEmployeePermissions();
         Project project = getProjectByID(projectID);
         Activity activity = project.getActivityByID(activityID);

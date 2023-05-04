@@ -45,13 +45,35 @@ public class TimeSteps {
     //author: Lukas Halberg - s216229
     @When("the employee registers hours spent on activity")
     public void theEmployeeRegistersHoursSpentOnActivity() {
-        registreredHours.add(new TimesheetEntry(null,null,Calendar.getInstance(),employeeHelper.getEmployee(),2));
+        registreredHours.add(new TimesheetEntry(null,null,Calendar.getInstance(),employeeHelper.getEmployee(),2.2));
         registreredHours.add(new TimesheetEntry(null,null,Calendar.getInstance(),employeeHelper.getEmployee(),4));
         try{
             for(TimesheetEntry entry : registreredHours){
                 timeCatApp.registerTime(projectHelper.getProject().getID(),activityHelper.getActivity().getActivityID(),entry.getDate(),entry.getHours());
             }
         } catch(InvalidNameException | NotFoundException |NotAllowedException e){
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @When("the employee registers negative hours spent on activity")
+    public void theEmployeeRegistersNegativeHoursSpentOnActivity() {
+        TimesheetEntry timesheetEntry = new TimesheetEntry(null,null,Calendar.getInstance(),employeeHelper.getEmployee(),-2);
+        registreredHours.add(timesheetEntry);
+        try{
+            timeCatApp.registerTime(projectHelper.getProject().getID(),activityHelper.getActivity().getActivityID(),timesheetEntry.getDate(),timesheetEntry.getHours());
+        } catch(InvalidNameException | NotFoundException |NotAllowedException | IllegalArgumentException e){
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @When("the employee registers {int} hours spent on activity in one day")
+    public void theEmployeeRegistersHoursSpentOnActivityInOneDay(int hoursSpent) {
+        TimesheetEntry timesheetEntry = new TimesheetEntry(null,null,Calendar.getInstance(),employeeHelper.getEmployee(),hoursSpent);
+        registreredHours.add(timesheetEntry);
+        try{
+            timeCatApp.registerTime(projectHelper.getProject().getID(),activityHelper.getActivity().getActivityID(),timesheetEntry.getDate(),timesheetEntry.getHours());
+        } catch(InvalidNameException | NotFoundException |NotAllowedException | IllegalArgumentException e){
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
