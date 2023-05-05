@@ -2,8 +2,6 @@ package timeCat.presentation;
 
 import timeCat.domain.*;
 
-import java.awt.*;
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

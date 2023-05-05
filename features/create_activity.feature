@@ -14,9 +14,6 @@ Scenario: Employee creates an activity successfully
 	Then the activity is in the project
 	And the activity has no registered hours
 	And the activity has no assigned employees
-	And the startWeek is not assigned
-	And the hourEstimate is not assigned
-	And the weekDuration is not assigned
 
 Scenario: Employee creates an activity under non-existent project
 	Given a project is not in the project repository

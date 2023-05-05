@@ -1,16 +1,12 @@
 package timeCat.domain;
 
-import io.cucumber.java.en_old.Ac;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 //@author  Benjamin Fríðberg - s224347
 public class TimesheetEntry{
     private Calendar date;
     private double hoursSpent;
-    private Employee employee;
+    private final Employee employee;
 
     //@author  Benjamin Fríðberg - s224347
     public TimesheetEntry(Calendar date, Employee employee, double hoursSpent){
@@ -34,10 +30,12 @@ public class TimesheetEntry{
     //author: Lukas Halberg - s216229
     @Override
     public boolean equals(Object obj){
-        if (obj == null || !(obj instanceof TimesheetEntry)){
+        if (!(obj instanceof TimesheetEntry)){
             return false;
         }
         TimesheetEntry timesheetEntry = (TimesheetEntry) obj;
-        return timesheetEntry.getDate().equals(date) && timesheetEntry.getHours() == hoursSpent && timesheetEntry.getEmployee() == employee;
+        return  timesheetEntry.getDate().equals(date) &&
+                timesheetEntry.getHours() == hoursSpent &&
+                timesheetEntry.getEmployee() == employee;
     }
 }

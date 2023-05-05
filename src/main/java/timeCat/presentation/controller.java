@@ -169,13 +169,9 @@ public class controller {
 
     //@author  Benjamin Fríðberg - s224347
     public void listProjects() {
-        ArrayList<Project> projects = null;
-        try {
-            projects = timeCatApp.getProjects();
-            view.printTableWithHeader(projects,false,"Projects");
-        } catch (NotAllowedException e) {
-            view.printError(e.getMessage());
-        }
+        ArrayList<Project> projects;
+        projects = timeCatApp.getProjects();
+        view.printTableWithHeader(projects,false,"Projects");
         proceedAfterUserInput();
     }
 
@@ -223,13 +219,8 @@ public class controller {
 
     //@author  Benjamin Fríðberg - s224347
     private void listEmployees() {
-        ArrayList<Employee> employees = null;
-        try {
-            employees = timeCatApp.getEmployees();
-            view.printTableWithHeader(employees,false,"Employees");
-        } catch (NotAllowedException e) {
-            view.printError(e.getMessage());
-        }
+        ArrayList<Employee> employees = timeCatApp.getEmployees();
+        view.printTableWithHeader(employees,false,"Employees");
         proceedAfterUserInput();
     }
 

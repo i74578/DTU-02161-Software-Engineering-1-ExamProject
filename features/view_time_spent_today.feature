@@ -1,6 +1,4 @@
 #//author: Christian Colberg - s224343
-
-
 Feature: View registered time on activity
 	Description: The employee views registered time spent
 	Actors: Employee

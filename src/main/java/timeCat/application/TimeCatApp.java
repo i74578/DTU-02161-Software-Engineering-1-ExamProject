@@ -1,6 +1,5 @@
 package timeCat.application;
 
-import io.cucumber.java.ca.Cal;
 import timeCat.domain.*;
 import timeCat.exceptions.*;
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class TimeCatApp {
     }
 
 
-    //////Login
+    ////Login functionality
     //@author  Benjamin Fríðberg - s224347
     public Employee getLoggedInUser(){
         return loggedInUser;
@@ -72,7 +71,7 @@ public class TimeCatApp {
         }
     }
 
-    ///////Projects
+    ////Projects functionality
     //@author  Benjamin Fríðberg - s224347
     public boolean hasProject(String projectName){
         return projectsRepo.stream().anyMatch(p -> p.getName().equals(projectName));
@@ -84,7 +83,7 @@ public class TimeCatApp {
         return currentYear+String.format("%04d",projectCount+1);
     }
 
-    public ArrayList<Project> getProjects() throws NotAllowedException {
+    public ArrayList<Project> getProjects() {
         return projectsRepo;
     }
 
@@ -128,7 +127,7 @@ public class TimeCatApp {
     }
 
 
-    ///////Activities
+    ////Activity functionality
     //@author  Benjamin Fríðberg - s224347
     public ArrayList<Activity> getProjectActivities(String projectID) throws NotFoundException {
         return getProjectByID(projectID).getActivities();
@@ -157,7 +156,7 @@ public class TimeCatApp {
     }
 
 
-    ////////Employee
+    ////Employee functionality
     //@author  Benjamin Fríðberg - s224347
     public Employee registerEmployee(String initials) throws DuplicateException, InvalidNameException, NotAllowedException {
         validateEmployeePermissions();
@@ -188,7 +187,7 @@ public class TimeCatApp {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public ArrayList<Employee> getEmployees() throws NotAllowedException {
+    public ArrayList<Employee> getEmployees() {
         return employeeRepo;
     }
 
@@ -198,7 +197,7 @@ public class TimeCatApp {
     }
 
 
-    //Project manager assign and deassign
+    ////Project Manager functionality
     //@author  Benjamin Fríðberg - s224347
     public void assignPM(String projectID, String initials) throws NotFoundException, NotAllowedException {
         validateEmployeePermissions();
@@ -222,7 +221,7 @@ public class TimeCatApp {
         Project project = getProjectByID(projectID);
         Activity activity = project.getActivityByID(activityID);
         Timesheet timesheet = activity.getTimesheet();
-        timesheet.add(project,activity,date, loggedInUser, hoursSpent);
+        timesheet.add(date, loggedInUser, hoursSpent);
 
     }
 
@@ -243,10 +242,8 @@ public class TimeCatApp {
        return timeReport;
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public boolean isSameDate(Calendar cal1, Calendar cal2){
-        if (cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR)) {
-            return true;
-        }
-        return false;
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
     }
 }
