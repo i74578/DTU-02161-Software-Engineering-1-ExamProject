@@ -13,6 +13,7 @@ Scenario: View registered time successfully
 	And employee has registered hours on activity 0 days in the future
 	When employee views total hours spent
 	Then the registered time is shown in todays time report
+	And all entries in the report are from the project and activity
 
 Scenario: View registered time, but only has registered time at passed date
 	Given a project is in the project repository

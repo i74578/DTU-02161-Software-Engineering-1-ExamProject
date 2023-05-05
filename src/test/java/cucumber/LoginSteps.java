@@ -82,4 +82,5 @@ public class LoginSteps {
     public void employeeWithInitialsIsLoggedIn(String initials) {
         assertEquals(timeCatApp.getLoggedInUser().getInitials(),initials);
     }
+
 }

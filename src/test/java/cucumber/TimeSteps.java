@@ -130,4 +130,14 @@ public class TimeSteps {
         }
         assertEquals(totalHoursSpent,hoursSpent,0.01);
     }
+
+    @And("all entries in the report are from the project and activity")
+    public void allEntriesInTheReportAreFromTheProjectAndActivity() throws Exception {
+        String projectName = projectHelper.getProject().getName();
+        String activityName = activityHelper.getActivity().getName();
+        for(ReportEntry entry : timeReport){
+            assertEquals(entry.getProjectName(),projectName);
+            assertEquals(entry.getActivityName(),activityName);
+        }
+    }
 }
