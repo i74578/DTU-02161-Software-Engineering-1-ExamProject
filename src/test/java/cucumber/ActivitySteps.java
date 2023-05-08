@@ -74,23 +74,6 @@ public class ActivitySteps {
     }
 
     //#author: Christian Colberg - s224343
-    @And("the startWeek is not assigned")
-    public void theStartWeekIsNotAssigned() throws Exception {
-        assertEquals(activity.getStartWeek(), 0);
-    }
-
-    //#author: Christian Colberg - s224343
-    @And("the hourEstimate is not assigned")
-    public void theHourEstimateIsNotAssigned() throws Exception {
-        assertEquals(activity.getHourEstimate(), 0);
-    }
-
-    //#author: Christian Colberg - s224343
-    @And("the weekDuration is not assigned")
-    public void theWeekDurationIsNotAssigned() throws Exception {
-        assertEquals(activity.getWeekDuration(), 0);
-    }
-    //#author: Christian Colberg - s224343
     @And("the activity is not in the project")
     public void aActivityIsNotInTheProject() throws Exception {
         ArrayList<Activity> activitiesInProject = timeCatApp.getProjectActivities(projectHelper.getProject().getID());
