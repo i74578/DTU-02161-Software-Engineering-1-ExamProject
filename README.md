@@ -17,4 +17,4 @@
 
 # Running the program
 - Run the main.java file which is located in src/main/java/timeCat/presentation/
-- The default employee initials are "ADM", and can be used to login. It's possible to add a new employee and remove the ADM employee, if needed.
+- The default employee initials are "USR", and can be used to login. It's possible to add a new employee and remove the USR employee, if needed.
