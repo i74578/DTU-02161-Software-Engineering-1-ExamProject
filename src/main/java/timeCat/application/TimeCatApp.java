@@ -161,7 +161,7 @@ public class TimeCatApp {
     public Employee registerEmployee(String initials) throws DuplicateException, InvalidNameException, NotAllowedException {
         validateEmployeePermissions();
         if(initials.length() == 0 || initials.length() > 4){
-            throw new InvalidNameException("Invalid initials");
+            throw new InvalidNameException("Invalid initials length");
         }
         if(hasEmployee(initials)){
             throw new DuplicateException("The user could not be registered");
@@ -179,7 +179,7 @@ public class TimeCatApp {
 
     //@author  Benjamin Fríðberg - s224347
     public Employee getEmployee(String initials) throws NotFoundException {
-        Optional<Employee> employeeSearch = employeeRepo.stream().filter(p -> p.getInitials().equals(initials)).findFirst();
+        Optional<Employee> employeeSearch = employeeRepo.stream().filter(p -> p.getInitials().equalsIgnoreCase(initials)).findFirst();
         if (employeeSearch.isPresent()){
             return employeeSearch.get();
         }
@@ -193,7 +193,7 @@ public class TimeCatApp {
 
     //@author  Benjamin Fríðberg - s224347
     public boolean hasEmployee(String initials){
-        return employeeRepo.stream().anyMatch(p -> p.getInitials().equals(initials));
+        return employeeRepo.stream().anyMatch(p -> p.getInitials().equalsIgnoreCase(initials));
     }
 
 

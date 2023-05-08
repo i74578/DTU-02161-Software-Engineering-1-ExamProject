@@ -6,10 +6,11 @@ public class Employee{
 
 
     public Employee(String initials){
-        this.initials = initials.toUpperCase();
+        this.initials = initials;
     }
 
     public String getInitials(){
         return initials;
     }
+
 }

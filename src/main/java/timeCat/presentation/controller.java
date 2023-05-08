@@ -59,7 +59,6 @@ public class controller {
             Integer chosenFeature = 0;
             try{
                 chosenFeature = getIntFromUser();
-
             }
             catch(InputMismatchException e){
                 scanner.nextLine();
@@ -67,7 +66,6 @@ public class controller {
                 proceedAfterUserInput();
                 continue;
             }
-
             if (chosenFeature > 0 && chosenFeature <= features.size()) {
                 view.clearConsole();
                 features.get(chosenFeature - 1).getFeatureCallMethod().run();

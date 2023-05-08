@@ -9,11 +9,17 @@ Scenario: Employee registers a new employee to the user repository
  	When the employee registers a new employee
  	Then the new employee is registered
 
+Scenario: Employee registers a new employee with blank initials to the user repository
+	Given a employee exists
+	And the employee is logged in
+	When an employee registers a new employee with 0 letter initials
+	Then I get the error message "Invalid initials length"
+
 Scenario: Employee registers a new employee with 5 letter initials to the user repository
 	Given a employee exists
 	And the employee is logged in
 	When an employee registers a new employee with 5 letter initials
-	Then I get the error message "Invalid initials"
+	Then I get the error message "Invalid initials length"
 
 Scenario: Employee registers a employee which already exists
 	Given a employee exists
