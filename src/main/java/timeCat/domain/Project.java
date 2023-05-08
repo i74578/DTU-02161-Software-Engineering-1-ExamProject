@@ -55,12 +55,22 @@ public class Project {
     }
 
     //@author  Benjamin Fríðberg - s224347
+    //DBC - Christian Colberg - s224343
     public void addActivity(Activity activityToAdd) throws DuplicateException {
+
+    // Design by Contract
+        // Preconditions
+        // assert activityToAdd != null: "Assertion error, invalid activity";
+        // assert !activities.contains(activityToAdd): "Duplicate activity";
+
         if(!hasActivity(activityToAdd.getName())){
             activities.add(activityToAdd);
             return;
         }
         throw new DuplicateException("Duplicate activity");
+
+    // Postconditions
+        //assert activities.contains(activityToAdd):"The activity was not added successfully";
     }
 
     //@author  Benjamin Fríðberg - s224347
