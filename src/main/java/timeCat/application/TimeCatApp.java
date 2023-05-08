@@ -35,6 +35,7 @@ public class TimeCatApp {
 
     //@author  Benjamin Fríðberg - s224347
     public boolean IsEmployeeLoggedIn(){
+        // assert loggedInUser != null: "No employee is logged in";
         return loggedInUser != null;
     }
 
@@ -55,9 +56,9 @@ public class TimeCatApp {
     }
 
     //////Permission levels
-    //@author  Benjamin Fríðberg - s224347
+    //@author  Benjamin Fríðberg - s224347 & Christian Colberg - s224343
     public void validateEmployeePermissions() throws NotAllowedException {
-        if (!IsEmployeeLoggedIn()){
+        if (!IsEmployeeLoggedIn()) {
             throw new NotAllowedException("You need to be logged in to perform this action");
         }
     }
@@ -73,8 +74,15 @@ public class TimeCatApp {
 
     ////Projects functionality
     //@author  Benjamin Fríðberg - s224347
+    //DBC - Christian Colberg - s224343
     public boolean hasProject(String projectName){
+
+        // Design by Contract
+        // Preconditions
+        // assert projectName != null && !projectName.isEmpty(): "Project name should be a non-empty string";
+
         return projectsRepo.stream().anyMatch(p -> p.getName().equals(projectName));
+
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -133,12 +141,12 @@ public class TimeCatApp {
         return getProjectByID(projectID).getActivities();
     }
 
-    //author: Christian Colberg - s224343
+    //@author: Christian Colberg - s224343
     public String getNextActivityID(){
         return "A"+(activityCount+1);
     }
 
-    //author: Christian Colberg - s224343
+    //@author: Christian Colberg - s224343
     public Activity createActivity(String activityName, String projectID) throws InvalidNameException, NotFoundException, DuplicateException, NotAllowedException {
         validatePMPermissions(projectID);
         Project project = getProjectByID(projectID);
@@ -149,7 +157,7 @@ public class TimeCatApp {
         return newActivity;
     }
 
-    //author: Christian Colberg - s224343
+    //@author: Christian Colberg - s224343
     public void removeActivity(String activityID, String projectID) throws NotFoundException, NotAllowedException {
         validatePMPermissions(projectID);
         getProjectByID(projectID).removeActivity(activityID);
@@ -158,9 +166,17 @@ public class TimeCatApp {
 
     ////Employee functionality
     //@author  Benjamin Fríðberg - s224347
+    //DBC - Christian Colberg - s224343
     public Employee registerEmployee(String initials) throws DuplicateException, InvalidNameException, NotAllowedException {
         validateEmployeePermissions();
-        if(initials.length() == 0 || initials.length() > 4){
+
+    // Design by Contract
+    // Preconditions
+    // assert IsEmployeeLoggedIn():"No employee is logged in";
+    // assert initials.length > 0 && initials.length >= 4: "Initials doesn't meet conditions";
+    // assert !hasEmployee(initials): "Duplicate name";
+
+        if (initials.length() == 0 || initials.length() > 4){
             throw new InvalidNameException("Invalid initials");
         }
         if(hasEmployee(initials)){
@@ -169,7 +185,11 @@ public class TimeCatApp {
         Employee employee = new Employee(initials);
         employeeRepo.add(employee);
         return employee;
-    }
+
+    // Postconditions
+    // assert employeeRepo.contains(employee):"The employee was not registered successfully";
+}
+
 
     //@author  Benjamin Fríðberg - s224347
     public void unregisterEmployee(String initials) throws NotFoundException, NotAllowedException {
@@ -177,13 +197,24 @@ public class TimeCatApp {
         employeeRepo.remove(getEmployee(initials));
     }
 
-    //@author  Benjamin Fríðberg - s224347
+    //@author  Benjamin Fríðberg - s224347 & Christian Colberg - s224343
+    //DBC - Christian Colberg - s224343
     public Employee getEmployee(String initials) throws NotFoundException {
+
+// Design by Contract
+        // Preconditions
+        // assert initials != null && !initials.isEmpty(): "Initials should not be an empty string";
+        // assert !employeeRepo.isEmpty(): "Employee repository is empty";
+        // assert hasEmployee(initials): "No match found in repository";
+
         Optional<Employee> employeeSearch = employeeRepo.stream().filter(p -> p.getInitials().equals(initials)).findFirst();
         if (employeeSearch.isPresent()){
             return employeeSearch.get();
         }
         throw new NotFoundException("The employee is not found");
+
+        // Postconditions
+        // assert employeeSearch≠null: "Something went wrong, employee not found";
     }
 
     //@author  Benjamin Fríðberg - s224347
