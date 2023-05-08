@@ -22,7 +22,7 @@ public class TimeHelper {
     public void registerTime(String projectID, String activityID, Calendar date, double hoursSpent) throws NotAllowedException, NotFoundException {
         Employee loggedInEmployee = timeCatApp.getLoggedInUser();
         if(loggedInEmployee == null){
-            timeCatApp.login("ADM");
+            timeCatApp.login("USR");
         }
         timeCatApp.registerTime(projectID,activityID,date,hoursSpent);
         if(loggedInEmployee == null){

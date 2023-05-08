@@ -15,22 +15,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 //@author Emil SB Sundberg
 public class Whiteboxtest4 {
     @Test (expected = java.lang.NullPointerException.class)
-    public void addActivityNoData() throws InvalidNameException, NotAllowedException, DuplicateException, NotFoundException {
-        Project project = new Project("asd","230001");
+    public void addActivityNoData() throws InvalidNameException, DuplicateException {
+        Project project = new Project("Project Name","230001");
         project.addActivity(null);
 
     }
     @Test
-    public void addActivitySucess() throws InvalidNameException, NotAllowedException, DuplicateException, NotFoundException {
-        Project project = new Project("asd","230001");
-        project.addActivity(new Activity("asd","A1"));
-        assertTrue(project.hasActivity("asd"));
+    public void addActivitySucess() throws InvalidNameException, DuplicateException {
+        Project project = new Project("Project Name","230001");
+        project.addActivity(new Activity("Activity Name","A1"));
+        assertTrue(project.hasActivity("Activity Name"));
     }
 
     @Test (expected = DuplicateException.class)
-    public void addActivityDoublet() throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
-        Project project = new Project("asd","230001");
-        project.addActivity(new Activity("asd","A1"));
-        project.addActivity(new Activity("asd","A1"));
+    public void addActivityDoublet() throws InvalidNameException, DuplicateException {
+        Project project = new Project("Project Name","230001");
+        project.addActivity(new Activity("Activity Name","A1"));
+        project.addActivity(new Activity("Activity Name","A1"));
     }
 }

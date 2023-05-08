@@ -25,7 +25,7 @@ public class Whiteboxtest3 {
     public void hasProjectSucess () throws NotAllowedException, NotFoundException {
         TimeCatApp timeCatApp = new TimeCatApp();
         String projectName = "DSB 2";
-        timeCatApp.login("ADM");
+        timeCatApp.login("USR");
         try {
             timeCatApp.createInternalProject(projectName);
         } catch (Exception e) {}
@@ -36,7 +36,7 @@ public class Whiteboxtest3 {
     public void hasProjectNoData () throws NotAllowedException, NotFoundException {
         TimeCatApp timeCatApp = new TimeCatApp();
         String projectName = "";
-        timeCatApp.login("ADM");
+        timeCatApp.login("USR");
         try {
             timeCatApp.hasProject(projectName);
         } catch (Exception e) {}

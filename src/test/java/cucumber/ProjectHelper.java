@@ -22,7 +22,7 @@ public class ProjectHelper {
     public Project createCostumerProject(String projectName) throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
         Employee loggedInEmployee = timeCatApp.getLoggedInUser();
         if(loggedInEmployee == null){
-            timeCatApp.login("ADM");
+            timeCatApp.login("USR");
         }
         Project project = timeCatApp.createCostumerProject(projectName);
         if(loggedInEmployee == null){
@@ -34,7 +34,7 @@ public class ProjectHelper {
     public Project createInternalProject(String projectName) throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
         Employee loggedInEmployee = timeCatApp.getLoggedInUser();
         if(loggedInEmployee == null){
-            timeCatApp.login("ADM");
+            timeCatApp.login("USR");
         }
         Project project = timeCatApp.createInternalProject(projectName);
         if(loggedInEmployee == null){
@@ -64,7 +64,7 @@ public class ProjectHelper {
     public void assignPM(String projectID, String initials) throws NotAllowedException, NotFoundException {
         Employee loggedInEmployee = timeCatApp.getLoggedInUser();
         if(loggedInEmployee == null){
-            timeCatApp.login("ADM");
+            timeCatApp.login("USR");
         }
         timeCatApp.assignPM(projectID,initials);
         if(loggedInEmployee == null){
@@ -75,7 +75,7 @@ public class ProjectHelper {
     public void assignTestPM() throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
         Employee loggedInEmployee = timeCatApp.getLoggedInUser();
         if(loggedInEmployee == null){
-            timeCatApp.login("ADM");
+            timeCatApp.login("USR");
         }
         timeCatApp.registerEmployee("MGR");
         timeCatApp.assignPM(project.getID(),"MGR");

@@ -31,7 +31,7 @@ public class EmployeeHelper {
     public Employee registerEmployee(String initials) throws Exception{
         Employee loggedInEmployee = timeCatApp.getLoggedInUser();
         if(loggedInEmployee == null){
-            timeCatApp.login("ADM");
+            timeCatApp.login("USR");
         }
         Employee registeredEmployee = timeCatApp.registerEmployee(initials);
         if(loggedInEmployee == null){

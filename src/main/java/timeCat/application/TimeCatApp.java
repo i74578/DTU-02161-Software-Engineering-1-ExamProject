@@ -23,7 +23,7 @@ public class TimeCatApp {
     public TimeCatApp(){
         projectsRepo = new ArrayList<>();
         employeeRepo = new ArrayList<>();
-        employeeRepo.add(new Employee("ADM"));
+        employeeRepo.add(new Employee("USR"));
     }
 
 

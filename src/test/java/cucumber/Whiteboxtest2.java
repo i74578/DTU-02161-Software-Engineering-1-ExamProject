@@ -13,18 +13,18 @@ public class Whiteboxtest2 {
     @Test (expected = NotFoundException.class)
     public void getemployeeWrongFormat() throws NotFoundException {
         TimeCatApp timeCatApp = new TimeCatApp();
-        String testvar = "EMSBS";
-        timeCatApp.getEmployee(testvar);
+        String testInitials = "EMSBS";
+        timeCatApp.getEmployee(testInitials);
     }
     @Test
     public  void getEmployeeSucess() throws NotAllowedException, NotFoundException {
         TimeCatApp timeCatApp = new TimeCatApp();
-        String testvar2 = "ESBS";
-        timeCatApp.login("ADM");
+        String testInitials = "ESBS";
+        timeCatApp.login("USR");
         try {
-            timeCatApp.registerEmployee(testvar2);
+            timeCatApp.registerEmployee(testInitials);
         } catch (Exception e) {}
-        assertTrue(timeCatApp.hasEmployee(testvar2));
+        assertTrue(timeCatApp.hasEmployee(testInitials));
     }
     @Test (expected = NotFoundException.class)
     public void getemployeeNoData() throws NotFoundException {

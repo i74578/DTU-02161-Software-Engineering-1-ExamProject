@@ -23,8 +23,8 @@ public class ActivityHelper {
         Employee PM = timeCatApp.getProjectByID(projectID).getPM();
         if(loggedInEmployee == null) {
             if (PM == null) {
-                timeCatApp.login("ADM");
-                timeCatApp.assignPM(projectID, "ADM");
+                timeCatApp.login("USR");
+                timeCatApp.assignPM(projectID, "USR");
             } else {
                 timeCatApp.login(PM.getInitials());
             }

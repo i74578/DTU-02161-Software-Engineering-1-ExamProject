@@ -20,29 +20,27 @@ public class Whiteboxtest {
    @Test(expected = InvalidNameException.class )
     public void registerEmployeeWrongFormat() throws InvalidNameException, NotAllowedException, DuplicateException, NotFoundException {
         TimeCatApp timeCatApp = new TimeCatApp();
-        timeCatApp.login("ADM");
-        String testvar = "EMSBS";
-        timeCatApp.registerEmployee(testvar);
+        timeCatApp.login("USR");
+        String testInitials = "EMSBS";
+        timeCatApp.registerEmployee(testInitials);
     }
 
   @Test
     public  void registerEmployeeSucess() throws NotAllowedException, NotFoundException {
       TimeCatApp timeCatApp = new TimeCatApp();
-        String testvar2 = "ESBS";
-        timeCatApp.login("ADM");
+        String testInitials = "ESBS";
+        timeCatApp.login("USR");
         try {
-            timeCatApp.registerEmployee(testvar2);
+            timeCatApp.registerEmployee(testInitials);
         } catch (Exception e) {}
-        assertTrue(timeCatApp.hasEmployee(testvar2));
+        assertTrue(timeCatApp.hasEmployee(testInitials));
     }
+
    @Test (expected = InvalidNameException.class )
     public void registeremployeeNoData() throws InvalidNameException, NotAllowedException, DuplicateException, NotFoundException {
        TimeCatApp timeCatApp = new TimeCatApp();
-       timeCatApp.login("ADM");
-        String testvar3 = "";
-        timeCatApp.registerEmployee(testvar3);
-
+       timeCatApp.login("USR");
+       String testInitials = "";
+       timeCatApp.registerEmployee(testInitials);
     }
-
-
 }
