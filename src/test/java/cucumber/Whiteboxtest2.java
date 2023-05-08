@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class Whiteboxtest2 {
 
     @Test (expected = NotFoundException.class)
-    public void Test1() throws NotFoundException {
+    public void getemployeeWrongFormat() throws NotFoundException {
         TimeCatApp timeCatApp = new TimeCatApp();
         String testvar = "EMSBS";
         timeCatApp.getEmployee(testvar);
     }
     @Test
-    public  void Test2() throws NotAllowedException, NotFoundException {
+    public  void getEmployeeSucess() throws NotAllowedException, NotFoundException {
         TimeCatApp timeCatApp = new TimeCatApp();
         String testvar2 = "ESBS";
         timeCatApp.login("ADM");
@@ -27,7 +27,7 @@ public class Whiteboxtest2 {
         assertTrue(timeCatApp.hasEmployee(testvar2));
     }
     @Test (expected = NotFoundException.class)
-    public void Test3() throws NotFoundException {
+    public void getemployeeNoData() throws NotFoundException {
         TimeCatApp timeCatApp = new TimeCatApp();
         String testvar3 = "";
         timeCatApp.getEmployee(testvar3);

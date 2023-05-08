@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class Whiteboxtest {
 
    @Test(expected = InvalidNameException.class )
-    public void Test1() throws InvalidNameException, NotAllowedException, DuplicateException, NotFoundException {
+    public void registerEmployeeWrongFormat() throws InvalidNameException, NotAllowedException, DuplicateException, NotFoundException {
         TimeCatApp timeCatApp = new TimeCatApp();
         timeCatApp.login("ADM");
         String testvar = "EMSBS";
@@ -26,7 +26,7 @@ public class Whiteboxtest {
     }
 
   @Test
-    public  void Test2() throws NotAllowedException, NotFoundException {
+    public  void registerEmployeeSucess() throws NotAllowedException, NotFoundException {
       TimeCatApp timeCatApp = new TimeCatApp();
         String testvar2 = "ESBS";
         timeCatApp.login("ADM");
@@ -36,7 +36,7 @@ public class Whiteboxtest {
         assertTrue(timeCatApp.hasEmployee(testvar2));
     }
    @Test (expected = InvalidNameException.class )
-    public void Test3() throws InvalidNameException, NotAllowedException, DuplicateException, NotFoundException {
+    public void registeremployeeNoData() throws InvalidNameException, NotAllowedException, DuplicateException, NotFoundException {
        TimeCatApp timeCatApp = new TimeCatApp();
        timeCatApp.login("ADM");
         String testvar3 = "";

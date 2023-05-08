@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 //@author Emil SB Sundberg
 public class Whiteboxtest3 {
     @Test
-    public void test1 (){
+    public void hasProjectNotPresent (){
         TimeCatApp timeCatApp = new TimeCatApp();
          String projectName = "Borfors 1";
          try {
@@ -22,7 +22,7 @@ public class Whiteboxtest3 {
          assertFalse(timeCatApp.hasProject(projectName));
     }
     @Test
-    public void test2() throws NotAllowedException, NotFoundException {
+    public void hasProjectSucess () throws NotAllowedException, NotFoundException {
         TimeCatApp timeCatApp = new TimeCatApp();
         String projectName = "DSB 2";
         timeCatApp.login("ADM");
@@ -33,7 +33,7 @@ public class Whiteboxtest3 {
 
     }
     @Test
-    public void test3 () throws NotAllowedException, NotFoundException {
+    public void hasProjectNoData () throws NotAllowedException, NotFoundException {
         TimeCatApp timeCatApp = new TimeCatApp();
         String projectName = "";
         timeCatApp.login("ADM");
