@@ -243,17 +243,17 @@ public class ProjectSteps {
     public void theEmployeeRequestsAProjectList() throws Exception {
         projectList = timeCatApp.getProjects();
     }
-
+    //author: Lukas Halberg - s216229
     @Then("a project with the name {string} is on the list")
     public void aProjectWithTheNameIsOnTheList(String projectName) {
         assertTrue(projectList.stream().anyMatch(p -> p.getName().equals(projectName)));
     }
-
+    //author: Lukas Halberg - s216229
     @Then("there are {int} projects on the project list")
     public void thereAreProjectsOnTheProjectList(int projectsCount) {
         assertEquals(projectList.size(),projectsCount);
     }
-
+    //author: Lukas Halberg - s216229
     @Given("there are {int} projects on the project repository")
     public void thereAreProjectsOnTheProjectRepository(int projectCount) throws Exception {
         assertEquals(timeCatApp.getProjects().size(),0);

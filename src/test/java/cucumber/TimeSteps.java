@@ -53,7 +53,7 @@ public class TimeSteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
-
+    //author: Lukas Halberg - s216229
     @When("the employee registers negative hours spent on activity")
     public void theEmployeeRegistersNegativeHoursSpentOnActivity() {
         TimesheetEntry timesheetEntry = new TimesheetEntry(Calendar.getInstance(),employeeHelper.getEmployee(),-2);
@@ -64,7 +64,7 @@ public class TimeSteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
-
+    //author: Lukas Halberg - s216229
     @When("the employee registers {int} hours spent on activity in one day")
     public void theEmployeeRegistersHoursSpentOnActivityInOneDay(int hoursSpent) {
         TimesheetEntry timesheetEntry = new TimesheetEntry(Calendar.getInstance(),employeeHelper.getEmployee(),hoursSpent);
@@ -86,7 +86,7 @@ public class TimeSteps {
         assertEquals(timesheetEntries, registreredHours);
 
     }
-
+    //author: Lukas Halberg - s216229
     @And("employee has registered hours on activity {int} days in the future")
     public void employeeHasRegisteredHoursOnActivityDaysInTheFuture(int dateOffset) throws Exception {
         Calendar date = Calendar.getInstance();
@@ -97,7 +97,7 @@ public class TimeSteps {
             timeHelper.registerTime(projectHelper.getProject().getID(),activityHelper.getActivity().getActivityID(),entry.getDate(),entry.getHours());
         }
     }
-
+    //author: Lukas Halberg - s216229
     @When("employee views total hours spent")
     public void employeeViewsTotalHoursSpent() {
         try {
@@ -106,22 +106,22 @@ public class TimeSteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
-
+    //author: Lukas Halberg - s216229
     @Then("the registered time is shown in todays time report")
     public void theRegisteredTimeIsShownInTodaysTimeReport() {
         assertEquals(timeReport, registreredHours);
     }
-
+    //author: Lukas Halberg - s216229
     @Then("no registered time is shown")
     public void noRegisteredTimeIsShown() {
         assertEquals(0,timeReport.size());
     }
-
+    //author: Lukas Halberg - s216229
     @And("employee has no registered hours")
     public void employeeHasNoRegisteredHours() throws Exception {
         assertEquals(timeCatApp.getTodayTimeReport().size(),0);
     }
-
+    //author: Lukas Halberg - s216229
     @Then("I get {double} hours spent")
     public void iGetHoursSpent(double hoursSpent) {
         double totalHoursSpent = 0;
@@ -130,7 +130,7 @@ public class TimeSteps {
         }
         assertEquals(totalHoursSpent,hoursSpent,0.01);
     }
-
+    //author: Lukas Halberg - s216229
     @And("all entries in the report are from the project and activity")
     public void allEntriesInTheReportAreFromTheProjectAndActivity() throws Exception {
         String projectName = projectHelper.getProject().getName();
