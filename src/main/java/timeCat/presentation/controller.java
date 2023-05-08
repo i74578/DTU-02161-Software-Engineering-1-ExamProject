@@ -54,8 +54,20 @@ public class controller {
             while(!timeCatApp.IsEmployeeLoggedIn()){
                 login();
             }
+
             view.showMainMenu(features);
-            int chosenFeature = getIntFromUser();
+            Integer chosenFeature = 0;
+            try{
+                chosenFeature = getIntFromUser();
+
+            }
+            catch(InputMismatchException e){
+                scanner.nextLine();
+                view.printError("Invalid input");
+                proceedAfterUserInput();
+                continue;
+            }
+
             if (chosenFeature > 0 && chosenFeature <= features.size()) {
                 view.clearConsole();
                 features.get(chosenFeature - 1).getFeatureCallMethod().run();
@@ -76,8 +88,8 @@ public class controller {
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public int getIntFromUser(){
-        int userInt = scanner.nextInt();
+    public Integer getIntFromUser() throws InputMismatchException{
+        Integer userInt = scanner.nextInt();
         scanner.nextLine();
         return userInt;
     }
