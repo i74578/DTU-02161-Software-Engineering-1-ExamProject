@@ -15,20 +15,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 //@author Emil SB Sundberg
 public class Whiteboxtest4 {
     @Test (expected = java.lang.NullPointerException.class)
-    public void test1() throws InvalidNameException, NotAllowedException, DuplicateException, NotFoundException {
+    public void addActivityNoData() throws InvalidNameException, NotAllowedException, DuplicateException, NotFoundException {
         Project project = new Project("asd","230001");
         project.addActivity(null);
 
     }
     @Test
-    public void test2() throws InvalidNameException, NotAllowedException, DuplicateException, NotFoundException {
+    public void addActivitySucess() throws InvalidNameException, NotAllowedException, DuplicateException, NotFoundException {
         Project project = new Project("asd","230001");
         project.addActivity(new Activity("asd","A1"));
         assertTrue(project.hasActivity("asd"));
     }
 
     @Test (expected = DuplicateException.class)
-    public void test3() throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
+    public void addActivityDoublet() throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
         Project project = new Project("asd","230001");
         project.addActivity(new Activity("asd","A1"));
         project.addActivity(new Activity("asd","A1"));
