@@ -18,8 +18,8 @@ public class Whiteboxtest4 {
     public void addActivityNoData() throws InvalidNameException, DuplicateException {
         Project project = new Project("Project Name","230001");
         project.addActivity(null);
-
     }
+
     @Test
     public void addActivitySucess() throws InvalidNameException, DuplicateException {
         Project project = new Project("Project Name","230001");

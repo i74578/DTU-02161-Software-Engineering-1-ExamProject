@@ -16,6 +16,7 @@ public class Whiteboxtest2 {
         String testInitials = "EMSBS";
         timeCatApp.getEmployee(testInitials);
     }
+
     @Test
     public  void getEmployeeSucess() throws NotAllowedException, NotFoundException {
         TimeCatApp timeCatApp = new TimeCatApp();
@@ -26,12 +27,11 @@ public class Whiteboxtest2 {
         } catch (Exception e) {}
         assertTrue(timeCatApp.hasEmployee(testInitials));
     }
+
     @Test (expected = NotFoundException.class)
     public void getemployeeNoData() throws NotFoundException {
         TimeCatApp timeCatApp = new TimeCatApp();
         String testvar3 = "";
         timeCatApp.getEmployee(testvar3);
     }
-
-
 }

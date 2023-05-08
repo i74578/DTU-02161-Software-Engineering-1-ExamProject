@@ -21,6 +21,7 @@ public class Whiteboxtest3 {
          } catch (Exception e){}
          assertFalse(timeCatApp.hasProject(projectName));
     }
+
     @Test
     public void hasProjectSucess () throws NotAllowedException, NotFoundException {
         TimeCatApp timeCatApp = new TimeCatApp();
@@ -30,8 +31,8 @@ public class Whiteboxtest3 {
             timeCatApp.createInternalProject(projectName);
         } catch (Exception e) {}
         assertTrue(timeCatApp.hasProject(projectName));
-
     }
+
     @Test
     public void hasProjectNoData () throws NotAllowedException, NotFoundException {
         TimeCatApp timeCatApp = new TimeCatApp();
