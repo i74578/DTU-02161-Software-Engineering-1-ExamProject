@@ -2,20 +2,15 @@ package cucumber;
 
 import org.junit.*;
 import timeCat.application.TimeCatApp;
-import timeCat.domain.Activity;
-import timeCat.domain.Employee;
 import timeCat.exceptions.DuplicateException;
 import timeCat.exceptions.InvalidNameException;
 import timeCat.exceptions.NotAllowedException;
 import timeCat.exceptions.NotFoundException;
 
-import java.util.function.BooleanSupplier;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 //@author Emil SB Sundberg
 
-public class Whiteboxtest {
+public class Whiteboxtest1 {
 
    @Test(expected = InvalidNameException.class )
     public void registerEmployeeWrongFormat() throws InvalidNameException, NotAllowedException, DuplicateException, NotFoundException {
@@ -32,7 +27,7 @@ public class Whiteboxtest {
         timeCatApp.login("USR");
         try {
             timeCatApp.registerEmployee(testInitials);
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
         assertTrue(timeCatApp.hasEmployee(testInitials));
     }
 

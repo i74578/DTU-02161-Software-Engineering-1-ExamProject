@@ -16,7 +16,7 @@ Scenario: Employee requests projects list successfully
 	And a project with the name "Project C" is on the list
 
 Scenario: Employee requests projects list successfully
-	Given there are 0 projects on the project repository
+	Given there are non projects in the project repository
 	And a employee exists
 	And the employee is logged in
 	When the employee requests a project list

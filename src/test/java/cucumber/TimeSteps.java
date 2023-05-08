@@ -2,8 +2,6 @@
 //author: Lukas Halberg - s216229
 package cucumber;
 
-import io.cucumber.java.en.Given;
-import org.junit.platform.suite.api.ExcludePackages;
 import timeCat.domain.*;
 import timeCat.application.TimeCatApp;
 
@@ -20,14 +18,14 @@ import static org.junit.Assert.*;
 
 public class TimeSteps {
 
-    private TimeCatApp timeCatApp;
-    private ErrorMessage errorMessage;
+    private final TimeCatApp timeCatApp;
+    private final ErrorMessage errorMessage;
     private ArrayList<TimesheetEntry> registreredHours;
     private ArrayList<ReportEntry> timeReport;
-    private EmployeeHelper employeeHelper;
-    private ProjectHelper projectHelper;
-    private ActivityHelper activityHelper;
-    private TimeHelper timeHelper;
+    private final EmployeeHelper employeeHelper;
+    private final ProjectHelper projectHelper;
+    private final ActivityHelper activityHelper;
+    private final TimeHelper timeHelper;
 
     //author: Lukas Halberg - s216229
     public TimeSteps(TimeCatApp timeCatApp, ErrorMessage errorMessage,EmployeeHelper employeeHelper,ProjectHelper projectHelper,ActivityHelper activityHelper, TimeHelper timeHelper) {

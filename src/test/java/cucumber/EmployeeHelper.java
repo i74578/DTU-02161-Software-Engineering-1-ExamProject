@@ -4,7 +4,7 @@ import timeCat.domain.Employee;
 
 //@author  Benjamin Fríðberg - s224347
 public class EmployeeHelper {
-    private TimeCatApp timeCatApp;
+    private final TimeCatApp timeCatApp;
     private Employee employee;
 
     //@author  Benjamin Fríðberg - s224347
@@ -22,8 +22,7 @@ public class EmployeeHelper {
 
     //@author  Benjamin Fríðberg - s224347
     private Employee getTestEmployee() {
-        Employee testEmployee = new Employee("BOB");
-        return testEmployee;
+        return new Employee("BOB");
     }
 
     //@author  Benjamin Fríðberg - s224347

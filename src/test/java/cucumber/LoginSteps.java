@@ -1,6 +1,5 @@
 package cucumber;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,9 +13,9 @@ import static org.junit.Assert.*;
 //@author  Benjamin Fríðberg - s224347
 public class LoginSteps {
 
-    private TimeCatApp timeCatApp;
-    private ErrorMessage errorMessage;
-    private EmployeeHelper employeeHelper;
+    private final TimeCatApp timeCatApp;
+    private final ErrorMessage errorMessage;
+    private final EmployeeHelper employeeHelper;
 
     public LoginSteps(TimeCatApp timeCatApp, ErrorMessage errorMessage, EmployeeHelper employeeHelper) {
         this.timeCatApp = timeCatApp;

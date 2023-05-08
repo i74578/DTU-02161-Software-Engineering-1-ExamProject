@@ -1,16 +1,11 @@
 package cucumber;
-import io.cucumber.java.en_old.Ac;
+
 import org.junit.*;
-import timeCat.application.TimeCatApp;
 import timeCat.domain.Activity;
-import timeCat.domain.Employee;
-import timeCat.domain.*;
+
+import timeCat.domain.Project;
 import timeCat.exceptions.DuplicateException;
 import timeCat.exceptions.InvalidNameException;
-import timeCat.exceptions.NotAllowedException;
-import timeCat.exceptions.NotFoundException;
-import java.util.function.BooleanSupplier;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 //@author Emil SB Sundberg
 public class Whiteboxtest4 {

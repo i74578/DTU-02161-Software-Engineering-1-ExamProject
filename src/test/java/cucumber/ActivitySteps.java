@@ -1,9 +1,7 @@
 //author: Christian Colberg - s224343
 package cucumber;
 
-import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import timeCat.application.*;
@@ -18,10 +16,10 @@ import static org.junit.Assert.*;
 
 public class ActivitySteps {
 
-    private TimeCatApp timeCatApp;
-    private ErrorMessage errorMessage;
-    private ActivityHelper activityHelper;
-    private ProjectHelper projectHelper;
+    private final TimeCatApp timeCatApp;
+    private final ErrorMessage errorMessage;
+    private final ActivityHelper activityHelper;
+    private final ProjectHelper projectHelper;
     private Activity activity;
     private ArrayList<Activity> activityList;
 
@@ -58,13 +56,13 @@ public class ActivitySteps {
 
     //#author: Christian Colberg - s224343
     @And("the activity has no registered hours")
-    public void theActivityHasNoRegisteredHours() throws Exception {
+    public void theActivityHasNoRegisteredHours() {
         assertEquals(activity.getTimesheet().getEntryCount(), 0);
     }
 
     //#author: Christian Colberg - s224343
     @And("the activity has no assigned employees")
-    public void theActivityHasNoAssignedEmployees() throws Exception {
+    public void theActivityHasNoAssignedEmployees() {
         assertTrue(activity.getAssignedEmployees().isEmpty());
     }
 

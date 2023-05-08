@@ -1,13 +1,8 @@
 package cucumber;
 import org.junit.*;
 import timeCat.application.TimeCatApp;
-import timeCat.domain.Activity;
-import timeCat.domain.Employee;
-import timeCat.exceptions.DuplicateException;
-import timeCat.exceptions.InvalidNameException;
 import timeCat.exceptions.NotAllowedException;
 import timeCat.exceptions.NotFoundException;
-import java.util.function.BooleanSupplier;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 //@author Emil SB Sundberg
@@ -18,7 +13,7 @@ public class Whiteboxtest3 {
          String projectName = "Borfors 1";
          try {
              timeCatApp.hasProject(projectName);
-         } catch (Exception e){}
+         } catch (Exception ignored){}
          assertFalse(timeCatApp.hasProject(projectName));
     }
 
@@ -29,7 +24,7 @@ public class Whiteboxtest3 {
         timeCatApp.login("USR");
         try {
             timeCatApp.createInternalProject(projectName);
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
         assertTrue(timeCatApp.hasProject(projectName));
     }
 
@@ -40,7 +35,7 @@ public class Whiteboxtest3 {
         timeCatApp.login("USR");
         try {
             timeCatApp.hasProject(projectName);
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
         assertFalse(timeCatApp.hasProject(projectName));
     }
 }

@@ -12,7 +12,7 @@ import java.util.Optional;
 
 //@author  Benjamin Fríðberg - s224347
 public class ProjectHelper {
-    private TimeCatApp timeCatApp;
+    private final TimeCatApp timeCatApp;
     private Project project;
 
     //@author  Benjamin Fríðberg - s224347
@@ -61,8 +61,7 @@ public class ProjectHelper {
 
     //@author  Benjamin Fríðberg - s224347
     private Project getTestProject() throws InvalidNameException {
-        Project testProject = new Project("Test Project","239999");
-        return testProject;
+        return new Project("Test Project","239999");
     }
 
     //@author  Benjamin Fríðberg - s224347

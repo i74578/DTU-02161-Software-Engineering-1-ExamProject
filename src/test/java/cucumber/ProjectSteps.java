@@ -11,22 +11,17 @@ import io.cucumber.java.en.When;
 import timeCat.exceptions.InvalidNameException;
 import timeCat.exceptions.NotAllowedException;
 import timeCat.exceptions.NotFoundException;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 //@author  Benjamin Fríðberg - s224347
 public class ProjectSteps {
 
-    private TimeCatApp timeCatApp;
-    private ErrorMessage errorMessage;
-    private ProjectHelper projectHelper;
-    private EmployeeHelper employeeHelper;
+    private final TimeCatApp timeCatApp;
+    private final ErrorMessage errorMessage;
+    private final ProjectHelper projectHelper;
+    private final EmployeeHelper employeeHelper;
     private Project project;
     private ArrayList<Project> projectList;
 
@@ -40,7 +35,7 @@ public class ProjectSteps {
 
     //@author  Benjamin Fríðberg - s224347
     @Then("I get the error message {string}")
-    public void iGetTheErrorMessage(String errorMessage) throws Exception {
+    public void iGetTheErrorMessage(String errorMessage) {
         assertEquals(errorMessage, this.errorMessage.getErrorMessage());
     }
 
@@ -125,13 +120,6 @@ public class ProjectSteps {
         assertTrue(project.getActivities().isEmpty());
     }
 
-
-    //@author  Benjamin Fríðberg - s224347
-    @And("the project project with name {string} does not have a project manager")
-    public void theProjectProjectWithNameDoesNotHaveAProjectManager(String projectName) {
-
-    }
-
     //@author  Benjamin Fríðberg - s224347
     @Given("a project is in the project repository")
     public void aProjectIsInTheProjectRepository() throws Exception {
@@ -168,7 +156,7 @@ public class ProjectSteps {
 
     //@author  Benjamin Fríðberg - s224347
     @Then("the project with the name {string} is not in the project repository")
-    public void theProjectWithTheNameIsNotInTheProjectRepository(String projectName) throws Exception {
+    public void theProjectWithTheNameIsNotInTheProjectRepository(String projectName) {
         assertFalse(timeCatApp.hasProject(projectName));
     }
 
@@ -208,7 +196,7 @@ public class ProjectSteps {
     public void theEmployeeIsAssignedProjectManagerOfTheProject(String initials) throws Exception {
         String projectID = project.getID();
         Employee projectManager = timeCatApp.getProjectByID(projectID).getPM();
-        assertTrue(projectManager == timeCatApp.getEmployee(initials));
+        assertSame(projectManager, timeCatApp.getEmployee(initials));
     }
 
     //@author  Benjamin Fríðberg - s224347
@@ -265,8 +253,8 @@ public class ProjectSteps {
     }
 
     //author: Lukas Halberg - s216229
-    @Given("there are {int} projects on the project repository")
-    public void thereAreProjectsOnTheProjectRepository(int projectCount) throws Exception {
+    @Given("there are non projects in the project repository")
+    public void thereAreNonProjectsInTheProjectRepository() {
         assertEquals(timeCatApp.getProjects().size(),0);
     }
 }

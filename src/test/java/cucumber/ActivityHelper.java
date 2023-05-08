@@ -11,7 +11,7 @@ import timeCat.exceptions.NotFoundException;
 
 //@author  Benjamin Fríðberg - s224347
 public class ActivityHelper {
-    private TimeCatApp timeCatApp;
+    private final TimeCatApp timeCatApp;
     private Activity activity;
 
     //@author  Benjamin Fríðberg - s224347
@@ -51,12 +51,11 @@ public class ActivityHelper {
 
     //@author  Benjamin Fríðberg - s224347
     private Activity getTestActivity() throws InvalidNameException {
-        Activity testActivity = new Activity("Test Activity","A0");
-        return testActivity;
+        return new Activity("Test Activity","A0");
     }
 
     //@author  Benjamin Fríðberg - s224347
-    public void setActivity(Activity activity) throws InvalidNameException {
+    public void setActivity(Activity activity) {
         this.activity = activity;
     }
 }

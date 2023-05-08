@@ -6,8 +6,8 @@ Feature: Add employee
 Scenario: Employee registers a new employee to the user repository
 	Given a employee exists
 	And the employee is logged in
- 	When the employee registers a new employee
- 	Then the new employee is registered
+	When the employee registers a new employee with the initials "TOM"
+ 	Then the new employee with initials "TOM" is registered
 
 Scenario: Employee registers a new employee with blank initials to the user repository
 	Given a employee exists

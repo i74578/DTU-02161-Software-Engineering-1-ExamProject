@@ -1,11 +1,7 @@
 package cucumber;
 import org.junit.*;
 import timeCat.application.TimeCatApp;
-import timeCat.domain.Activity;
-import timeCat.domain.Employee;
 import timeCat.exceptions.*;
-import java.util.function.BooleanSupplier;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 //@author Emil SB Sundberg
 public class Whiteboxtest2 {
@@ -24,7 +20,7 @@ public class Whiteboxtest2 {
         timeCatApp.login("USR");
         try {
             timeCatApp.registerEmployee(testInitials);
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
         assertTrue(timeCatApp.hasEmployee(testInitials));
     }
 
