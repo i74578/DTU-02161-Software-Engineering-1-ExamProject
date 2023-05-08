@@ -83,6 +83,7 @@ public class view {
         return "#" + leftSpacePadding + stringToCenter + rightSpacePadding + "#";
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public String[] extractMainProperties(Object obj) {
         if (obj instanceof Project) {
             Project project = (Project) obj;

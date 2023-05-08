@@ -2,6 +2,7 @@ package timeCat.domain;
 
 import java.util.Calendar;
 
+//@author  Benjamin Fríðberg - s224347
 public class ReportEntry extends TimesheetEntry {
     private final Project project;
     private final Activity activity;

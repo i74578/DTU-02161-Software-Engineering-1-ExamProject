@@ -4,7 +4,6 @@ package timeCat.domain;
 public class Employee{
     private final String initials;
 
-
     public Employee(String initials){
         this.initials = initials;
     }

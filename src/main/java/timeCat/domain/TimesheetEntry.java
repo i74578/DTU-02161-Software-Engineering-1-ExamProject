@@ -14,14 +14,17 @@ public class TimesheetEntry{
         this.employee = employee;
         this.hoursSpent = hoursSpent;
     }
+
     //author: Lukas Halberg - s216229
     public Calendar getDate() {
         return date;
     }
+
     //author: Lukas Halberg - s216229
     public double getHours() {
         return hoursSpent;
     }
+
     //author: Lukas Halberg - s216229
     public Employee getEmployee() {
         return employee;

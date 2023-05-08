@@ -79,10 +79,12 @@ public class Project {
         activities.remove(projectToRemove);
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public void assignPM(Employee employee) {
         pm = employee;
     }
 
+    //@author  Benjamin Fríðberg - s224347
     public void deassignPM() {
         pm = null;
     }
