@@ -44,11 +44,6 @@ public class ActivitySteps {
         }
     }
 
-    @When("the employee creates an activity id {string} in the project with id {string}")
-    public void theEmployeeCreatesAnActivityIdInTheProjectWithId(String arg0, String arg1) {
-    }
-
-
     //#author: Christian Colberg - s224343
     @When("a employee removes an activity from project {string}")
     public void aEmployeeRemovesAnActivityFromProject(String projectName) {
@@ -81,6 +76,7 @@ public class ActivitySteps {
         String activityID = activity.getActivityID();
         assertFalse(activitiesInProject.stream().anyMatch(p -> p.getActivityID().equals(activityID)));
     }
+
     //#author: Christian Colberg - s224343
     @When("the employee creates the activity in the project")
     public void theEmployeeCreatesTheActivityInTheProject() throws Exception {
@@ -91,8 +87,8 @@ public class ActivitySteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
         activity = activityHelper.getActivity();
-
     }
+
     //#author: Christian Colberg - s224343
     @Then("the activity is in the project")
     public void theActivityIsInTheProject() throws Exception {
@@ -100,11 +96,13 @@ public class ActivitySteps {
         String activityID = activity.getActivityID();
         assertTrue(activitiesInProject.stream().anyMatch(p -> p.getActivityID().equals(activityID)));
     }
+
     //#author: Christian Colberg - s224343
     @And("an activity is in the project")
     public void anActivityIsInTheProject() throws Exception {
         activity = activityHelper.createActivity("Test Activity",projectHelper.getProject().getID());
     }
+
     //#author: Christian Colberg - s224343
     @When("the employee creates an activity with the name {string} in the project")
     public void theEmployeeCreatesAnActivityWithTheNameInTheProject(String activityName) {
@@ -114,6 +112,7 @@ public class ActivitySteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
+
     //#author: Christian Colberg - s224343
     @When("a employee removes the activity from the project")
     public void aEmployeeRemovesTheActivityFromTheProject() {
@@ -125,12 +124,14 @@ public class ActivitySteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
+
     //#author: Christian Colberg - s224343
     @When("the employee removes the activity from the project")
     public void theEmployeeRemovesTheActivityFromTheProject() throws Exception {
         timeCatApp.removeActivity(activity.getActivityID(),projectHelper.getProject().getID());
     }
 
+    //@author  Benjamin Fríðberg - s224347
     @When("the employee requests a activity list for the project")
     public void theEmployeeRequestsAActivityListForTheProject() {
         try {
@@ -140,11 +141,13 @@ public class ActivitySteps {
         }
     }
 
+    //@author  Benjamin Fríðberg - s224347
     @Then("there are {int} activities on the activity list")
     public void thereAreActivitiesOnTheActivityList(int acitivityCount) {
         assertEquals(activityList.size(),acitivityCount);
     }
 
+    //@author  Benjamin Fríðberg - s224347
     @And("the activity is in the list")
     public void theActivityIsInTheList() throws InvalidNameException{
         activity = activityHelper.getActivity();

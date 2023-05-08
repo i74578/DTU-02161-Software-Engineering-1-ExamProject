@@ -14,10 +14,12 @@ import java.util.Optional;
 public class ProjectHelper {
     private TimeCatApp timeCatApp;
     private Project project;
+
     //@author  Benjamin Fríðberg - s224347
     public ProjectHelper(TimeCatApp timeCatApp) {
         this.timeCatApp = timeCatApp;
     }
+
     //@author  Benjamin Fríðberg - s224347
     public Project createCostumerProject(String projectName) throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
         Employee loggedInEmployee = timeCatApp.getLoggedInUser();
@@ -30,6 +32,7 @@ public class ProjectHelper {
         }
         return project;
     }
+
     //@author  Benjamin Fríðberg - s224347
     public Project createInternalProject(String projectName) throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
         Employee loggedInEmployee = timeCatApp.getLoggedInUser();
@@ -47,6 +50,7 @@ public class ProjectHelper {
     public void addTestProject() throws Exception{
         project = createCostumerProject(getProject().getName());
     }
+
     //@author  Benjamin Fríðberg - s224347
     public Project getProject() throws InvalidNameException {
         if(project == null){
@@ -54,6 +58,7 @@ public class ProjectHelper {
         }
         return project;
     }
+
     //@author  Benjamin Fríðberg - s224347
     private Project getTestProject() throws InvalidNameException {
         Project testProject = new Project("Test Project","239999");
@@ -71,6 +76,7 @@ public class ProjectHelper {
             timeCatApp.logout();
         }
     }
+
     //@author  Benjamin Fríðberg - s224347
     public void assignTestPM() throws NotAllowedException, NotFoundException, InvalidNameException, DuplicateException {
         Employee loggedInEmployee = timeCatApp.getLoggedInUser();

@@ -24,8 +24,6 @@ public class LoginSteps {
         this.employeeHelper = employeeHelper;
     }
 
-
-
     //@author  Benjamin Fríðberg - s224347
     @Given("no employee is logged in")
     public void thatNoEmployeeIsLoggedIn() {
@@ -37,6 +35,7 @@ public class LoginSteps {
     public void aEmployeeWithInitialsIsLoggedIn(String initials) throws Exception {
         timeCatApp.login(initials);
     }
+
     //@author  Benjamin Fríðberg - s224347
     @When("the employee logs in")
     public void theEmployeeLogsIn() {
@@ -46,6 +45,7 @@ public class LoginSteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
+
     //@author  Benjamin Fríðberg - s224347
     @Then("employee is logged in")
     public void employeeIsLoggedIn() {
@@ -68,6 +68,7 @@ public class LoginSteps {
     public void aEmployeeWithInitialsExists(String initials) throws Exception {
         employeeHelper.registerEmployee(initials);
     }
+
     //@author  Benjamin Fríðberg - s224347
     @When("the employee logs in with the initials {string}")
     public void theEmployeeLogsInWithTheInitials(String initials) {
@@ -77,6 +78,7 @@ public class LoginSteps {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
+
     //@author  Benjamin Fríðberg - s224347
     @Then("employee with initials {string} is logged in")
     public void employeeWithInitialsIsLoggedIn(String initials) {
